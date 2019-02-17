@@ -64,7 +64,9 @@ export default class App extends React.Component {
       rating:rating
     }).then((data) => {
       //success callback
-      console.log('data ', data);
+        if (data) {
+            console.log(data);
+        }
     }).catch((error) => {
       //error callback
       console.log('error ', error);
@@ -106,8 +108,9 @@ export default class App extends React.Component {
 // Methodology: In Messages, each ride_id has their own exchange of message, where each message is indexed by message_id a number
 // This createNewMessage() function by definition composes the first message of exchange so message_id is 1 
   createNewMessageExchange(ride_id, sender_id, recipient_id, message) {
+    console.log('Creating new message exchange');
     let currentTime = new Date().getTime();
-    firebase.database().ref(`Messages/${ride_id}/1/`).set({
+    firebase.database().ref(`Messages/${ride_id}/${currentTime}/`).set({
       message_id:1,
       sender_id:sender_id,
       recipient_id:recipient_id,
@@ -115,8 +118,9 @@ export default class App extends React.Component {
       ts: currentTime,
       hi: "hello"
     }).then((data) => {
-      //success callback
-      console.log('data ', data);
+       if (data) {
+           console.log(data);
+       }
     }).catch((error) => {
       //error callback
       console.log('error ', error);
@@ -140,21 +144,23 @@ export default class App extends React.Component {
 //When adding a subsequent message, you must check the number of messages that currently exists, and increment message_id by 1
 //This function automatically finds latest message, and composes new message with incremented message_id
   async addNewMessage(ride_id,sender_id,recipient_id,message) {
+    console.log(`Adding new message to ride ${ride_id}`);
     await this.readMessages(ride_id);
     console.log(`Messages count ${this.state.numMessages}`);
     let new_msg_id = this.state.numMessages + 1;
     console.log(`New message ID ${new_msg_id}`);
     let currentTime = new Date().getTime();
 
-    firebase.database().ref(`Messages/${ride_id}/${new_msg_id}`).set({
-      message_id:new_msg_id,
-      sender_id:sender_id,
-      recipient_id:recipient_id,
-      message:message,
+    firebase.database().ref(`Messages/${ride_id}/${currentTime}`).set({
+      message_id: new_msg_id,
+      sender_id: sender_id,
+      recipient_id: recipient_id,
+      message: message,
       ts: currentTime
     }).then((data) => {
-      //success callback
-      console.log('data ', data);
+      if (data) {
+        console.log(data);
+      }
     }).catch((error) => {
       //error callback
       console.log('error ', error);
