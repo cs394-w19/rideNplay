@@ -2,8 +2,8 @@ import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
-var firebase = require("firebase");
-var config = {
+let firebase = require("firebase");
+let config = {
     apiKey: "AIzaSyDpsRarS_gg94oXh6QnracvPytegM5FV7Y",
     authDomain: "ridenplay-50868.firebaseapp.com",
     databaseURL: "https://ridenplay-50868.firebaseio.com",
