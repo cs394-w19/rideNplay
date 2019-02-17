@@ -17,12 +17,15 @@ export default class App extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.readMessages = this.readMessages.bind(this);
     this.state = {
     isLoadingComplete: false,
-    numMessages:0,
+    numMessages: 0,
   };
 
-    //Example code for how to use Firebase functions
+
+      //Example code for how to use Firebase functions
     this.createNewRide("Ride1","parent1","child1","School","Home","3:45pm","N/A","-"); 
     this.createNewRide("Ride2","parent2","child2","School","Home","3:45pm","N/A","-"); 
     this.createNewRide("Ride3","parent3","child3","School","Home","3:45pm","N/A","-"); 
@@ -32,7 +35,7 @@ export default class App extends React.Component {
     // this.deleteRide("Ride4");
     this.createNewMessageExchange("Ride3","parent1","parent3","Hi! I'd like to help!");
     // this.readMessages("Ride3");
-    this.addNewMessage("Ride3","parent1","parent3","Thanks so much!");
+    this.addNewMessage("Ride3","parent3","parent1","Thanks so much!");
   }
 
 //***********FIREBASE CODE****************************************************************/
@@ -102,12 +105,15 @@ export default class App extends React.Component {
 // Create new message on Firebase with ride_id, with all fields completed
 // Methodology: In Messages, each ride_id has their own exchange of message, where each message is indexed by message_id a number
 // This createNewMessage() function by definition composes the first message of exchange so message_id is 1 
-  createNewMessageExchange(ride_id,sender_id,recipient_id,message) {
-    firebase.database().ref('Messages/'+ride_id+"/1/").set({
+  createNewMessageExchange(ride_id, sender_id, recipient_id, message) {
+    let currentTime = new Date().getTime();
+    firebase.database().ref(`Messages/${ride_id}/1/`).set({
       message_id:1,
       sender_id:sender_id,
       recipient_id:recipient_id,
-      message:message
+      message:message,
+      ts: currentTime,
+      hi: "hello"
     }).then((data) => {
       //success callback
       console.log('data ', data);
@@ -118,16 +124,14 @@ export default class App extends React.Component {
   }
 
 
-readMessages(ride_id) {
-  return firebase.database().ref('Messages/' + ride_id).once('value').then(snapshot => {
+ async readMessages(ride_id) {
+    let self = this;
+    return firebase.database().ref(`Messages/${ride_id}`).once('value').then((snapshot) => {
       const msgs = snapshot.val();
-      console.log(msgs);
-      console.log("Number of current messages: ");
-      console.log(Object.keys(msgs).length);
-      this.setState({
-       numMessages: parseInt((Object.keys(msgs).length))
-     });
-      return parseInt(Object.keys(msgs).length);
+      console.log("Number of current messages: " + Object.keys(msgs).length);
+      self.setState({
+       numMessages: Number(Object.keys(msgs).length)
+      });
     })
 }
 
@@ -135,19 +139,19 @@ readMessages(ride_id) {
 
 //When adding a subsequent message, you must check the number of messages that currently exists, and increment message_id by 1
 //This function automatically finds latest message, and composes new message with incremented message_id
-  addNewMessage(ride_id,sender_id,recipient_id,message) {
-    current_msgs=this.readMessages(ride_id);
-    console.log("Received from readMessages: "+current_msgs.toString());
-    // let new_msg_id=parseInt(current_msgs)+1;
-    console.log("State: "+this.state.numMessages.toString());
-    let new_msg_id=parseInt(this.state.numMessages)+1;
+  async addNewMessage(ride_id,sender_id,recipient_id,message) {
+    await this.readMessages(ride_id);
+    console.log(`Messages count ${this.state.numMessages}`);
+    let new_msg_id = this.state.numMessages + 1;
+    console.log(`New message ID ${new_msg_id}`);
+    let currentTime = new Date().getTime();
 
-
-    firebase.database().ref('Messages/'+ride_id+"/"+new_msg_id.toString()).set({
-      message_id:1,
+    firebase.database().ref(`Messages/${ride_id}/${new_msg_id}`).set({
+      message_id:new_msg_id,
       sender_id:sender_id,
       recipient_id:recipient_id,
-      message:message
+      message:message,
+      ts: currentTime
     }).then((data) => {
       //success callback
       console.log('data ', data);
