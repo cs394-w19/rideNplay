@@ -2,9 +2,9 @@ import React from 'react';
 import { ScrollView, StyleSheet, View, Text } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 
-export default class LinksScreen extends React.Component {
+export default class NewRide extends React.Component {
   static navigationOptions = {
-    title: 'Page 2',
+    title: 'New Ride',
   };
 
   render() {

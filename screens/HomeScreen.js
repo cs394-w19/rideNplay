@@ -17,23 +17,24 @@ import FontAwesome, { Icons } from 'react-native-fontawesome';
 import { Icon } from 'react-native-elements'
 
 export default class HomeScreen extends React.Component {
+  state = {
+    Arides: [["test"]],
+    Rrides: [["test"], ["test2"]]
+  }
+
   static navigationOptions = {
     headerTitle: "My Rides",
-    headerRight: (
-      <TouchableOpacity><Icon name="add-box"
-            type="material"
-            color="blue"
-            size={30}
-            style = {{marginRight: 5}}/>
-      </TouchableOpacity>
-    ),
   };
+
+  componentWillMount() {
+    // get from firebase, load to STATE
+  }
 
   render() {
     return (
       <View style={styles.container}>
-        <View style = {styles.accepted}><AcceptedRides /></View>
-        <View style = {styles.accepted}><RequestedRides /></View>
+        <View style = {styles.accepted}><AcceptedRides rides = {this.state.Arides} /></View>
+        <View style = {styles.accepted}><RequestedRides rides = {this.state.Rrides} /></View>
       </View>
     );
   }

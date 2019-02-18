@@ -14,7 +14,7 @@ const Ride = (props) => {
     return(
       <TouchableOpacity style = {styles.event}>
         <View style = {styles.info}>
-          <Text style = {styles.title}> Requested Ride Title </Text>
+          <Text style = {styles.title}> {props.rideTitle} </Text>
         </View>
       </TouchableOpacity>
 
@@ -31,7 +31,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightgray',
     borderColor: 'black',
     borderWidth: 1,
-    borderTopWidth: 0
+    borderTopWidth: 0,
+    borderLeftWidth: 0,
+    borderRightWidth: 0
   },
   title: {
     fontSize: 16,

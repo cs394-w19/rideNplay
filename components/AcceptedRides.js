@@ -15,12 +15,14 @@ export default class AcceptedRides extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.textView}><Text style ={{color: 'white'}}> Accepted Rides </Text></View>
+        <View style={styles.textView}><Text style ={{color: 'white'}}> My Rides </Text></View>
         <ScrollView>
-          <Ride />
-          <Ride />
-          <Ride />
-          <Ride />
+        {this.props.rides.map((ride, i) =>
+          <Ride
+            key = {i}
+            rideTitle = {ride[0]}
+          />
+        )}
         </ScrollView>
       </View>
     );
@@ -30,7 +32,6 @@ export default class AcceptedRides extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: 150,
     margin: 5,
     justifyContent: 'center',
     borderWidth: 1,

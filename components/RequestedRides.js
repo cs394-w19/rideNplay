@@ -15,12 +15,14 @@ export default class RequestedRides extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-      <View style={styles.textView}><Text style ={{color: 'white'}}> Requested Rides </Text></View>
+      <View style={styles.textView}><Text style ={{color: 'white'}}> Available Rides </Text></View>
       <ScrollView>
-        <RequestedRide />
-        <RequestedRide />
-        <RequestedRide />
-        <RequestedRide />
+        {this.props.rides.map((ride, i) =>
+          <RequestedRide
+            key = {i}
+            rideTitle = {ride[0]}
+          />
+        )}
       </ScrollView>
       </View>
     );
