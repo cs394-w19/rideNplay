@@ -28,7 +28,7 @@ export default class HomeScreen extends React.Component {
       const {params = {}} = navigation.state;
       if (navigation.getParam('rideID')){
       return {
-        headerTitle: "My Rides",
+        headerTitle: "Home",
         headerLeft: (
           <Button
             onPress={() => params.handle()}
