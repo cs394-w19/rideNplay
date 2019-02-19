@@ -20,15 +20,15 @@ import { Icon } from 'react-native-elements'
 import AcceptedRideDetail from '../components/AcceptedRideDetail'
 
 let firebase = require("firebase");
-let config = {
-    apiKey: "AIzaSyDpsRarS_gg94oXh6QnracvPytegM5FV7Y",
-    authDomain: "ridenplay-50868.firebaseapp.com",
-    databaseURL: "https://ridenplay-50868.firebaseio.com",
-    projectId: "ridenplay-50868",
-    storageBucket: "",
-    messagingSenderId: "851433543145"
-  };
-  firebase.initializeApp(config);
+// let config = {
+//     apiKey: "AIzaSyDpsRarS_gg94oXh6QnracvPytegM5FV7Y",
+//     authDomain: "ridenplay-50868.firebaseapp.com",
+//     databaseURL: "https://ridenplay-50868.firebaseio.com",
+//     projectId: "ridenplay-50868",
+//     storageBucket: "",
+//     messagingSenderId: "851433543145"
+//   };
+//   firebase.initializeApp(config);
 
 export default class HomeScreen extends React.Component {
   state = {

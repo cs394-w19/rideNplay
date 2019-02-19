@@ -2,16 +2,16 @@ import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
-// let firebase = require("firebase");
-// let config = {
-//     apiKey: "AIzaSyDpsRarS_gg94oXh6QnracvPytegM5FV7Y",
-//     authDomain: "ridenplay-50868.firebaseapp.com",
-//     databaseURL: "https://ridenplay-50868.firebaseio.com",
-//     projectId: "ridenplay-50868",
-//     storageBucket: "",
-//     messagingSenderId: "851433543145"
-//   };
-//   firebase.initializeApp(config);
+let firebase = require("firebase");
+let config = {
+    apiKey: "AIzaSyDpsRarS_gg94oXh6QnracvPytegM5FV7Y",
+    authDomain: "ridenplay-50868.firebaseapp.com",
+    databaseURL: "https://ridenplay-50868.firebaseio.com",
+    projectId: "ridenplay-50868",
+    storageBucket: "",
+    messagingSenderId: "851433543145"
+  };
+  firebase.initializeApp(config);
 
 export default class App extends React.Component {
 
@@ -26,10 +26,10 @@ export default class App extends React.Component {
 
 
       //Example code for how to use Firebase functions
-    // this.createNewRide("Ride1","Ride to School","parent1","child1","School","Home","3:45pm","N/A","-"); 
-    // this.createNewRide("Ride2","Ride to Soccer Practice","parent2","child2","School","Home","3:45pm","N/A","-"); 
-    // this.createNewRide("Ride3","Ride from School","parent3","child3","School","Home","3:45pm","N/A","-"); 
-    // this.createNewRide("Ride4","Ride from Soccer Practice","parent4","child4","School","Home","3:45pm","N/A","-"); 
+    this.createNewRide("Ride1", "Test desc", "Ride to School","parent1","child1","School","Home","3:45pm","N/A","-");
+    this.createNewRide("Ride2","Test desc","Ride to Soccer Practice","parent2","child2","School","Home","3:45pm","N/A","-");
+    this.createNewRide("Ride3","Test desc","Ride from School","parent3","child3","School","Home","3:45pm","Mark","-");
+    this.createNewRide("Ride4","Test desc","Ride from Soccer Practice","parent4","child4","School","Home","3:45pm","N/A","-");
     // this.readRideData("Ride3");
     // this.updateRideInfo("Ride3","3:46pm","Mark")
     // // this.deleteRide("Ride4");
@@ -39,7 +39,7 @@ export default class App extends React.Component {
   }
 
 //***********FIREBASE CODE****************************************************************/
-//    Attributes for a given ride 
+//    Attributes for a given ride
 //      -submitter
 //      -child_user_id (from Users database)
 //      -pickup_location
@@ -52,9 +52,10 @@ export default class App extends React.Component {
 
 // Create new ride on Firebase with ride_id, with all fields completed
 //      ***When calling function, if we don't have info, just leave that field with "N/A" or "-" (but include something)
-  createNewRide(id, ride_name, submitter_id, child_user_id, pickup_loc, dropoff_loc, pickup_time,driver,rating) {
+  createNewRide(id, ride_desc, ride_name, submitter_id, child_user_id, pickup_loc, dropoff_loc, pickup_time,driver,rating) {
     firebase.database().ref('Rides/'+id).set({
       ride_id:id,
+      ride_desc: ride_desc,
       ride_name:ride_name,
       submitter_id:submitter_id,
       child_id:child_user_id,
@@ -75,7 +76,7 @@ export default class App extends React.Component {
   }
 
 
-//When you find matching driver, call this function and pass the ride_id, new pickup time (requested by driver potentially), and driver name (may end up being driver_id [TBD]) 
+//When you find matching driver, call this function and pass the ride_id, new pickup time (requested by driver potentially), and driver name (may end up being driver_id [TBD])
   updateRideInfo(ride_id,pickup_time,driver) {
     firebase.database().ref('Rides/' + ride_id + '/').update({
       ride_id:ride_id,
@@ -99,7 +100,7 @@ export default class App extends React.Component {
     })
   }
 
-//When the ride is finished, call this function on a given ride_id to delete it 
+//When the ride is finished, call this function on a given ride_id to delete it
   deleteRide(id) {
     firebase.database().ref('Rides/' + id).remove();
   }
@@ -107,7 +108,7 @@ export default class App extends React.Component {
 
 // Create new message on Firebase with ride_id, with all fields completed
 // Methodology: In Messages, each ride_id has their own exchange of message, where each message is indexed by message_id a number
-// This createNewMessage() function by definition composes the first message of exchange so message_id is 1 
+// This createNewMessage() function by definition composes the first message of exchange so message_id is 1
   createNewMessageExchange(ride_id, sender_id, recipient_id, message) {
     console.log('Creating new message exchange');
     let currentTime = new Date().getTime();

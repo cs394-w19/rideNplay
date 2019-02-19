@@ -23,7 +23,7 @@ export default class RequestedRides extends React.Component {
           <RequestedRide
             pickupLoc = {ride.pickupLoc}
             dropoffLoc = {ride.dropoffLoc}
-            rideTitle = {ride.ride_id}
+            rideTitle = {ride.ride_name}
           />
           </TouchableOpacity>
           }
