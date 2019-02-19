@@ -11,17 +11,17 @@ import {
 import RequestedRide from './RequestedRide'
 
 export default class RequestedRides extends React.Component {
-
   render() {
     return (
       <View style={styles.container}>
       <View style={styles.textView}><Text style ={{color: 'white'}}> Available Rides </Text></View>
       <ScrollView>
         {this.props.rides.map((ride, i) =>
+          <TouchableOpacity key = {i} style = {styles.event}>
           <RequestedRide
-            key = {i}
-            rideTitle = {ride[0]}
+            rideTitle = {ride.title}
           />
+          </TouchableOpacity>
         )}
       </ScrollView>
       </View>
@@ -30,6 +30,10 @@ export default class RequestedRides extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  event: {
+    marginHorizontal: 12,
+    marginTop: 12
+  },
   container: {
     flex: 1,
     margin: 5,

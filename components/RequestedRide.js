@@ -12,11 +12,9 @@ import * as firebase from 'firebase'
 this.width = Dimensions.get('window').width
 const Ride = (props) => {
     return(
-      <TouchableOpacity style = {styles.event}>
         <View style = {styles.info}>
           <Text style = {styles.title}> {props.rideTitle} </Text>
         </View>
-      </TouchableOpacity>
 
     )
 }
