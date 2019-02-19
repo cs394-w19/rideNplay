@@ -19,7 +19,7 @@ import { Icon } from 'react-native-elements'
 export default class HomeScreen extends React.Component {
   state = {
     Arides: [{id: "1", title: 'test'}, {id: "2", title: 'test2'}],
-    Rrides: [{id: "1", title: 'test'}, {id: "2", title: 'test2'}],
+    Rrides: [{id: "3", title: 'test'}, {id: "4", title: 'test2'}],
     currentRideID: ''
   }
 
@@ -95,12 +95,13 @@ export default class HomeScreen extends React.Component {
                          clickRide = {this.clickRide}/>
           </View>
           <View style = {styles.accepted}>
-            <RequestedRides rides = {this.state.Rrides} />
+            <RequestedRides rides = {this.state.Rrides}
+                            clickRide = {this.clickRide}/>
           </View>
         </View>
       }
       else{
-        return <Text>Details Page</Text>
+        return <Text>Details Page for ride {this.state.currentRideID}</Text>
       }
   }
 }

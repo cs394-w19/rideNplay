@@ -17,7 +17,7 @@ export default class RequestedRides extends React.Component {
       <View style={styles.textView}><Text style ={{color: 'white'}}> Available Rides </Text></View>
       <ScrollView>
         {this.props.rides.map((ride, i) =>
-          <TouchableOpacity key = {i} style = {styles.event}>
+          <TouchableOpacity key = {i} style = {styles.event} onPress = {() => this.props.clickRide(ride.id)}>
           <RequestedRide
             rideTitle = {ride.title}
           />
