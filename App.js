@@ -26,10 +26,10 @@ export default class App extends React.Component {
 
 
       //Example code for how to use Firebase functions
-    // this.createNewRide("Ride1","parent1","child1","School","Home","3:45pm","N/A","-"); 
-    // this.createNewRide("Ride2","parent2","child2","School","Home","3:45pm","N/A","-"); 
-    // this.createNewRide("Ride3","parent3","child3","School","Home","3:45pm","N/A","-"); 
-    // this.createNewRide("Ride4","parent4","child4","School","Home","3:45pm","N/A","-"); 
+    // this.createNewRide("Ride1","Ride to School","parent1","child1","School","Home","3:45pm","N/A","-"); 
+    // this.createNewRide("Ride2","Ride to Soccer Practice","parent2","child2","School","Home","3:45pm","N/A","-"); 
+    // this.createNewRide("Ride3","Ride from School","parent3","child3","School","Home","3:45pm","N/A","-"); 
+    // this.createNewRide("Ride4","Ride from Soccer Practice","parent4","child4","School","Home","3:45pm","N/A","-"); 
     // this.readRideData("Ride3");
     // this.updateRideInfo("Ride3","3:46pm","Mark")
     // // this.deleteRide("Ride4");
@@ -52,9 +52,10 @@ export default class App extends React.Component {
 
 // Create new ride on Firebase with ride_id, with all fields completed
 //      ***When calling function, if we don't have info, just leave that field with "N/A" or "-" (but include something)
-  createNewRide(id,submitter_id, child_user_id, pickup_loc, dropoff_loc, pickup_time,driver,rating) {
+  createNewRide(id, ride_name, submitter_id, child_user_id, pickup_loc, dropoff_loc, pickup_time,driver,rating) {
     firebase.database().ref('Rides/'+id).set({
       ride_id:id,
+      ride_name:ride_name,
       submitter_id:submitter_id,
       child_id:child_user_id,
       pickup_loc:pickup_loc,
