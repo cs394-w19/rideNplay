@@ -15,6 +15,8 @@ import RequestedRides from '../components/RequestedRides'
 import { MonoText } from '../components/StyledText';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
 import { Icon } from 'react-native-elements'
+import AcceptedRideDetail from '../components/AcceptedRideDetail'
+
 let firebase = require("firebase");
 let config = {
     apiKey: "AIzaSyDpsRarS_gg94oXh6QnracvPytegM5FV7Y",
@@ -69,8 +71,8 @@ export default class HomeScreen extends React.Component {
     // get rides from Firebase, load to STATE
     return firebase.database().ref('Rides/').once('value').then(snapshot => {
       const rides = snapshot.val();
-      this.setState({all_rides: rides});
-      console.log(this.state.all_rides['Ride1']);
+      newRides = Object.values(rides)
+      this.setState({all_rides: newRides});
     })
   }
 
@@ -88,7 +90,7 @@ export default class HomeScreen extends React.Component {
     if(this.state.currentRideID == ''){
       return <View style={styles.container}>
         <View style = {styles.accepted}>
-          <AcceptedRides rides = {this.state.Arides}
+          <AcceptedRides rides = {this.state.all_rides}
                        clickRide = {this.clickRide}/>
         </View>
         <View style = {styles.accepted}>
@@ -106,17 +108,17 @@ export default class HomeScreen extends React.Component {
       if(this.state.currentRideID == ''){
         return <View style={styles.container}>
           <View style = {styles.accepted}>
-            <AcceptedRides rides = {this.state.Arides}
+            <AcceptedRides rides = {this.state.all_rides}
                          clickRide = {this.clickRide}/>
           </View>
           <View style = {styles.accepted}>
-            <RequestedRides rides = {this.state.Rrides}
+            <RequestedRides rides = {this.state.all_rides}
                             clickRide = {this.clickRide}/>
           </View>
         </View>
       }
       else{
-        return <Text>Details Page for ride {this.state.currentRideID}</Text>
+        return <AcceptedRideDetail />
       }
   }
 }

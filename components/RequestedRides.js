@@ -17,11 +17,17 @@ export default class RequestedRides extends React.Component {
       <View style={styles.textView}><Text style ={{fontSize: 30, fontWeight: 'bold', color: 'black'}}> available rides </Text></View>
       <ScrollView>
         {this.props.rides.map((ride, i) =>
-          <TouchableOpacity key = {i} style = {styles.event} onPress = {() => this.props.clickRide(ride.id)}>
+
+          {
+          if(ride.driver == "N/A")
+          return <TouchableOpacity key = {i} style = {styles.event} onPress = {() => this.props.clickRide(ride.ride_id)}>
           <RequestedRide
-            rideTitle = {ride.title}
+            pickupLoc = {ride.pickupLoc}
+            dropoffLoc = {ride.dropoffLoc}
+            rideTitle = {ride.ride_id}
           />
           </TouchableOpacity>
+          }
         )}
       </ScrollView>
       </View>

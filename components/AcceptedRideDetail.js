@@ -10,16 +10,18 @@ import { View,
          Dimensions,
          Alert
        } from 'react-native'
-import { MKButton, MKTextField, MKColor } from 'react-native-material-kit'
 import Moment from 'moment';
-import { extendMoment } from 'moment-range';
-
 
 class AcceptedRideDetail extends React.Component {
+  componentWillMount(){
+    console.log(this.props.pickupLoc)
+  }
   render(){
     return(
       <View style = {styles.detailsView}>
-
+        <Text> Ride Detail Here </Text>
+        <Text> get picked up in {this.props.pickupLoc} </Text>
+        <Text> get dropped off in {this.props.dropoffLoc} </Text>
       </View>
     )
   }

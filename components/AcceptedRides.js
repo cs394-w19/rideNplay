@@ -11,23 +11,29 @@ import {
 import Ride from './Ride.js'
 
 export default class AcceptedRides extends React.Component {
-
   press = (id) => {
     this.props.clickRide(id)
-    console.log(id)
   }
+
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.textView}><Text style ={{fontSize: 30, fontWeight: 'bold', color: 'black'}}> my rides </Text></View>
         <ScrollView>
         {this.props.rides.map((ride, i) =>
-          <TouchableOpacity key = {i} style = {styles.event} onPress = {() => this.props.clickRide(ride.id)} >
-          <Ride
-            id = {ride.id}
-            rideTitle = {ride.title}
-          />
-          </TouchableOpacity>
+          {
+          const pickup = Object(ride)["pickup_loc"]
+          const dropoff = Object(ride)["dropoff_loc"]
+          if(ride.driver != 'N/A')
+            return <TouchableOpacity key = {i} style = {styles.event} onPress = {() => this.props.clickRide(ride.ride_id)} >
+                      <Ride
+                        id = {ride.ride_id}
+                        pickupLoc = {pickup}
+                        dropoffLoc = {dropoff}
+                        rideTitle = {Object(ride).ride_id}
+                      />
+                    </TouchableOpacity>
+        }
         )}
         </ScrollView>
       </View>
