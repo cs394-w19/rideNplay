@@ -26,13 +26,10 @@ const styles = StyleSheet.create({
   },
   info: {
     padding: 10,
-    backgroundColor: '#a4f6a5',
+    backgroundColor: '#e5e5e5',
     borderColor: 'black',
-    borderWidth: 1,
-    borderRadius: 10,
-    borderTopWidth: 0,
-    borderLeftWidth: 0,
-    // borderRightWidth: 0
+    borderBottomWidth: 1,
+    width: '100%'
   },
   title: {
     fontSize: 16,

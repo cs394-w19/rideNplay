@@ -28,10 +28,7 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: '#e5e5e5',
     borderColor: 'black',
-    borderWidth: 1,
-    borderRadius: 10,
-    borderTopWidth: 0,
-    borderLeftWidth: 0,
+    borderBottomWidth: 1
     // borderRightWidth: 0
   },
   title: {

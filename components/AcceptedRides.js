@@ -18,7 +18,6 @@ export default class AcceptedRides extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.textView}><Text style ={{fontSize: 30, fontWeight: 'bold', color: 'black'}}> my rides </Text></View>
         <ScrollView>
         {this.props.rides.map((ride, i) =>
           {
@@ -40,8 +39,10 @@ export default class AcceptedRides extends React.Component {
 
 const styles = StyleSheet.create({
   event: {
-    marginHorizontal: 12,
-    marginTop: 12
+    marginTop: 12,
+    height: 100,
+    flex: 1,
+    width: '100%'
   },
   container: {
     flex: 1,
