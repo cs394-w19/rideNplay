@@ -8,7 +8,9 @@ import {
   Button,
   TouchableOpacity,
   View,
+  Dimensions
 } from 'react-native';
+import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 import { WebBrowser } from 'expo';
 import AcceptedRides from '../components/AcceptedRides'
 import RequestedRides from '../components/RequestedRides'
@@ -34,6 +36,13 @@ export default class HomeScreen extends React.Component {
     Rrides: [{id: "3", title: 'test'}, {id: "4", title: 'test2'}],
     currentRideID: '',
     all_rides: [{}],
+    tabStuff: {
+    index: 0,
+    routes: [
+      { key: 'myRides', title: 'My Rides' },
+      { key: 'availableRides', title: 'Available Rides' },
+    ],
+    }
   }
 
 
@@ -87,35 +96,37 @@ export default class HomeScreen extends React.Component {
     this.props.navigation.setParams({ rideID: false });
   }
 
-  conditionalRender(){
-    if(this.state.currentRideID == ''){
-      return <View style={styles.container}>
+
+
+
+  render() {
+      const firstRoute = () =>
         <View style = {styles.accepted}>
           <AcceptedRides rides = {this.state.all_rides}
                        clickRide = {this.clickRide}/>
         </View>
+
+
+      const secondRoute = () =>
         <View style = {styles.accepted}>
-          <RequestedRides rides = {this.state.Rrides} />
+          <RequestedRides rides = {this.state.all_rides}
+                          clickRide = {this.clickRide}/>
         </View>
-      </View>
-    }
-    else {
-      return <Text>Details Page</Text>
-    }
 
-  }
 
-  render() {
+      const routes = this.state.tabStuff.routes
+
       if(this.state.currentRideID == ''){
         return <View style={styles.container}>
-          <View style = {styles.accepted}>
-            <AcceptedRides rides = {this.state.all_rides}
-                         clickRide = {this.clickRide}/>
-          </View>
-          <View style = {styles.accepted}>
-            <RequestedRides rides = {this.state.all_rides}
-                            clickRide = {this.clickRide}/>
-          </View>
+        <TabView
+          navigationState={this.state.tabStuff}
+          renderScene={SceneMap({
+          myRides: firstRoute,
+          availableRides: secondRoute,
+          })}
+          onIndexChange={index => this.setState({ tabStuff: {index, routes} })}
+          initialLayout={{ width: Dimensions.get('window').width }}
+          />
         </View>
       }
       else{

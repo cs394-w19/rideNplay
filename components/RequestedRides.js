@@ -43,10 +43,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#fcf3b8',
+    backgroundColor: 'white',
   },
   textView: {
-    backgroundColor: '#fcf3b8',
+    backgroundColor: 'white',
     width: '100%',
     left: 0,
     height: 35
