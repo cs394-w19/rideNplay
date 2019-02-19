@@ -29,9 +29,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightgray',
     borderColor: 'black',
     borderWidth: 1,
+    borderRadius: 10,
     borderTopWidth: 0,
     borderLeftWidth: 0,
-    borderRightWidth: 0
+    // borderRightWidth: 0
   },
   title: {
     fontSize: 16,

@@ -19,7 +19,7 @@ export default class AcceptedRides extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.textView}><Text style ={{color: 'white'}}> My Rides </Text></View>
+        <View style={styles.textView}><Text style ={{fontSize: 30, fontWeight: 'bold', color: 'black'}}> my rides </Text></View>
         <ScrollView>
         {this.props.rides.map((ride, i) =>
           <TouchableOpacity key = {i} style = {styles.event} onPress = {() => this.props.clickRide(ride.id)} >
@@ -42,16 +42,14 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    margin: 5,
     justifyContent: 'center',
-    borderWidth: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#fcf3b8',
   },
   textView: {
-    backgroundColor: 'black',
-    justifyContent: 'center',
-    height: 30,
-    alignItems: 'center'
+    backgroundColor: '#fcf3b8',
+    width: '100%',
+    left: 0,
+    height: 35
   }
 
 });

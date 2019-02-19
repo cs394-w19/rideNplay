@@ -25,7 +25,6 @@ export default class HomeScreen extends React.Component {
 
 
   static navigationOptions = ({ navigation }) => {
-      console.log("the id is: " + navigation.getParam('rideID'))
       const {params = {}} = navigation.state;
       if (navigation.getParam('rideID')){
       return {
