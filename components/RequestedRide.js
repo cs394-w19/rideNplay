@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   },
   info: {
     padding: 10,
-    backgroundColor: 'lightgray',
+    backgroundColor: '#e5e5e5',
     borderColor: 'black',
     borderWidth: 1,
     borderRadius: 10,

@@ -32,8 +32,8 @@ export default class HomeScreen extends React.Component {
         headerLeft: (
           <Button
             onPress={() => params.handle()}
-            title="Back"
-            color="black"
+            title="<Back"
+            color="blue"
           />
         ),
       };
