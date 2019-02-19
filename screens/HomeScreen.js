@@ -73,6 +73,7 @@ export default class HomeScreen extends React.Component {
       const rides = snapshot.val();
       newRides = Object.values(rides)
       this.setState({all_rides: newRides});
+      this.setState({rideDictionary: rides})
     })
   }
 
@@ -118,7 +119,7 @@ export default class HomeScreen extends React.Component {
         </View>
       }
       else{
-        return <AcceptedRideDetail />
+        return <AcceptedRideDetail ride = {this.state.rideDictionary[this.state.currentRideID]}/>
       }
   }
 }

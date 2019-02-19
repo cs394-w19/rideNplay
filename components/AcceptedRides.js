@@ -22,17 +22,14 @@ export default class AcceptedRides extends React.Component {
         <ScrollView>
         {this.props.rides.map((ride, i) =>
           {
-          const pickup = Object(ride)["pickup_loc"]
-          const dropoff = Object(ride)["dropoff_loc"]
+          let component = <TouchableOpacity key = {i} style = {styles.event} onPress = {() => this.props.clickRide(ride.ride_id)} >
+                            <Ride
+                              id = {ride.ride_id}
+                              rideTitle = {Object(ride).ride_id}
+                            />
+                          </TouchableOpacity>
           if(ride.driver != 'N/A')
-            return <TouchableOpacity key = {i} style = {styles.event} onPress = {() => this.props.clickRide(ride.ride_id)} >
-                      <Ride
-                        id = {ride.ride_id}
-                        pickupLoc = {pickup}
-                        dropoffLoc = {dropoff}
-                        rideTitle = {Object(ride).ride_id}
-                      />
-                    </TouchableOpacity>
+            return component
         }
         )}
         </ScrollView>

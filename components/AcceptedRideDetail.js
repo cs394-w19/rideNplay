@@ -14,14 +14,19 @@ import Moment from 'moment';
 
 class AcceptedRideDetail extends React.Component {
   componentWillMount(){
-    console.log(this.props.pickupLoc)
+    console.log(this.props.ride) //the correct ride object is already passed in.
   }
+
+  // the ride object is passed in, just style it with components and such nicely
+  
+
+
   render(){
     return(
       <View style = {styles.detailsView}>
         <Text> Ride Detail Here </Text>
-        <Text> get picked up in {this.props.pickupLoc} </Text>
-        <Text> get dropped off in {this.props.dropoffLoc} </Text>
+        <Text> get picked up in {this.props.ride.pickup_loc} </Text>
+        <Text> get dropped off in {this.props.ride.dropoff_loc} </Text>
       </View>
     )
   }
