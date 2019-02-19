@@ -15,12 +15,23 @@ import RequestedRides from '../components/RequestedRides'
 import { MonoText } from '../components/StyledText';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
 import { Icon } from 'react-native-elements'
+let firebase = require("firebase");
+let config = {
+    apiKey: "AIzaSyDpsRarS_gg94oXh6QnracvPytegM5FV7Y",
+    authDomain: "ridenplay-50868.firebaseapp.com",
+    databaseURL: "https://ridenplay-50868.firebaseio.com",
+    projectId: "ridenplay-50868",
+    storageBucket: "",
+    messagingSenderId: "851433543145"
+  };
+  firebase.initializeApp(config);
 
 export default class HomeScreen extends React.Component {
   state = {
     Arides: [{id: "1", title: 'test'}, {id: "2", title: 'test2'}],
     Rrides: [{id: "3", title: 'test'}, {id: "4", title: 'test2'}],
-    currentRideID: ''
+    currentRideID: '',
+    all_rides: [{}],
   }
 
 
@@ -55,7 +66,12 @@ export default class HomeScreen extends React.Component {
       this.props.navigation.setParams({ rideID: false, handle: this.clearID});
     }
 
-    // get from firebase, load to STATE
+    // get rides from Firebase, load to STATE
+    return firebase.database().ref('Rides/').once('value').then(snapshot => {
+      const rides = snapshot.val();
+      this.setState({all_rides: rides});
+      console.log(this.state.all_rides['Ride1']);
+    })
   }
 
   clickRide = (id) => {

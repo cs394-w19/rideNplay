@@ -2,16 +2,16 @@ import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
-let firebase = require("firebase");
-let config = {
-    apiKey: "AIzaSyDpsRarS_gg94oXh6QnracvPytegM5FV7Y",
-    authDomain: "ridenplay-50868.firebaseapp.com",
-    databaseURL: "https://ridenplay-50868.firebaseio.com",
-    projectId: "ridenplay-50868",
-    storageBucket: "",
-    messagingSenderId: "851433543145"
-  };
-  firebase.initializeApp(config);
+// let firebase = require("firebase");
+// let config = {
+//     apiKey: "AIzaSyDpsRarS_gg94oXh6QnracvPytegM5FV7Y",
+//     authDomain: "ridenplay-50868.firebaseapp.com",
+//     databaseURL: "https://ridenplay-50868.firebaseio.com",
+//     projectId: "ridenplay-50868",
+//     storageBucket: "",
+//     messagingSenderId: "851433543145"
+//   };
+//   firebase.initializeApp(config);
 
 export default class App extends React.Component {
 
@@ -26,16 +26,16 @@ export default class App extends React.Component {
 
 
       //Example code for how to use Firebase functions
-    this.createNewRide("Ride1","parent1","child1","School","Home","3:45pm","N/A","-"); 
-    this.createNewRide("Ride2","parent2","child2","School","Home","3:45pm","N/A","-"); 
-    this.createNewRide("Ride3","parent3","child3","School","Home","3:45pm","N/A","-"); 
-    this.createNewRide("Ride4","parent4","child4","School","Home","3:45pm","N/A","-"); 
-    this.readRideData("Ride3");
-    this.updateRideInfo("Ride3","3:46pm","Mark")
-    // this.deleteRide("Ride4");
-    this.createNewMessageExchange("Ride3","parent1","parent3","Hi! I'd like to help!");
-    // this.readMessages("Ride3");
-    this.addNewMessage("Ride3","parent3","parent1","Thanks so much!");
+    // this.createNewRide("Ride1","parent1","child1","School","Home","3:45pm","N/A","-"); 
+    // this.createNewRide("Ride2","parent2","child2","School","Home","3:45pm","N/A","-"); 
+    // this.createNewRide("Ride3","parent3","child3","School","Home","3:45pm","N/A","-"); 
+    // this.createNewRide("Ride4","parent4","child4","School","Home","3:45pm","N/A","-"); 
+    // this.readRideData("Ride3");
+    // this.updateRideInfo("Ride3","3:46pm","Mark")
+    // // this.deleteRide("Ride4");
+    // this.createNewMessageExchange("Ride3","parent1","parent3","Hi! I'd like to help!");
+    // // this.readMessages("Ride3");
+    // this.addNewMessage("Ride3","parent3","parent1","Thanks so much!");
   }
 
 //***********FIREBASE CODE****************************************************************/
