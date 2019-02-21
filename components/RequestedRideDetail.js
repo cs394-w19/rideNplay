@@ -1,105 +1,103 @@
 import React from 'react'
-import { Text,
-         View,
-         Image,
-         TextInput,
-         TouchableOpacity,
+import { View,
+         Text,
          StyleSheet,
+         Image,
+         ScrollView,
+         TouchableOpacity,
+         PanResponder,
+         Animated,
          Dimensions,
+         Button,
          Alert
        } from 'react-native'
-import * as firebase from 'firebase'
-this.width = Dimensions.get('window').width
+import Moment from 'moment';
+let firebase = require("firebase");
 
+const WIDTH = Dimensions.get('window').width;
 
-const RequestedRideDetail= (props) => {
-
-  confirmEvent = () => {
-    Alert.alert(
-      'Ride Confirmed',
-      'This event has been added to your Rides list',
-      [
-        {text: 'OK', onPress: () => props.selectRequestedEvent(props.event)},
-        {text: 'Undo', onPress: () => {null}}
-      ],
-      { cancelable: false }
-    )
+class RequestedRideDetail extends React.Component {
+  componentWillMount(){
+    console.log(this.props.ride) //the correct ride object is already passed in.
   }
 
-  deleteEvent = () => {
-    Alert.alert(
-      'Ride Deleted',
-      'This Ride has been deleted',
-      [
-        {text: 'OK', onPress: () => props.deleteRequestedEvent(props.event.uid)},
-        {text: 'Undo', onPress: () => {null}}
-      ],
-      { cancelable: false }
-    )
+  createNewRide(id, ride_desc, ride_name, submitter_id, child_user_id, pickup_loc, dropoff_loc, pickup_time,driver,rating) {
+    firebase.database().ref('Rides/'+id).set({
+      ride_id:id,
+      ride_desc: ride_desc,
+      ride_name:ride_name,
+      submitter_id:submitter_id,
+      child_id:child_user_id,
+      pickup_loc:pickup_loc,
+      dropoff_loc:dropoff_loc,
+      pickup_time:pickup_time,
+      driver:driver,
+      rating:rating
+    }).then((data) => {
+      //success callback
+        if (data) {
+            console.log(data);
+        }
+    }).catch((error) => {
+      //error callback
+      console.log('error ', error);
+    })
   }
+
+  acceptRide = () => {
+    const ride = this.props.ride
+    this.createNewRide(ride.ride_id, ride.ride_desc,
+      ride.ride_name, ride.submitter_id,
+      ride.child_id, ride.pickup_loc, ride.dropoff_loc, ride.pickup_time, "Me!", 10)
+  }
+
+  render(){
     return(
-      <View>
-      <TouchableOpacity style = {styles.event}>
-        <View style = {styles.info}>
-          <Text style = {styles.title}> Ride Title </Text>
+      <View style = {{flex: 1, flexDirection: 'row'}}>
+        <TouchableOpacity style = {styles.acceptButton} onPress ={this.acceptRide}>
+        <View>
+          <Text style = {{fontSize: 18}}> Accept Ride </Text>
         </View>
-      </TouchableOpacity>
+        </TouchableOpacity>
+
+        <TouchableOpacity style = {styles.delButton}>
+        <View>
+          <Text style = {{fontSize: 18}}> Delete Ride </Text>
+        </View>
+        </TouchableOpacity>
       </View>
 
     )
+  }
 }
 
 const styles = StyleSheet.create({
-  event: {
-    marginHorizontal: 12,
-    marginTop: 12
+  detailsView:{
+    fontSize: 20,
+    textAlign: 'left',
   },
-  info: {
-    padding: 10,
-    backgroundColor: '#fff',
-    borderColor: '#bbb',
-    borderWidth: 1,
-    borderTopWidth: 0
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 5
-  },
-  footer: {
-    flexDirection: 'row'
-  },
-  cause: {
-    flex: 2
-  },
-  price: {
+  acceptButton: {
     flex: 1,
-    textAlign: 'right'
-  },
-  confirmDelete: {
-    flexDirection: 'row',
-    backgroundColor: '#fff',
-    marginHorizontal: 12,
-    height: 40,
+    borderRadius: 10,
+    justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
-    borderTopWidth: 0,
-    borderColor: '#bbb',
+    width: WIDTH/2 - 10,
+    height: 30,
+    marginHorizontal: 5,
+    marginVertical: 10,
+    backgroundColor: '#48e25b'
   },
-  confirm: {
+  delButton: {
     flex: 1,
+    borderRadius: 10,
+    justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 8,
-    backgroundColor: 'green',
-    color: 'white'
-  },
-  delete: {
-    flex: 1,
-    alignItems: 'center',
-    paddingVertical: 8,
-    backgroundColor: '#d50202',
-    color: 'white'
-  },
+    width: WIDTH/2 - 10,
+    height: 30,
+    marginHorizontal: 5,
+    marginVertical: 10,
+    backgroundColor: '#e24848'
+  }
 })
 
 

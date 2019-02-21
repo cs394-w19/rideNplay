@@ -18,6 +18,7 @@ import { MonoText } from '../components/StyledText';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
 import { SearchBar } from 'react-native-elements'
 import AcceptedRideDetail from '../components/AcceptedRideDetail'
+import RequestedRideDetail from '../components/RequestedRideDetail'
 import Colors from "../constants/Colors";
 
 let firebase = require("firebase");
@@ -100,6 +101,12 @@ export default class HomeScreen extends React.Component {
   clearID = () => {
     this.setState({currentRideID: ''})
     this.props.navigation.setParams({ rideID: false, });
+    return firebase.database().ref('Rides/').once('value').then(snapshot => {
+      const rides = snapshot.val();
+      newRides = Object.values(rides)
+      this.setState({all_rides: newRides});
+      this.setState({rideDictionary: rides})
+    })
   }
 
 
@@ -145,8 +152,11 @@ export default class HomeScreen extends React.Component {
           />
         </View>
       }
-      else{
+      else if(this.state.rideDictionary[this.state.currentRideID].driver != 'N/A'){
         return <AcceptedRideDetail ride = {this.state.rideDictionary[this.state.currentRideID]}/>
+      }
+      else {
+        return <RequestedRideDetail ride = {this.state.rideDictionary[this.state.currentRideID]}/>
       }
   }
 }
