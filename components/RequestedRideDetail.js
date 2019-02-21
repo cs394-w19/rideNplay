@@ -44,7 +44,7 @@ class RequestedRideDetail extends React.Component {
     })
   }
 
-  acceptRide = () => {
+  acceptRide() {
     const ride = this.props.ride
 
     firebase.database().ref('Rides/'+ride.ride_id).remove()
@@ -56,15 +56,39 @@ class RequestedRideDetail extends React.Component {
     this.props.goBack()
   }
 
+  accept = () => {
+    Alert.alert(
+      'Are you sure you want to accept this ride?',
+      " ",
+      [
+        {text: 'Yes!', onPress: () => this.acceptRide()},
+        {text: 'Undo', onPress: () => {null}}
+      ],
+      { cancelable: false }
+    )
+  }
+
+  delete(){
+     firebase.database().ref('Rides/'+this.props.ride.ride_id).remove()
+     this.props.goBack()
+  }
   deleteRide = () => {
-    firebase.database().ref('Rides/'+this.props.ride.ride_id).remove()
-    this.props.goBack()
+    Alert.alert(
+      'Are you sure you want to delete this ride?',
+      " ",
+      [
+        {text: 'OK', onPress: () => this.delete()},
+        {text: 'Undo', onPress: () => {null}}
+      ],
+      { cancelable: false }
+    )
+
   }
 
   render(){
     return(
       <View style = {{flex: 1, flexDirection: 'row'}}>
-        <TouchableOpacity style = {styles.acceptButton} onPress ={this.acceptRide}>
+        <TouchableOpacity style = {styles.acceptButton} onPress ={this.accept}>
         <View>
           <Text style = {{fontSize: 18}}> Accept Ride </Text>
         </View>

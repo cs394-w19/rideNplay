@@ -27,8 +27,8 @@ export default class NewRide extends React.Component {
        markers: [
         {
           coordinate: {
-            latitude: 45.524548,
-            longitude: -122.6749817,
+            latitude: 37.78825,
+            longitude: -122.4324,
           },
           title: "Best Place",
           description: "This is the best place in Portland",
@@ -55,12 +55,12 @@ export default class NewRide extends React.Component {
          showsUserLocation={true}
          showsCompass={true}
          showsPointsOfInterest = {false}
-          region={this.state.region}
-          onRegionChange={() => this.onRegionChange()}
+         region={this.state.region}
+         onRegionChange={() => this.onRegionChange()}
         />
         {this.state.markers.map(marker =>
           {return <Marker
-            coordinate={marker.latlng}
+            coordinate={marker.coordinate}
             title={marker.title}
             description={marker.description}
           />}
