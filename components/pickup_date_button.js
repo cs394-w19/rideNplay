@@ -19,7 +19,7 @@ export const PickupDateButton = function(props) {
 
             <View style={styles.centerCol}>
                 <Text style={{fontSize:21, color:"#545454"}}>
-                    Pickup location
+                    Pickup Date
                 </Text>
             </View>
             <View style={styles.rightCol}>
