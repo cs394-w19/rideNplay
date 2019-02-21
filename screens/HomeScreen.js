@@ -16,8 +16,9 @@ import AcceptedRides from '../components/AcceptedRides'
 import RequestedRides from '../components/RequestedRides'
 import { MonoText } from '../components/StyledText';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
-import { Icon } from 'react-native-elements'
+import { SearchBar } from 'react-native-elements'
 import AcceptedRideDetail from '../components/AcceptedRideDetail'
+import Colors from "../constants/Colors";
 
 let firebase = require("firebase");
 // let config = {
@@ -42,11 +43,16 @@ export default class HomeScreen extends React.Component {
       { key: 'myRides', title: 'My Rides' },
       { key: 'availableRides', title: 'Available Rides' },
     ],
+    search: '',
     }
-  }
+  };
 
 
-  static navigationOptions = ({ navigation }) => {
+    updateSearch = search => {
+        this.setState({ search });
+    };
+
+    static navigationOptions = ({ navigation }) => {
       const {params = {}} = navigation.state;
       if (navigation.getParam('rideID')){
       return {
@@ -100,6 +106,8 @@ export default class HomeScreen extends React.Component {
 
 
   render() {
+      const { search } = this.state;
+
       const firstRoute = () =>
         <View style = {styles.accepted}>
           <AcceptedRides rides = {this.state.all_rides}
@@ -114,10 +122,18 @@ export default class HomeScreen extends React.Component {
         </View>
 
 
-      const routes = this.state.tabStuff.routes
+      const routes = this.state.tabStuff.routes;
 
-      if(this.state.currentRideID == ''){
+      if(this.state.currentRideID === ''){
+
         return <View style={styles.container}>
+        <SearchBar
+            placeholder="Enter Drop Off Location"
+            onChangeText={this.updateSearch}
+            value={search}
+            containerStyle={styles.topNavBarContainer}
+            inputContainerStyle={styles.searchInput}
+        />
         <TabView
           navigationState={this.state.tabStuff}
           renderScene={SceneMap({
@@ -142,6 +158,16 @@ const styles = StyleSheet.create({
   },
   accepted: {
     flex: 1,
+  },
+  topNavBarContainer: {
+    backgroundColor: '#2F95DC',
+    borderWidth: 0,
+    shadowColor: 'white',
+    borderBottomColor: 'transparent',
+    borderTopColor: 'transparent'
+  },
+  searchInput: {
+    backgroundColor: '#fff'
   }
 
 });
