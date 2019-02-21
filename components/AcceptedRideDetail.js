@@ -18,8 +18,6 @@ class AcceptedRideDetail extends React.Component {
   }
 
   // the ride object is passed in, just style it with components and such nicely
-  
-
 
   conditionaldriver(){
     if (this.props.ride.driver == "N/A"){
@@ -36,7 +34,9 @@ class AcceptedRideDetail extends React.Component {
   render(){
     return(
       <View>
-        <Text style = {{fontSize: 30, fontWeight: 'bold', marginBottom: 10, backgroundColor: 'aquamarine'}}> {this.props.ride.ride_id} Details:</Text>
+        <Text style = {styles.header}>
+         {this.props.ride.ride_id} Details:
+        </Text>
       <ScrollView style = {styles.detailsView}>
         {this.conditionaldriver()}
         <Text style = {{fontSize: 20}}> For: {this.props.ride.child_id} {'\n'} </Text>
@@ -53,8 +53,10 @@ class AcceptedRideDetail extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  header: {
+    
+  },
   detailsView:{
-    backgroundColor: 'whitesmoke',
     fontSize: 20,
     textAlign: 'left',
     fontWeight: 'bold',
@@ -62,8 +64,6 @@ const styles = StyleSheet.create({
   rightColumn:{
     textAlign: 'right',
     fontSize: 20,
-    position: 'absolute',
-    right: 5
   }
 })
 

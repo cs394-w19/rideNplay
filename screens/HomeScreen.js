@@ -54,9 +54,10 @@ export default class HomeScreen extends React.Component {
 
     static navigationOptions = ({ navigation }) => {
       const {params = {}} = navigation.state;
+      const title = navigation.getParam('rideName') + " details"
       if (navigation.getParam('rideID')){
       return {
-        headerTitle: "Home",
+        headerTitle: title,
         headerLeft: (
           <Button
             onPress={() => params.handle()}
@@ -76,8 +77,7 @@ export default class HomeScreen extends React.Component {
 
   componentWillMount() {
     if(this.state.currentRideID != ''){
-      this.props.navigation.setParams({ rideID: true, handle: this.clearID});
-
+      this.props.navigation.setParams({ rideID: true, rideName: this.state.currentRideID, handle: this.clearID});
     }
     else {
       this.props.navigation.setParams({ rideID: false, handle: this.clearID});
@@ -94,12 +94,12 @@ export default class HomeScreen extends React.Component {
 
   clickRide = (id) => {
     this.setState({currentRideID: id})
-    this.props.navigation.setParams({ rideID: true, handle: this.clearID });
+    this.props.navigation.setParams({ rideID: true, rideName: id, handle: this.clearID });
   }
 
   clearID = () => {
     this.setState({currentRideID: ''})
-    this.props.navigation.setParams({ rideID: false });
+    this.props.navigation.setParams({ rideID: false, });
   }
 
 
