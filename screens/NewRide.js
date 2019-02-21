@@ -26,7 +26,7 @@ export default class NewRide extends React.Component {
     }
   }
 
- 
+
   onRegionChange(region) {
     this.setState({ region });
 }
@@ -34,13 +34,13 @@ export default class NewRide extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <PickupButton />
+          <MapView
+          style={{height:"50%", top: 0}}
+          region={this.state.region}
+          onRegionChange={() => this.onRegionChange()}
+        />
+        <PickupButton style = {{marginTop: 40}}/>
         <DropoffButton />
-        <MapView
-        style={{height:"50%"}}
-        region={this.state.region}
-        onRegionChange={() => this.onRegionChange()}
-      />
         <PickupDateButton />
         <PickupTimeButton />
       </View>

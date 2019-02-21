@@ -33,12 +33,11 @@ export const PickupDateButton = function(props) {
 const styles = StyleSheet.create({
     container:{
         zIndex: 9,
-        position: 'absolute',
         flexDirection: 'row',
+        marginHorizontal: 20,
+        marginTop: 10,
         width: (WIDTH-40),
-        height: 60,
-        top: 210,
-        left: 20,
+        height: 40,
         borderRadius: 2,
         backgroundColor: 'white',
         alignItems: 'center',
