@@ -14,20 +14,17 @@ const Ride = (props) => {
     return(
         <View style = {styles.info}>
           <Text style = {styles.title}> {props.rideTitle} </Text>
+          <Text> {props.rideDesc} </Text>
         </View>
 
     )
 }
 
 const styles = StyleSheet.create({
-  event: {
-    marginHorizontal: 12,
-    marginTop: 12
-  },
   info: {
     padding: 10,
-    backgroundColor: '#e5e5e5',
-    borderColor: 'black',
+    backgroundColor: '#edeeef',
+    borderColor: '#858687',
     borderBottomWidth: 1
     // borderRightWidth: 0
   },

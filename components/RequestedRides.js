@@ -24,6 +24,7 @@ export default class RequestedRides extends React.Component {
             pickupLoc = {ride.pickupLoc}
             dropoffLoc = {ride.dropoffLoc}
             rideTitle = {ride.ride_name}
+            rideDesc = {ride.ride_desc}
           />
           </TouchableOpacity>
           }
@@ -36,7 +37,7 @@ export default class RequestedRides extends React.Component {
 
 const styles = StyleSheet.create({
   event: {
-    marginTop: 12,
+    marginTop: 6,
     flex: 1,
     width: '100%'
   },

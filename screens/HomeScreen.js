@@ -62,7 +62,7 @@ export default class HomeScreen extends React.Component {
     }
       else {
         return {
-          headerTitle: "My Rides",
+          headerTitle: "Home",
         }
       }
 

@@ -25,6 +25,7 @@ export default class AcceptedRides extends React.Component {
                             <Ride
                               id = {ride.ride_id}
                               rideTitle = {Object(ride).ride_name}
+                              rideDesc = {ride.ride_desc}
                             />
                           </TouchableOpacity>
           if(ride.driver != 'N/A')
@@ -39,7 +40,7 @@ export default class AcceptedRides extends React.Component {
 
 const styles = StyleSheet.create({
   event: {
-    marginTop: 12,
+    marginTop: 6,
     height: 100,
     flex: 1,
     width: '100%'

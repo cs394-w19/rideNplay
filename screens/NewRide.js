@@ -1,10 +1,10 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View, Text } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
-import { PickupButton } from "./pickup_button";
-import { DropoffButton } from "./drop-off_button";
-import { PickupDateButton } from "./pickup_date_button";
-import { PickupTimeButton } from "./pickup_time_button";
+import { PickupButton } from "../components/pickup_button";
+import { DropoffButton } from "../components/drop-off_button";
+import { PickupDateButton } from "../components/pickup_date_button";
+import { PickupTimeButton } from "../components/pickup_time_button";
 
 export default class NewRide extends React.Component {
   static navigationOptions = {
