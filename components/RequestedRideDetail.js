@@ -46,9 +46,19 @@ class RequestedRideDetail extends React.Component {
 
   acceptRide = () => {
     const ride = this.props.ride
+
+    firebase.database().ref('Rides/'+ride.ride_id).remove()
+
     this.createNewRide(ride.ride_id, ride.ride_desc,
       ride.ride_name, ride.submitter_id,
       ride.child_id, ride.pickup_loc, ride.dropoff_loc, ride.pickup_time, "Me!", 10)
+
+    this.props.goBack()
+  }
+
+  deleteRide = () => {
+    firebase.database().ref('Rides/'+this.props.ride.ride_id).remove()
+    this.props.goBack()
   }
 
   render(){
@@ -60,7 +70,7 @@ class RequestedRideDetail extends React.Component {
         </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style = {styles.delButton}>
+        <TouchableOpacity style = {styles.delButton} onPress = {this.deleteRide}>
         <View>
           <Text style = {{fontSize: 18}}> Delete Ride </Text>
         </View>

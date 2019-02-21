@@ -156,7 +156,7 @@ export default class HomeScreen extends React.Component {
         return <AcceptedRideDetail ride = {this.state.rideDictionary[this.state.currentRideID]}/>
       }
       else {
-        return <RequestedRideDetail ride = {this.state.rideDictionary[this.state.currentRideID]}/>
+        return <RequestedRideDetail goBack = {this.clearID} ride = {this.state.rideDictionary[this.state.currentRideID]}/>
       }
   }
 }
