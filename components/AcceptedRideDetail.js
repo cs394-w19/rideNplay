@@ -21,12 +21,32 @@ class AcceptedRideDetail extends React.Component {
   
 
 
+  conditionaldriver(){
+    if (this.props.ride.driver == "N/A"){
+      return
+    }
+    else {
+      return <View style = {{flexDirection: 'row'}}>
+          <Text style = {{fontSize: 20}}> Pickup by: {this.props.ride.driver} </Text>
+          <Text style = {styles.rightColumn}> {this.props.ride.rating}/10 </Text>
+        </View>
+    }
+  }
+
   render(){
     return(
-      <View style = {styles.detailsView}>
-        <Text> Ride Detail Here </Text>
-        <Text> get picked up in {this.props.ride.pickup_loc} </Text>
-        <Text> get dropped off in {this.props.ride.dropoff_loc} </Text>
+      <View>
+        <Text style = {{fontSize: 30, fontWeight: 'bold', marginBottom: 10, backgroundColor: 'aquamarine'}}> {this.props.ride.ride_id} Details:</Text>
+      <ScrollView style = {styles.detailsView}>
+        {this.conditionaldriver()}
+        <Text style = {{fontSize: 20}}> For: {this.props.ride.child_id} {'\n'} </Text>
+        <View style = {{flexDirection: 'row'}}>
+          <Text style = {styles.detailsView}> From: {this.props.ride.pickup_loc} </Text>
+          <Text style = {styles.rightColumn}> At: {this.props.ride.pickup_time}</Text>
+        </View>
+          <Text style = {{fontSize: 70, left: 0, marginBottom: 10}}> | </Text>
+          <Text style = {styles.detailsView}> Dest: {this.props.ride.dropoff_loc} {'\n'}</Text>
+      </ScrollView>
       </View>
     )
   }
@@ -34,7 +54,16 @@ class AcceptedRideDetail extends React.Component {
 
 const styles = StyleSheet.create({
   detailsView:{
-    backgroundColor: 'white'
+    backgroundColor: 'whitesmoke',
+    fontSize: 20,
+    textAlign: 'left',
+    fontWeight: 'bold',
+  },
+  rightColumn:{
+    textAlign: 'right',
+    fontSize: 20,
+    position: 'absolute',
+    right: 5
   }
 })
 
