@@ -8,20 +8,49 @@ import { View,
          PanResponder,
          Animated,
          Dimensions,
-         Alert
+         Alert,
+         LayoutAnimation,
        } from 'react-native'
 import Moment from 'moment';
+import { Header } from 'react-native-elements'
+import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 
 class AcceptedRideDetail extends React.Component {
+  state = {
+    
+    index: 0,
+    routes: [
+      { key: 'one', title: 'Info' },
+      { key: 'two', title: 'See Route' },
+    ]
+  
+  };
+
   componentWillMount(){
     console.log(this.props.ride) //the correct ride object is already passed in.
   }
 
   // the ride object is passed in, just style it with components and such nicely
+  springin = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.create(250, 'easeIn', 'scaleY'))
+  }
+    
+  conditionaldriver(){
+    if (this.props.ride.driver == "N/A"){
+      return
+    }
+    else {
+      return <View style = {{flexDirection: 'row'}}>
+          <Text style = {{fontSize: 20}}> Pickup by: {this.props.ride.driver} </Text>
+          <Text style = {styles.rightColumn}> {this.props.ride.rating}/10 </Text>
+        </View>
+    }
+  };
 
+  
   render(){
-    return(
-      <View>
+    const firstRoute = () => (
+    <View>
 
         <View style = {{flexDirection: 'row', marginHorizontal: 10}}>
           <Text style = {{fontSize: 20}}>
@@ -40,6 +69,29 @@ class AcceptedRideDetail extends React.Component {
           </Text>
         </View>
       </View>
+    );
+
+  const secondRoute = () => (
+    <View>
+      <Image
+        style={{width: 450, height: 600}}
+        source={require('./map.png')}
+      />
+    </View>
+    );
+
+    return(
+      <TabView
+          navigationState={this.state}
+          renderScene={SceneMap({
+          one: firstRoute,
+          two: secondRoute,
+          })}
+          onIndexChange={index => this.setState({ index })}
+          initialLayout={{ width: Dimensions.get('window').width }}
+          >{this.springin()}</TabView>
+     // </View>
+
     )
   }
 }
