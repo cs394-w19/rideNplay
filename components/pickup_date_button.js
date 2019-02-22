@@ -7,6 +7,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import DateTimePickerTester from "../components/DateTimePickerTester"
 
 const WIDTH = Dimensions.get('window').width;
 
@@ -18,9 +19,7 @@ export const PickupDateButton = function(props) {
             </View>
 
             <View style={styles.centerCol}>
-                <Text style={{fontSize:21, color:"#545454"}}>
-                    Pickup Date
-                </Text>
+                    <DateTimePickerTester/>
             </View>
             <View style={styles.rightCol}>
                 <Ionicons name="ios-calendar" color="#000000" size={25} style={{alignSelf: "center"}}/>

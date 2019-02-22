@@ -8,6 +8,9 @@ import { PickupTimeButton } from "../components/pickup_time_button";
 import { Marker } from 'react-native-maps';
 import MapView from 'react-native-maps';
 
+
+
+
 export default class NewRide extends React.Component {
   static navigationOptions = {
     title: 'New Ride',
@@ -42,10 +45,14 @@ export default class NewRide extends React.Component {
     this.setState({ region });
 }
 
-  render() {
+  submitRide() {
+    console.log("Ride Submitted");
+  }
+
+  renderMap() {
     return (
-      <View style={styles.container}>
-          <MapView
+      <View>
+        <MapView
           style={{height:"50%", top: 0, marginHorizontal: 5}}
           // initialRegion={this.state.region}
          loadingEnabled = {true}
@@ -65,11 +72,26 @@ export default class NewRide extends React.Component {
             description={marker.description}
           />}
         )}
-        <PickupButton />
-        <DropoffButton />
-        <PickupDateButton />
-        <PickupTimeButton />
+        </View>
+      );
+  }
+
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <PickupButton/>
+        <DropoffButton/>
+        <PickupDateButton/>
+        <PickupTimeButton/>
+        
+        <Button
+        onPress={this.submitRide}
+        title="Submit Ride"
+        color="#000000"/>
+
       </View>
+
     );
   }
 }

@@ -7,6 +7,8 @@ import {
     TouchableOpacity
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import GooglePlacesInput from '../components/GooglePlacesInput';
 
 const WIDTH = Dimensions.get('window').width;
 
@@ -18,9 +20,7 @@ export const PickupButton = function(props) {
             </View>
 
             <View style={styles.centerCol}>
-                <Text style={{fontSize:21, color:"#545454"}}>
-                    Pickup location
-                </Text>
+                 <GooglePlacesInput/>
             </View>
             <View style={styles.rightCol}>
                 <Ionicons name="ios-pin" color="#000000" size={25} style={{alignSelf: "center"}}/>
