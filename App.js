@@ -26,10 +26,10 @@ export default class App extends React.Component {
 
 
       //Example code for how to use Firebase functions
-    this.createNewRide("Ride1", "ETHS Morning Commute", "Ride to School","parent1","child1","School","Home","3:45pm","N/A","-");
-    this.createNewRide("Ride2","Evanston U12 Team Practice","Ride to Soccer Practice","parent2","child2","School","Home","3:45pm","N/A","-");
-    this.createNewRide("Ride3","ETHS Afternoon Commute","Ride from School","parent3","child3","School","Home","3:45pm","Mark","-");
-    this.createNewRide("Ride4","Evanston U16 Team","Ride from Soccer Practice","parent4","child4","School","Home","3:45pm","N/A","-");
+    this.createNewRide("Ride1", "ETHS Morning Commute", "Ride to School","jessday2","child1","School","Home","3:45pm","N/A","-");
+    this.createNewRide("Ride2","Evanston U12 Team Practice","Ride to Soccer Practice","nickmiller5","child2","School","Home","3:45pm","N/A","-");
+    this.createNewRide("Ride3","ETHS Afternoon Commute","Ride from School","nickmiller5","child3","School","Home","3:45pm","Mark","-");
+    this.createNewRide("Ride4","Evanston U16 Team","Ride from Soccer Practice","schmidty5","child4","School","Home","3:45pm","N/A","-");
     // this.readRideData("Ride3");
     // this.updateRideInfo("Ride3","3:46pm","Mark")
     // // this.deleteRide("Ride4");

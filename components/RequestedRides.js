@@ -25,6 +25,7 @@ export default class RequestedRides extends React.Component {
             dropoffLoc = {ride.dropoffLoc}
             rideTitle = {ride.ride_name}
             rideDesc = {ride.ride_desc}
+            parent = {ride.submitter_id}
           />
           </TouchableOpacity>
           }

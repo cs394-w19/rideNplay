@@ -17,13 +17,13 @@ import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 
 class AcceptedRideDetail extends React.Component {
   state = {
-    
+
     index: 0,
     routes: [
       { key: 'one', title: 'Info' },
       { key: 'two', title: 'See Route' },
     ]
-  
+
   };
 
   componentWillMount(){
@@ -31,10 +31,10 @@ class AcceptedRideDetail extends React.Component {
   }
 
   // the ride object is passed in, just style it with components and such nicely
-  springin = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.create(250, 'easeIn', 'scaleY'))
-  }
-    
+  // springin = () => {
+  //   LayoutAnimation.configureNext(LayoutAnimation.create(250, 'easeIn', 'scaleY'))
+  // }
+
   conditionaldriver(){
     if (this.props.ride.driver == "N/A"){
       return
@@ -47,7 +47,7 @@ class AcceptedRideDetail extends React.Component {
     }
   };
 
-  
+
   render(){
     const firstRoute = () => (
     <View>
@@ -89,7 +89,8 @@ class AcceptedRideDetail extends React.Component {
           })}
           onIndexChange={index => this.setState({ index })}
           initialLayout={{ width: Dimensions.get('window').width }}
-          >{this.springin()}</TabView>
+          >
+      </TabView>
      // </View>
 
     )

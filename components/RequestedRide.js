@@ -11,20 +11,36 @@ import * as firebase from 'firebase'
 import { Avatar, ListItem } from 'react-native-elements';
 
 this.width = Dimensions.get('window').width
-const Ride = (props) => {
-    return(
+export default class RequestedRides extends React.Component {
+    state = {
+      picture: ''
+    }
+
+    componentWillMount() {
+      console.log(this.props.parent)
+      firebase.database().ref('Users/'+ this.props.parent +'/user_picture').once('value').then(snapshot => {
+        const pic = snapshot.val();
+        console.log(pic)
+        this.setState({picture: pic});
+      })
+      console.log(this.state.picture)
+    }
+
+    render(){
+      return(
         <ListItem
         style = {styles.info}
         leftAvatar={{
-          source: { uri: "http://images5.fanpop.com/image/photos/30200000/Nick-3-nick-miller-30219108-300-300.jpg" },
+          source: { uri: this.state.picture },
           showEditButton: true,
         }}
-        title={props.rideTitle}
-        subtitle={props.rideDesc}
+        title={this.props.rideTitle}
+        subtitle={this.props.rideDesc}
         chevron
         >
         </ListItem>
     );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -42,7 +58,6 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Ride
 
 //
 // <View style = {styles.info}>
