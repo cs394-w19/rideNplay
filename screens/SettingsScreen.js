@@ -6,6 +6,7 @@ import InfoText from '../components/InfoText';
 import Chevron from '../components/Chevron';
 import BaseIcon from '../components/Icon'
 import Colors from '../components/Colors'
+//For reference: https://github.com/nattatorn-dev/react-native-user-profile/blob/master/screens/Profile3/Profile.js
 
 
 const styles = StyleSheet.create({
@@ -135,10 +136,90 @@ export default class SettingsScreen extends React.Component {
             rightIcon={<Chevron />}
           />
         </View>
-
-
-
-
+         <InfoText text="More" />
+        <View>
+          <ListItem
+            title="About rideNplay"
+            onPress={() => this.onPressOptions()}
+            containerStyle={styles.listItemContainer}
+            leftIcon={
+              <BaseIcon
+                containerStyle={{ backgroundColor: '#A4C8F0' }}
+                icon={{
+                  type: 'ionicon',
+                  name: 'md-information-circle',
+                }}
+              />
+            }
+            rightIcon={<Chevron />}
+          />
+          <ListItem
+            title="Terms and Policies"
+            onPress={() => this.onPressOptions()}
+            containerStyle={styles.listItemContainer}
+            leftIcon={
+              <BaseIcon
+                containerStyle={{ backgroundColor: '#C6C7C6' }}
+                icon={{
+                  type: 'entypo',
+                  name: 'light-bulb',
+                }}
+              />
+            }
+            rightIcon={<Chevron />}
+          />
+          <ListItem
+            title="Share our App"
+            onPress={() => this.onPressOptions()}
+            containerStyle={styles.listItemContainer}
+            leftIcon={
+              <BaseIcon
+                containerStyle={{
+                  backgroundColor: '#C47EFF',
+                }}
+                icon={{
+                  type: 'entypo',
+                  name: 'share',
+                }}
+              />
+            }
+            rightIcon={<Chevron />}
+          />
+          <ListItem
+            title="Rate Us"
+            onPress={() => this.onPressOptions()}
+            containerStyle={styles.listItemContainer}
+            leftIcon={
+              <BaseIcon
+                containerStyle={{
+                  backgroundColor: '#FECE44',
+                }}
+                icon={{
+                  type: 'entypo',
+                  name: 'star',
+                }}
+              />
+            }
+            rightIcon={<Chevron />}
+          />
+          <ListItem
+            title="Send FeedBack"
+            onPress={() => this.onPressOptions()}
+            containerStyle={styles.listItemContainer}
+            leftIcon={
+              <BaseIcon
+                containerStyle={{
+                  backgroundColor: '#00C001',
+                }}
+                icon={{
+                  type: 'materialicon',
+                  name: 'feedback',
+                }}
+              />
+            }
+            rightIcon={<Chevron />}
+          />
+        </View>
       </ScrollView>
      
       
