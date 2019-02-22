@@ -50,15 +50,25 @@ class AcceptedRideDetail extends React.Component {
   
   render(){
     const firstRoute = () => (
-    <ScrollView style = {styles.detailsView}>
-         {this.conditionaldriver()}
-         <Text style = {{fontSize: 20}}> For: {this.props.ride.child_id} {'\n'} </Text>
-         <View style = {{flexDirection: 'row'}}>
-          <Text style = {styles.detailsView}> From: {this.props.ride.pickup_loc} </Text>
-           <Text style = {styles.rightColumn}> At: {this.props.ride.pickup_time}</Text>
-         </View>
-           <Text style = {styles.detailsView}> Dest: {this.props.ride.dropoff_loc} {'\n'}</Text>
-       </ScrollView>
+    <View>
+
+        <View style = {{flexDirection: 'row', marginHorizontal: 10}}>
+          <Text style = {{fontSize: 20}}>
+            <Text style = {{fontWeight: 'bold'}}>{this.props.ride.driver} </Text>
+            is picking up
+            <Text style = {{fontWeight: 'bold'}}> {this.props.ride.child_id} </Text>
+            <Text>at</Text>
+            <Text style = {{fontWeight: 'bold'}}> {this.props.ride.pickup_time} </Text>
+            <Text>from</Text>
+            <Text style = {{fontWeight: 'bold'}}> {this.props.ride.pickup_loc}</Text>.
+            <Text style = {{fontWeight: 'bold'}}> {this.props.ride.driver} </Text>
+            <Text>will bring</Text>
+            <Text style = {{fontWeight: 'bold'}}> {this.props.ride.child_id} </Text>
+            <Text>to</Text>
+            <Text style = {{fontWeight: 'bold'}}> {this.props.ride.dropoff_loc}</Text>.
+          </Text>
+        </View>
+      </View>
     );
 
   const secondRoute = () => (
@@ -81,22 +91,15 @@ class AcceptedRideDetail extends React.Component {
           initialLayout={{ width: Dimensions.get('window').width }}
           >{this.springin()}</TabView>
      // </View>
+
     )
   }
 }
 
 const styles = StyleSheet.create({
   detailsView:{
-    backgroundColor: 'whitesmoke',
     fontSize: 20,
     textAlign: 'left',
-    fontWeight: 'bold',
-  },
-  rightColumn:{
-    textAlign: 'right',
-    fontSize: 20,
-    position: 'absolute',
-    right: 5
   }
 })
 

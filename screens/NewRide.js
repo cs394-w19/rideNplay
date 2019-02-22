@@ -22,7 +22,18 @@ export default class NewRide extends React.Component {
         latitude: 37.78825,
         longitude: -122.4324,
         latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,}
+        longitudeDelta: 0.0421,},
+
+       markers: [
+        {
+          coordinate: {
+            latitude: 37.78825,
+            longitude: -122.4324,
+          },
+          title: "Best Place",
+          description: "This is the best place in Portland",
+        },
+      ],
     }
   }
 
@@ -35,11 +46,26 @@ export default class NewRide extends React.Component {
     return (
       <View style={styles.container}>
           <MapView
-          style={{height:"50%", top: 0}}
-          region={this.state.region}
-          onRegionChange={() => this.onRegionChange()}
+          style={{height:"50%", top: 0, marginHorizontal: 5}}
+          // initialRegion={this.state.region}
+         loadingEnabled = {true}
+         loadingIndicatorColor="#666666"
+         loadingBackgroundColor="#eeeeee"
+         moveOnMarkerPress = {false}
+         showsUserLocation={true}
+         showsCompass={true}
+         showsPointsOfInterest = {false}
+         region={this.state.region}
+         onRegionChange={() => this.onRegionChange()}
         />
-        <PickupButton style = {{marginTop: 40}}/>
+        {this.state.markers.map(marker =>
+          {return <Marker
+            coordinate={marker.coordinate}
+            title={marker.title}
+            description={marker.description}
+          />}
+        )}
+        <PickupButton />
         <DropoffButton />
         <PickupDateButton />
         <PickupTimeButton />
