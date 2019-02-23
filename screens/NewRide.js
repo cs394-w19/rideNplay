@@ -33,8 +33,8 @@ export default class NewRide extends React.Component {
     pickupTitle: 'Pickup Location',
     dropoffTitle: 'Dropoff Location',
     region: {
-      latitude: 37.78825,
-      longitude: -122.4324,
+      latitude: 42.045273, 
+      longitude: -87.686790,
       latitudeDelta: 0.0922,
       longitudeDelta: 0.0421,},
     pickupGeo: {},
