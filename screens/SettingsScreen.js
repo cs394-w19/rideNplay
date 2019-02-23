@@ -1,11 +1,12 @@
 import React from 'react';
-import { ScrollView, Switch, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, Switch, StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
 import { Avatar, ListItem } from 'react-native-elements';
 import { ExpoConfigView } from '@expo/samples';
 import InfoText from '../components/InfoText';
 import Chevron from '../components/Chevron';
 import BaseIcon from '../components/Icon'
 import Colors from '../components/Colors'
+import Profile from '../components/Profile'
 //For reference: https://github.com/nattatorn-dev/react-native-user-profile/blob/master/screens/Profile3/Profile.js
 
 
@@ -32,12 +33,28 @@ const styles = StyleSheet.create({
 })
 
 export default class SettingsScreen extends React.Component {
-  static navigationOptions = {
-    title: 'My Profile',
+  static navigationOptions = ({navigation}) => {
+    const {params = {}} = navigation.state;
+    if (navigation.getParam('inProfile')){
+    return {
+      headerTitle: 'Profile',
+      headerLeft: (<Button
+            onPress={() => params.handle()}
+            title="<Back"
+            color="blue"
+          />)
+    }
+  }
+  else {
+    return {
+      headerTitle: 'Settings'
+    }
+  }
   };
 
   state = {
     pushNotifications: true,
+    inProfile: false,
   }
 
   onPressOptions = () => {
@@ -50,10 +67,26 @@ export default class SettingsScreen extends React.Component {
     }))
   }
 
+  toggleIn = () => {
+    this.setState(state => ({
+      inProfile: !state.inProfile,
+    }))
+    this.props.navigation.setParams({ inProfile: !this.state.inProfile, handle: this.toggleOut})
+  }
+
+  toggleOut = () => {
+    this.setState(state => ({
+      inProfile: !state.inProfile,
+    }))
+    this.props.navigation.setParams({ inProfile: !this.state.inProfile })
+  }
+
   render() {
+    if(this.state.inProfile == false) {
     return (
      <ScrollView style={styles.scroll}>
-     <View style={styles.userRow}>
+     <InfoText text="Your Profile" />
+     <TouchableOpacity style={styles.userRow} onPress={() => this.toggleIn()}>
       <View style={styles.userImage}>
             <Avatar
               rounded
@@ -74,7 +107,8 @@ export default class SettingsScreen extends React.Component {
               nickmiller@gmail.com
             </Text>
           </View>
-      </View>
+      </TouchableOpacity>
+
       <InfoText text="Your Account" />
 
       <View>
@@ -225,6 +259,14 @@ export default class SettingsScreen extends React.Component {
       
 
     );
+}
+else{
+  return(
+    <View>
+    <Profile name='Nick Miller'/>
+    </View>
+    )
   }
+}
 }
 
