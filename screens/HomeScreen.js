@@ -8,7 +8,8 @@ import {
   Button,
   TouchableOpacity,
   View,
-  Dimensions
+  Dimensions,
+  YellowBox
 } from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 import { WebBrowser } from 'expo';
@@ -20,6 +21,8 @@ import { SearchBar } from 'react-native-elements'
 import AcceptedRideDetail from '../components/AcceptedRideDetail'
 import RequestedRideDetail from '../components/RequestedRideDetail'
 import Colors from "../constants/Colors";
+
+
 
 let firebase = require("firebase");
 // let config = {
@@ -41,8 +44,8 @@ export default class HomeScreen extends React.Component {
     tabStuff: {
     index: 0,
     routes: [
-      { key: 'myRides', title: 'My Rides' },
-      { key: 'availableRides', title: 'Available Rides' },
+      { key: 'myRides', title: 'Need a ride' },
+      { key: 'availableRides', title: 'I Can Help' },
     ],
     search: '',
     }

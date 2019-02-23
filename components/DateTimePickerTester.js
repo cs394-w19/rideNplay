@@ -38,5 +38,8 @@ export default class DateTimePickerTester extends Component {
 const styles = StyleSheet.create({
   dateText: {
     fontSize: 20,
+    marginTop: 8,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
 });

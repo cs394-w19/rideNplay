@@ -14,25 +14,23 @@ const WIDTH = Dimensions.get('window').width;
 
 export const DropoffButton = function(props) {
     return (
-        <TouchableOpacity onPress={() => {}} style={styles.container}>
-            <View style={styles.leftCol}>
-                <Text style={{fontSize:8}}>{'\u25A0'}</Text>
-            </View>
-
-            <View style={styles.centerCol}>
-                <GooglePlacesInput/>
-            </View>
-            <View style={styles.rightCol}>
-                <Ionicons name="ios-pin" color="#000000" size={25} style={{alignSelf: "center"}}/>
-            </View>
-        </TouchableOpacity>
+      <TouchableOpacity onPress = {() => props.viewModal()}style={styles.container}>
+        <View style={styles.leftCol}>
+            <Text style={{fontSize:8}}>{'\u25A0'}</Text>
+        </View>
+          <View style={styles.centerCol}>
+            <Text style = {{fontSize: 20}}> {props.title} </Text>
+          </View>
+          <View style={styles.rightCol}>
+              <Ionicons name="ios-pin" color="#000000" size={25} style={{alignSelf: "center"}}/>
+          </View>
+      </TouchableOpacity>
 
     )
 }
 
 const styles = StyleSheet.create({
     container:{
-        zIndex: 9,
         flexDirection: 'row',
         marginHorizontal: 20,
         marginTop: 10,

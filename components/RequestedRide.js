@@ -13,7 +13,7 @@ import { Avatar, ListItem } from 'react-native-elements';
 this.width = Dimensions.get('window').width
 export default class RequestedRides extends React.Component {
     state = {
-      picture: ''
+      picture: 'test'
     }
 
     componentWillMount() {

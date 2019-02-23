@@ -19,7 +19,7 @@ export const PickupDateButton = function(props) {
             </View>
 
             <View style={styles.centerCol}>
-                    <DateTimePickerTester/>
+                    <DateTimePickerTester />
             </View>
             <View style={styles.rightCol}>
                 <Ionicons name="ios-calendar" color="#000000" size={25} style={{alignSelf: "center"}}/>
@@ -31,7 +31,6 @@ export const PickupDateButton = function(props) {
 
 const styles = StyleSheet.create({
     container:{
-        zIndex: 9,
         flexDirection: 'row',
         marginHorizontal: 20,
         marginTop: 10,
@@ -40,6 +39,7 @@ const styles = StyleSheet.create({
         borderRadius: 2,
         backgroundColor: 'white',
         alignItems: 'center',
+        justifyContent: 'center',
         shadowColor: "#000000",
         elevation: 7,
         shadowRadius: 5,

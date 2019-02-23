@@ -11,28 +11,40 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import GooglePlacesInput from '../components/GooglePlacesInput';
 
 const WIDTH = Dimensions.get('window').width;
+const HEIGHT = Dimensions.get('window').height;
 
-export const PickupButton = function(props) {
-    return (
-        <TouchableOpacity onPress={() => {}} style={styles.container}>
-            <View style={styles.leftCol}>
-                <Text style={{fontSize:8}}>{'\u25A0'}</Text>
-            </View>
+export class PickupButton extends React.Component {
+    sendDetails(details) {
+      this.props.save(details)
+    }
 
+
+    render(){
+      return (
+        <TouchableOpacity onPress = {() => this.props.viewModal()}style={styles.container}>
+          <View style={styles.leftCol}>
+              <Text style={{fontSize:8}}>{'\u25A0'}</Text>
+          </View>
             <View style={styles.centerCol}>
-                 <GooglePlacesInput/>
+              <Text style = {{fontSize: 20}}> {this.props.title} </Text>
             </View>
             <View style={styles.rightCol}>
                 <Ionicons name="ios-pin" color="#000000" size={25} style={{alignSelf: "center"}}/>
             </View>
         </TouchableOpacity>
 
+
     )
+  }
 }
 
 const styles = StyleSheet.create({
+    complete: {
+      position: 'absolute',
+      height: HEIGHT,
+      width: WIDTH
+    },
     container:{
-        zIndex: 9,
         flexDirection: 'row',
         marginHorizontal: 20,
         marginTop: 30,

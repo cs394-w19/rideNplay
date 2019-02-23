@@ -32,7 +32,6 @@ export const PickupTimeButton = function(props) {
 
 const styles = StyleSheet.create({
     container:{
-        zIndex: 9,
         marginHorizontal: 20,
         marginTop: 10,
         flexDirection: 'row',
