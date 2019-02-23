@@ -105,7 +105,7 @@ class Profile extends React.Component {
     name: "Random Guy",
     address: {city:'Evanston', country:'IL',},
     emails: [{email:"totallyrealemail@gmail.com",id:123,name:"Personal"},{email:"notfakeemail@gmail.com",id:123,name:"Work"}],
-    tels: [{id: 1234, name: "Home", number: "+1 (911) 911-9111"},{id: 1234, name: "Work", number: "+1 (911) 911-9112"}]
+    tels: [{id: 1234, name: "Home", number: "+1(123)456-7890"},{id: 1234, name: "Work", number: "+1(098)765-4321"}]
 
   };
   static propTypes = {
@@ -139,6 +139,7 @@ class Profile extends React.Component {
     emailDS: new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
     }).cloneWithRows(this.props.emails),
+    name: this.props.name
   }
 
   onPressPlace = () => {
@@ -183,7 +184,9 @@ class Profile extends React.Component {
                 uri: avatar,
               }}
             />
-            <TextInput style={styles.userNameText}>{name}</TextInput>
+            <TextInput style={styles.userNameText}
+            onChangeText={(text) => this.setState({name: text})}
+            value={this.state.name}/>
             <View style={styles.userAddressRow}>
               <View>
                 <Icon
