@@ -18,6 +18,15 @@ export class PickupButton extends React.Component {
       this.props.save(details)
     }
 
+    renderTitle(){
+      if(this.props.title == "Pickup Location"){
+        return <Text style = {{fontSize: 20}}> {this.props.title} </Text>
+      }
+      else {
+        return <Text style = {{fontSize: 12}}> {this.props.title} </Text>
+      }
+    }
+
 
     render(){
       return (
@@ -26,7 +35,7 @@ export class PickupButton extends React.Component {
               <Text style={{fontSize:8}}>{'\u25A0'}</Text>
           </View>
             <View style={styles.centerCol}>
-              <Text style = {{fontSize: 20}}> {this.props.title} </Text>
+              {this.renderTitle()}
             </View>
             <View style={styles.rightCol}>
                 <Ionicons name="ios-pin" color="#000000" size={25} style={{alignSelf: "center"}}/>

@@ -74,7 +74,6 @@ export default class NewRide extends React.Component {
 
   confirmPickupLocation(loc, geo) {
     this.setState({viewPickupModal: !this.state.viewPickupModal, pickupTitle: loc, pickupGeo: geo})
-    console.log(this.state.pickupGeo)
   }
 
   viewDropoffModal() {
