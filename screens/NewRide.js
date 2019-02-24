@@ -35,24 +35,34 @@ export default class NewRide extends React.Component {
     region: {
       latitude: 42.045273, 
       longitude: -87.686790,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,},
+      latitudeDelta: 0.0422,
+      longitudeDelta: 0.0221,},
     pickupGeo: {},
     dropoffGeo: {},
-     markers: [
+    markers: [
       {
+        key: '1',
         coordinate: {
-          latitude: 37.78825,
-          longitude: -122.4324,
+          latitude: 42.053472,
+          longitude: -87.672652,
         },
-        title: "Best Place",
-        description: "This is the best place in Portland",
+        title: "Dropoff Location",
+        description: "Norris",
       },
-    ],
-
+      {
+        key: '2',
+        coordinate: {
+          latitude: 42.05228,
+          longitude: -87.688912,
+        },
+        title: "Destination",
+        description: "Emerson St",
+      }],
+      
     pickupDetails: '',
     dropoffDetails: ''
   }
+
 
   savePickupDetails(det) {
     // this.setState({pickupDetails: det})
@@ -102,16 +112,20 @@ export default class NewRide extends React.Component {
          showsCompass={true}
          showsPointsOfInterest = {false}
          region={this.state.region}
-         onRegionChange={() => this.onRegionChange()}
-        />
-        {this.state.markers.map(marker =>
-          {return <Marker
-            coordinate={marker.coordinate}
-            title={marker.title}
-            description={marker.description}
-          />}
-        )}
+         onRegionChange={() => this.onRegionChange()}>
+          {this.state.markers.map(marker => (
+                <Marker
+                  key={marker.key}
+                  coordinate={marker.coordinate}
+                  title={marker.title}
+                  description={marker.description}
+                />
+              ))}
+        </MapView>
+       
+
         </View>
+
       );
   }
 
