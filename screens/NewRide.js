@@ -33,7 +33,7 @@ export default class NewRide extends React.Component {
     pickupTitle: 'Pickup Location',
     dropoffTitle: 'Dropoff Location',
     region: {
-      latitude: 42.045273, 
+      latitude: 42.045273,
       longitude: -87.686790,
       latitudeDelta: 0.0422,
       longitudeDelta: 0.0221,},
@@ -58,7 +58,7 @@ export default class NewRide extends React.Component {
         title: "Destination",
         description: "Emerson St",
       }],
-      
+
     pickupDetails: '',
     dropoffDetails: ''
   }
@@ -83,7 +83,15 @@ export default class NewRide extends React.Component {
   }
 
   confirmPickupLocation(loc, geo) {
-    this.setState({viewPickupModal: !this.state.viewPickupModal, pickupTitle: loc, pickupGeo: geo})
+    lat = geo["lat"]
+    long = geo["lng"]
+    newMarker = {
+      key: '1',
+      coordinate: {latitude: lat, longitude: long},
+      title: "Pickup Location",
+      description: loc,
+    }
+    this.setState({viewPickupModal: !this.state.viewPickupModal, pickupTitle: loc, markers: [newMarker],pickupGeo: geo})
   }
 
   viewDropoffModal() {
@@ -91,7 +99,16 @@ export default class NewRide extends React.Component {
   }
 
   confirmDropoffLocation(loc, geo) {
-    this.setState({viewDropoffModal: !this.state.viewDropoffModal, dropoffTitle: loc,  dropoffGeo: geo})
+    lat = geo["lat"]
+    long = geo["lng"]
+    newMarker = {
+      key: '2',
+      coordinate: {latitude: lat, longitude: long},
+      title: "Dropoff Location",
+      description: loc,
+    },
+    pickup = this.state.markers[0]
+    this.setState({viewDropoffModal: !this.state.viewDropoffModal, markers: [pickup, newMarker], dropoffTitle: loc,  dropoffGeo: geo})
   }
 
   submitRide() {
@@ -122,7 +139,7 @@ export default class NewRide extends React.Component {
                 />
               ))}
         </MapView>
-       
+
 
         </View>
 

@@ -20,10 +20,10 @@ export class PickupButton extends React.Component {
 
     renderTitle(){
       if(this.props.title == "Pickup Location"){
-        return <Text style = {{fontSize: 20}}> {this.props.title} </Text>
+        return <Text style = {{fontSize: 20}}>{this.props.title} </Text>
       }
       else {
-        return <Text style = {{fontSize: 12}}> {this.props.title} </Text>
+        return <Text style = {{fontSize: 12}}>{this.props.title} </Text>
       }
     }
 

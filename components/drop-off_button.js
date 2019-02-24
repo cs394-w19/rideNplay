@@ -18,7 +18,7 @@ export class DropoffButton extends React.Component {
       return <Text style = {{fontSize: 20}}> {this.props.title} </Text>
     }
     else {
-      return <Text style = {{fontSize: 12}}> {this.props.title} </Text>
+      return <Text style = {{fontSize: 12}}>{this.props.title} </Text>
     }
   }
 
