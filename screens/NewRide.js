@@ -46,7 +46,7 @@ export default class NewRide extends React.Component {
           latitude: 42.053472,
           longitude: -87.672652,
         },
-        title: "Dropoff Location",
+        title: "Pickup Location",
         description: "Norris",
       },
       {
@@ -55,7 +55,7 @@ export default class NewRide extends React.Component {
           latitude: 42.05228,
           longitude: -87.688912,
         },
-        title: "Destination",
+        title: "Dropoff Location",
         description: "Emerson St",
       }],
 
