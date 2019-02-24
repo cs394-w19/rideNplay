@@ -27,17 +27,18 @@ export default class App extends React.Component {
 
       //Example code for how to use Firebase functions
     this.createNewRide("Ride1", "Winetka School of Music", "Ride to Orchestra Rehearsal","jessday2","child1","WSM","Home","3:45pm","N/A","-");
-    this.createNewRide("Ride2","Evanston U12 Team Practice","Ride to Soccer Practice","nickmiller5","child2","Long Field","Home","5:30pm","N/A","-");
+    this.createNewRide("Ride2","Evanston U12 Team Practice","Ride to Soccer Practice","ceceparekh4","child2","Long Field","Home","5:30pm","N/A","-");
     this.createNewRide("Ride3","Wilmette School of Dance","Ride to Ballet","nickmiller5","child3","School","WSD","3:45pm","Mark","-");
     this.createNewRide("Ride4","Evanston U16 Team","Ride from Soccer Practice","schmidty5","child4","School","Long Field","6:30pm","N/A","-");
     this.createNewRide("Ride5","ETHS Debate Team","Ride to Debate Meet","jessday2","child4","School","Home","7:30pm","N/A","-");
-    this.createNewRide("Ride6","ETHS MT Team","Ride to Mock Trial Tournament","nickmiller5","child4","School","Home","4:30pm","N/A","-");
+    this.createNewRide("Ride6","ETHS MT Team","Ride to Mock Trial Tournament","ceceparekh4","child4","School","Home","4:30pm","N/A","-");
     // this.readRideData("Ride3");
     // this.updateRideInfo("Ride3","3:46pm","Mark")
     // // this.deleteRide("Ride4");
     // this.createNewMessageExchange("Ride3","parent1","parent3","Hi! I'd like to help!");
     // // this.readMessages("Ride3");
     // this.addNewMessage("Ride3","parent3","parent1","Thanks so much!");
+    // this.createNewUser("ceceparekh4","ceceparekh@gmail.com","Cece Parekh","https://www.famousbirthdays.com/faces/simone-hannah-image.jpg");
   }
 
 //***********FIREBASE CODE****************************************************************/
@@ -51,6 +52,24 @@ export default class App extends React.Component {
 //      -dropoff_time
 //      -pickup_time
 //      -rating (Star rating)
+
+
+createNewUser(id,user_email,user_name,user_picture) {
+  firebase.database().ref('Users/'+id).set({
+      user_id:id,
+      user_name:user_name,
+      user_email:user_email,
+      user_picture:user_picture,
+    }).then((data) => {
+      //success callback
+        if (data) {
+            console.log(data);
+        }
+    }).catch((error) => {
+      //error callback
+      console.log('error ', error);
+    })
+}
 
 // Create new ride on Firebase with ride_id, with all fields completed
 //      ***When calling function, if we don't have info, just leave that field with "N/A" or "-" (but include something)
