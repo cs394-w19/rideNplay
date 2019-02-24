@@ -3,6 +3,7 @@ import { ScrollView,
          StyleSheet,
          View,
          Text,
+         TextInput,
          Button,
          TouchableOpacity,
          Modal,
@@ -15,10 +16,13 @@ import {PickupButton} from "../components/pickup_button";
 import { DropoffButton } from "../components/drop-off_button";
 import { PickupDateButton } from "../components/pickup_date_button";
 import { PickupTimeButton } from "../components/pickup_time_button";
+import { RideDetails } from "../components/RideDetails";
 import { Marker } from 'react-native-maps';
 import MapView from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import GooglePlacesInput from '../components/GooglePlacesInput';
+
+let firebase = require("firebase");
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -44,7 +48,7 @@ export default class NewRide extends React.Component {
       {
         key: '1',
         coordinate: {
-          latitude: 42.053472,
+          latitude: 22.053472,
           longitude: -87.672652,
         },
         title: "Pickup Location",
@@ -53,7 +57,7 @@ export default class NewRide extends React.Component {
       {
         key: '2',
         coordinate: {
-          latitude: 42.05228,
+          latitude: 22.05228,
           longitude: -87.688912,
         },
         title: "Dropoff Location",
@@ -113,8 +117,28 @@ export default class NewRide extends React.Component {
     this.setState({viewDropoffModal: !this.state.viewDropoffModal, markers: [pickup, newMarker], dropoffTitle: loc,  dropoffGeo: geo})
   }
 
-  submitRide() {
+  submitRide(ride_name, ride_desc, submitter_id, child_user_id, pickup_loc, dropoff_loc, pickup_time,driver,rating) {
     console.log("Ride Submitted");
+    firebase.database().ref('Rides/').push({
+      ride_id:"new_ride",
+      ride_desc: ride_desc,
+      ride_name:ride_name,
+      submitter_id:submitter_id,
+      child_id:child_user_id,
+      pickup_loc:pickup_loc,
+      dropoff_loc:dropoff_loc,
+      pickup_time:pickup_time,
+      driver:"--",
+      rating:"N/A"
+    }).then((data) => {
+      //success callback
+        if (data) {
+            console.log(data);
+        }
+    }).catch((error) => {
+      //error callback
+      console.log('error ', error);
+    })
   }
 
   renderMap() {
@@ -189,10 +213,12 @@ export default class NewRide extends React.Component {
           </Modal>
 
         {this.renderMap()}
+        <RideDetails/>
         <PickupButton title = {this.state.pickupTitle} viewModal = {this.viewPickupModal.bind(this)} save = {this.savePickupDetails}/>
         <DropoffButton title = {this.state.dropoffTitle} viewModal = {this.viewDropoffModal.bind(this)}  save = {this.saveDropoffDetails}/>
         <PickupDateButton name="Choose Date"/>
         <PickupTimeButton name="Choose Time"/>
+
 
 
 
