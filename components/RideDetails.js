@@ -36,7 +36,7 @@ export const RideDetails = function(props) {
             </View>
 
             <View style={styles.centerCol}>
-                    <TextInput editable = {true} maxLength = {15}>Enter Child to Pickup</TextInput>
+                    <TextInput editable = {true} maxLength = {15} onChangeText={(text) => this.props.setChildName({text})}>Enter Child to Pickup</TextInput>
             </View>
             <View style={styles.rightCol}>
                 <FontAwesome name="child" color="#000000" size={25} style={{alignSelf: "center"}}/>
@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginHorizontal: 20,
         marginTop: 10,
-        width: (WIDTH-40),
-        height: 40,
+        width: (WIDTH-35),
+        height: 35,
         borderRadius: 2,
         backgroundColor: 'white',
         alignItems: 'center',

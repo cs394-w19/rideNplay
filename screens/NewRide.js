@@ -67,6 +67,8 @@ export default class NewRide extends React.Component {
     pickupDetails: '',
     dropoffDetails: '',
     chosenDate: new Date(),
+    rideName:"",
+    childName:"",
   }
 
 
@@ -104,6 +106,10 @@ export default class NewRide extends React.Component {
     this.setState({viewDropoffModal: !this.state.viewDropoffModal})
   }
 
+  setChildName(child) {
+    this.setState({childName: child});
+  }
+
   confirmDropoffLocation(loc, geo) {
     lat = geo["lat"]
     long = geo["lng"]
@@ -117,28 +123,48 @@ export default class NewRide extends React.Component {
     this.setState({viewDropoffModal: !this.state.viewDropoffModal, markers: [pickup, newMarker], dropoffTitle: loc,  dropoffGeo: geo})
   }
 
-  submitRide(ride_name, ride_desc, submitter_id, child_user_id, pickup_loc, dropoff_loc, pickup_time,driver,rating) {
-    console.log("Ride Submitted");
-    firebase.database().ref('Rides/').push({
-      ride_id:"new_ride",
-      ride_desc: ride_desc,
-      ride_name:ride_name,
-      submitter_id:submitter_id,
-      child_id:child_user_id,
-      pickup_loc:pickup_loc,
-      dropoff_loc:dropoff_loc,
-      pickup_time:pickup_time,
-      driver:"--",
-      rating:"N/A"
-    }).then((data) => {
-      //success callback
-        if (data) {
-            console.log(data);
-        }
-    }).catch((error) => {
-      //error callback
-      console.log('error ', error);
-    })
+  // submitRide(ride_name, ride_desc, submitter_id, child_user_id, pickup_loc, dropoff_loc, pickup_time,driver,rating) {
+  submitRide(rideName) {
+    if (rideName=="") {
+      console.log("Ride incomplete; trigger alert");
+      //   Alert.alert(
+      //   'Invalid Ride Entry',
+      //   'Please submit all fields',
+      //   [
+      //     {
+      //       text: 'Cancel',
+      //       onPress: () => console.log('Cancel Pressed'),
+      //       style: 'cancel',
+      //     },
+      //     {text: 'OK', onPress: () => console.log('OK Pressed')},
+      //   ],
+      //   {cancelable: false},
+      // );
+
+    }
+    else {
+      console.log("Ride Submitted");
+      firebase.database().ref('Rides/').push({
+        ride_id:"new_ride",
+        ride_desc: ride_desc,
+        ride_name:ride_name,
+        submitter_id:submitter_id,
+        child_id:child_user_id,
+        pickup_loc:pickup_loc,
+        dropoff_loc:dropoff_loc,
+        pickup_time:pickup_time,
+        driver:"--",
+        rating:"N/A"
+      }).then((data) => {
+        //success callback
+          if (data) {
+              console.log(data);
+          }
+      }).catch((error) => {
+        //error callback
+        console.log('error ', error);
+      })
+    }
   }
 
   renderMap() {
@@ -222,7 +248,7 @@ export default class NewRide extends React.Component {
 
 
 
-        <TouchableOpacity style= {{alignItems: 'center', marginTop: 20,}} onPress={this.submitRide}>
+        <TouchableOpacity style= {{alignItems: 'center', marginTop: 20,}} onPress={this.submitRide(this.state.rideName)}>
           <Text style = {{fontSize: 20, color: 'green'}}>Submit Ride</Text>
         </TouchableOpacity>
 
