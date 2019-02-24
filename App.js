@@ -38,7 +38,11 @@ export default class App extends React.Component {
     // this.createNewMessageExchange("Ride3","parent1","parent3","Hi! I'd like to help!");
     // // this.readMessages("Ride3");
     // this.addNewMessage("Ride3","parent3","parent1","Thanks so much!");
-    // this.createNewUser("ceceparekh4","ceceparekh@gmail.com","Cece Parekh","https://www.famousbirthdays.com/faces/simone-hannah-image.jpg");
+    this.createNewUser("ceceparekh4","ceceparekh@gmail.com","Cece Parekh","https://www.famousbirthdays.com/faces/simone-hannah-image.jpg");
+    this.createNewUser("winstonbishop3","winniethebish@gmail.com","Winston Bishop","http://images6.fanpop.com/image/photos/32400000/LM-lamorne-morris-32424473-160-160.jpg");
+    this.createNewUser("jessday2","jessicaday@gmail.com","Jessica Day","https://www.famousbirthdays.com/faces/deschanel-zooey-image.jpg");
+    this.createNewUser("nickmiller5","nickmiller@gmail.com","Nick Miller","http://images5.fanpop.com/image/photos/30200000/Nick-3-nick-miller-30219108-300-300.jpg");
+    this.createNewUser("schmidty5","winstonschmidt@gmail.com","Winston Schmidt","http://images6.fanpop.com/image/photos/32400000/LM-lamorne-morris-32424473-160-160.jpg");
   }
 
 //***********FIREBASE CODE****************************************************************/

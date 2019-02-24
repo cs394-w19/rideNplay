@@ -8,7 +8,8 @@ import { ScrollView,
          Modal,
          TouchableHighlight,
          Dimensions,
-         Alert } from 'react-native';
+         Alert,
+         DatePickerIOS } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import {PickupButton} from "../components/pickup_button";
 import { DropoffButton } from "../components/drop-off_button";
@@ -60,7 +61,8 @@ export default class NewRide extends React.Component {
       }],
 
     pickupDetails: '',
-    dropoffDetails: ''
+    dropoffDetails: '',
+    chosenDate: new Date(),
   }
 
 
@@ -189,8 +191,9 @@ export default class NewRide extends React.Component {
         {this.renderMap()}
         <PickupButton title = {this.state.pickupTitle} viewModal = {this.viewPickupModal.bind(this)} save = {this.savePickupDetails}/>
         <DropoffButton title = {this.state.dropoffTitle} viewModal = {this.viewDropoffModal.bind(this)}  save = {this.saveDropoffDetails}/>
-        <PickupDateButton/>
-        <PickupTimeButton/>
+        <PickupDateButton name="Choose Date"/>
+        <PickupTimeButton name="Choose Time"/>
+
 
 
         <TouchableOpacity style= {{alignItems: 'center', marginTop: 20,}} onPress={this.submitRide}>

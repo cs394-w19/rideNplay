@@ -4,23 +4,24 @@ import {
     Text,
     View,
     Dimensions,
-    TouchableOpacity
+    TouchableOpacity,
+    DatePickerIOS,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import DateTimePickerTester from "../components/DateTimePickerTester";
 
 const WIDTH = Dimensions.get('window').width;
 
 export const PickupTimeButton = function(props) {
+
     return (
         <TouchableOpacity onPress={() => {}} style={styles.container}>
             <View style={styles.leftCol}>
                 <Text style={{fontSize:8}}>{'\u25A0'}</Text>
             </View>
 
-            <View style={styles.centerCol}>
-                <Text style={{fontSize:21, color:"#545454"}}>
-                    Pickup Time
-                </Text>
+           <View style={styles.centerCol}>
+                    <DateTimePickerTester mode="time" name={props.name} />
             </View>
             <View style={styles.rightCol}>
                 <Ionicons name="md-time" color="#000000" size={25} style={{alignSelf: "center"}}/>
@@ -28,6 +29,7 @@ export const PickupTimeButton = function(props) {
         </TouchableOpacity>
 
     )
+
 }
 
 const styles = StyleSheet.create({
