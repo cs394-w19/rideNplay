@@ -21,7 +21,7 @@ export const PickupTimeButton = function(props) {
             </View>
 
            <View style={styles.centerCol}>
-                    <DateTimePickerTester mode="time" name={props.name} />
+                    <DateTimePickerTester mode='datetime' name={props.name} />
             </View>
             <View style={styles.rightCol}>
                 <Ionicons name="md-time" color="#000000" size={25} style={{alignSelf: "center"}}/>

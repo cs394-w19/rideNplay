@@ -44,25 +44,8 @@ export default class NewRide extends React.Component {
       longitudeDelta: 0.0221,},
     pickupGeo: {},
     dropoffGeo: {},
-    markers: [
-      {
-        key: '1',
-        coordinate: {
-          latitude: 22.053472,
-          longitude: -87.672652,
-        },
-        title: "Pickup Location",
-        description: "Norris",
-      },
-      {
-        key: '2',
-        coordinate: {
-          latitude: 22.05228,
-          longitude: -87.688912,
-        },
-        title: "Dropoff Location",
-        description: "Emerson St",
-      }],
+    pickupMarker: null,
+    dropoffMarker: null,
 
     pickupDetails: '',
     dropoffDetails: '',
@@ -99,7 +82,7 @@ export default class NewRide extends React.Component {
       title: "Pickup Location",
       description: loc,
     }
-    this.setState({viewPickupModal: !this.state.viewPickupModal, pickupTitle: loc, markers: [newMarker],pickupGeo: geo})
+    this.setState({viewPickupModal: !this.state.viewPickupModal, pickupTitle: loc, pickupMarker: newMarker ,pickupGeo: geo})
   }
 
   viewDropoffModal() {
@@ -119,8 +102,7 @@ export default class NewRide extends React.Component {
       title: "Dropoff Location",
       description: loc,
     },
-    pickup = this.state.markers[0]
-    this.setState({viewDropoffModal: !this.state.viewDropoffModal, markers: [pickup, newMarker], dropoffTitle: loc,  dropoffGeo: geo})
+    this.setState({viewDropoffModal: !this.state.viewDropoffModal, dropoffMarker: newMarker, dropoffTitle: loc,  dropoffGeo: geo})
   }
 
   // submitRide(ride_name, ride_desc, submitter_id, child_user_id, pickup_loc, dropoff_loc, pickup_time,driver,rating) {
@@ -167,6 +149,42 @@ export default class NewRide extends React.Component {
     }
   }
 
+  renderMarkers(){
+    if(this.state.pickupMarker && this.state.dropoffMarker){
+      return <View><Marker
+        key={this.state.pickupMarker.key}
+        coordinate={this.state.pickupMarker.coordinate}
+        title={this.state.pickupMarker.title}
+        description={this.state.pickupMarker.description}
+      />
+      <Marker
+        key={this.state.dropoffMarker.key}
+        coordinate={this.state.dropoffMarker.coordinate}
+        title={this.state.dropoffMarker.title}
+        description={this.state.dropoffMarker.description}
+      /></View>
+    }
+    else if(this.state.pickupMarker) {
+      return <Marker
+        key={this.state.pickupMarker.key}
+        coordinate={this.state.pickupMarker.coordinate}
+        title={this.state.pickupMarker.title}
+        description={this.state.pickupMarker.description}
+      />
+    }
+    else if (this.state.dropoffMarker){
+      return <Marker
+        key={this.state.dropoffMarker.key}
+        coordinate={this.state.dropoffMarker.coordinate}
+        title={this.state.dropoffMarker.title}
+        description={this.state.dropoffMarker.description}
+      />
+    }
+    else return
+  }
+
+
+
   renderMap() {
     return (
       <View>
@@ -182,14 +200,7 @@ export default class NewRide extends React.Component {
          showsPointsOfInterest = {false}
          region={this.state.region}
          onRegionChange={() => this.onRegionChange()}>
-          {this.state.markers.map(marker => (
-                <Marker
-                  key={marker.key}
-                  coordinate={marker.coordinate}
-                  title={marker.title}
-                  description={marker.description}
-                />
-              ))}
+         {this.renderMarkers()}
         </MapView>
 
 

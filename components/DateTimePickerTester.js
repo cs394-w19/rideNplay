@@ -15,7 +15,7 @@ export default class DateTimePickerTester extends Component {
 
   }
 
-  
+
 
   _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
 
@@ -35,6 +35,7 @@ export default class DateTimePickerTester extends Component {
           <Text style={styles.dateText}> {this.state.title}</Text>
         </TouchableOpacity>
         <DateTimePicker
+          mode={this.props.mode}
           isVisible={this.state.isDateTimePickerVisible}
           onConfirm={this._handleDatePicked}
           onCancel={this._hideDateTimePicker}
