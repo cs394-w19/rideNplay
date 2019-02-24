@@ -17,7 +17,7 @@ const WIDTH = Dimensions.get('window').width;
 export const RideDetails = function(props) {
     return (
         <View>
-        <TouchableOpacity onPress={() => {}} style={styles.container}>
+        <TouchableOpacity onPress={() => props.openDetails()} style={styles.container}>
             <View style={styles.leftCol}>
                 <Text style={{fontSize:8}}>{'\u25A0'}</Text>
             </View>

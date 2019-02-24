@@ -53,7 +53,9 @@ export default class NewRide extends React.Component {
     rideName:"",
     childName:"",
     selectedDate: null,
-    selectedTime: null
+    selectedTime: null,
+    detailsModal: false,
+    childPicker: false
 
   }
 
@@ -196,7 +198,13 @@ export default class NewRide extends React.Component {
     else return
   }
 
+  showDetailsModal = () => {
+    this.setState({detailsModal: !this.state.detailsModal})
+  }
 
+  showChildPicker = () => {
+    this.setState({childPicker: !this.state.childPicker})
+  }
 
   renderMap() {
     return (
@@ -260,8 +268,41 @@ export default class NewRide extends React.Component {
             </View>
           </Modal>
 
+          <Modal
+          transparent={true}
+          animationType="slide"
+          visible={this.state.detailsModal}
+          onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+          }}>
+          <View style={{
+                      backgroundColor: 'white',
+                      borderRadius: 10,
+                      marginTop: HEIGHT/2 - 35,
+                      width: WIDTH,
+                      height: HEIGHT/2 + 50, // This is the important style you need to set
+                      alignItems: 'center',
+                      justifyContent: 'flex-start',}}>
+            <View>
+              <TextInput
+                style = {styles.detailsModal}
+                placeholder = "Enter Ride Details"
+                multiline = {true}
+                numberOfLines = {4} // Inherit any props passed to it; e.g., multiline, numberOfLines below
+                editable = {true}
+                maxLength = {200}
+              />
+              <TouchableOpacity
+                style = {{alignItems: 'center'}}
+                onPress={() => this.showDetailsModal()}>
+                <Text style = {{fontSize: 20}}>Confirm</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+
         {this.renderMap()}
-        <RideDetails />
+        <RideDetails openDetails={this.showDetailsModal}/>
         <PickupButton title = {this.state.pickupTitle} viewModal = {this.viewPickupModal.bind(this)} save = {this.savePickupDetails}/>
         <DropoffButton title = {this.state.dropoffTitle} viewModal = {this.viewDropoffModal.bind(this)}  save = {this.saveDropoffDetails}/>
         <PickupDateButton name="Choose Date" setDate = {this.setSelectedDate}/>
@@ -291,6 +332,15 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     shadowOpacity: 1.0
   },
+  detailsModal: {
+    borderBottomWidth: 1,
+    borderColor: 'lightgray',
+    marginVertical: 20,
+    marginHorizontal: 5,
+    borderRadius: 3,
+    fontSize: 20,
+    width: WIDTH - 40,
+    height: 250},
   submitButton:{
       flexDirection: 'row',
       marginHorizontal: 20,

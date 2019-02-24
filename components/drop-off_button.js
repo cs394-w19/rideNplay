@@ -15,7 +15,7 @@ const WIDTH = Dimensions.get('window').width;
 export class DropoffButton extends React.Component {
   renderTitle(){
     if(this.props.title == "Dropoff Location"){
-      return <Text style = {{fontSize: 20}}> {this.props.title} </Text>
+      return <Text style = {{fontSize: 20}}>{this.props.title} </Text>
     }
     else {
       return <Text style = {{fontSize: 12}}>{this.props.title} </Text>
