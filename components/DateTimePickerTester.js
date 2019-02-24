@@ -9,10 +9,9 @@ export default class DateTimePickerTester extends Component {
     super(props);
     this.state = {
       isDateTimePickerVisible: false,
-      title: props.name,
-      selectedDate: ""
-  };
-
+      selectedDate: "",
+      title: this.props.name
+    }
   }
 
 
@@ -21,23 +20,32 @@ export default class DateTimePickerTester extends Component {
 
   _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
 
-  _handleDatePicked = (date) => {
-    // this.setState({title: moment(date).format('MM/DD/YYYY').toString()})
-    this.setState({ selectedDate: date.toString() });
-    console.log('A date has been picked: ', date);
+  _handlePicked = (picked) => {
+
+    if(this.props.mode == "date"){
+    this.setState({title: moment(picked).format('MM/DD/YYYY').toString()})
+    console.log('A date has been picked: ', picked);
     this._hideDateTimePicker();
+    this.props.set(picked)
+    }
+    else if(this.props.mode == "time"){
+    this.setState({title: moment(picked).format("h:mm A").toString()})
+    console.log('A time has been picked: ', picked);
+    this._hideDateTimePicker();
+    this.props.set(picked)
+    }
   };
 
   render () {
     return (
       <View style={{ flex: 1 }}>
         <TouchableOpacity onPress={this._showDateTimePicker}>
-          <Text style={styles.dateText}> {this.state.title}</Text>
+          <Text style={styles.dateText}> {this.state.title} </Text>
         </TouchableOpacity>
         <DateTimePicker
           mode={this.props.mode}
           isVisible={this.state.isDateTimePickerVisible}
-          onConfirm={this._handleDatePicked}
+          onConfirm={this._handlePicked}
           onCancel={this._hideDateTimePicker}
         />
       </View>

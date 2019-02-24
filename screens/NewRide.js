@@ -52,6 +52,19 @@ export default class NewRide extends React.Component {
     chosenDate: new Date(),
     rideName:"",
     childName:"",
+    selectedDate: null,
+    selectedTime: null
+
+  }
+
+  setSelectedTime = (time) => {
+    this.setState({selectedTime: time})
+    console.log(time)
+  }
+
+  setSelectedDate = (date) => {
+    this.setState({selectedDate: date})
+    console.log(date)
   }
 
 
@@ -189,7 +202,7 @@ export default class NewRide extends React.Component {
     return (
       <View>
         <MapView
-          style={{height: 250, top: 0, marginHorizontal: 5}}
+          style={{height: 220, top: 0, marginHorizontal: 5}}
           // initialRegion={this.state.region}
          loadingEnabled = {true}
          loadingIndicatorColor="#666666"
@@ -202,8 +215,6 @@ export default class NewRide extends React.Component {
          onRegionChange={() => this.onRegionChange()}>
          {this.renderMarkers()}
         </MapView>
-
-
         </View>
 
       );
@@ -250,18 +261,19 @@ export default class NewRide extends React.Component {
           </Modal>
 
         {this.renderMap()}
-        <RideDetails/>
+        <RideDetails />
         <PickupButton title = {this.state.pickupTitle} viewModal = {this.viewPickupModal.bind(this)} save = {this.savePickupDetails}/>
         <DropoffButton title = {this.state.dropoffTitle} viewModal = {this.viewDropoffModal.bind(this)}  save = {this.saveDropoffDetails}/>
-        <PickupDateButton name="Choose Date"/>
-        <PickupTimeButton name="Choose Time"/>
+        <PickupDateButton name="Choose Date" setDate = {this.setSelectedDate}/>
+        <PickupTimeButton name="Choose Time" setTime = {this.setSelectedTime}/>
 
 
-
-
-        <TouchableOpacity style= {{alignItems: 'center', marginTop: 20,}} onPress={this.submitRide(this.state.rideName)}>
-          <Text style = {{fontSize: 20, color: 'green'}}>Submit Ride</Text>
+        <TouchableOpacity onPress={this.submitRide(this.state.rideName)} onPress={() => {}} style={styles.submitButton}>
+            <View style={styles.centerCol}>
+                    <Text style = {{fontSize: 20}}>Submit Ride</Text>
+            </View>
         </TouchableOpacity>
+
 
       </View>
 
@@ -278,6 +290,21 @@ const styles = StyleSheet.create({
     elevation: 7,
     shadowRadius: 5,
     shadowOpacity: 1.0
-  }
+  },
+  submitButton:{
+      flexDirection: 'row',
+      marginHorizontal: 20,
+      marginTop: 10,
+      width: (WIDTH-40),
+      height: 35,
+      borderRadius: 2,
+      backgroundColor: '#77dd77',
+      alignItems: 'center',
+      justifyContent: 'center',
+      shadowColor: "#000000",
+      elevation: 7,
+      shadowRadius: 5,
+      shadowOpacity: 1.0
+  },
 
 });
