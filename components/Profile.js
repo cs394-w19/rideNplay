@@ -104,7 +104,7 @@ class Profile extends React.Component {
     avatarBackground: "http://images5.fanpop.com/image/photos/30200000/Nick-3-nick-miller-30219108-300-300.jpg",
     name: "Random Guy",
     address: {city:'Evanston', country:'IL',},
-    emails: [{email:"totallyrealemail@gmail.com",id:123,name:"Personal"},{email:"notfakeemail@gmail.com",id:123,name:"Work"}],
+    emails: [{email:"nickmiller5@gmail.com",id:123,name:"Personal"},{email:"nmiller2@gmail.com",id:123,name:"Work"}],
     tels: [{id: 1234, name: "Home", number: "+1(123)456-7890"},{id: 1234, name: "Work", number: "+1(098)765-4321"}]
 
   };

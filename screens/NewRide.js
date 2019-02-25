@@ -33,6 +33,7 @@ export default class NewRide extends React.Component {
   };
 
   state = {
+    user: "nickmiller5",
     viewPickupModal: false,
     viewDropoffModal: false,
     pickupTitle: 'Pickup Location',
@@ -121,8 +122,8 @@ export default class NewRide extends React.Component {
   }
 
   // submitRide(ride_name, ride_desc, submitter_id, child_user_id, pickup_loc, dropoff_loc, pickup_time,driver,rating) {
-  submitRide(rideName) {
-    if (rideName=="") {
+  submitRide() {
+    if (this.state.pickupDetails=="") {
       console.log("Ride incomplete; trigger alert");
       //   Alert.alert(
       //   'Invalid Ride Entry',
@@ -137,19 +138,21 @@ export default class NewRide extends React.Component {
       //   ],
       //   {cancelable: false},
       // );
-
     }
     else {
-      console.log("Ride Submitted");
+      console.log("Submitting Ride");
       firebase.database().ref('Rides/').push({
         ride_id:"new_ride",
-        ride_desc: ride_desc,
-        ride_name:ride_name,
-        submitter_id:submitter_id,
-        child_id:child_user_id,
-        pickup_loc:pickup_loc,
-        dropoff_loc:dropoff_loc,
-        pickup_time:pickup_time,
+        ride_desc: this.state.pickupDetails,
+        ride_name:"new_ride",
+        submitter_id:this.state.user,
+        child_id:this.state.childName,
+        // pickup_loc:JSON.stringify(this.pickupGeo),
+        // dropoff_loc:JSON.stringify(this.dropoffGeo),
+        pickup_loc:'',
+        dropoff_loc:'',
+        // pickup_time:this.state.pickup_time,
+        pickup_time:'',
         driver:"--",
         rating:"N/A"
       }).then((data) => {
@@ -309,7 +312,7 @@ export default class NewRide extends React.Component {
         <PickupTimeButton name="Choose Time" setTime = {this.setSelectedTime}/>
 
 
-        <TouchableOpacity onPress={this.submitRide(this.state.rideName)} onPress={() => {}} style={styles.submitButton}>
+        <TouchableOpacity onPress={this.submitRide()} onPress={() => {}} style={styles.submitButton}>
             <View style={styles.centerCol}>
                     <Text style = {{fontSize: 20}}>Submit Ride</Text>
             </View>
