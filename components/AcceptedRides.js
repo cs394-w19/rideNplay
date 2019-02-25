@@ -15,13 +15,15 @@ export default class AcceptedRides extends React.Component {
     this.props.clickRide(id)
   }
 
+
+
   render() {
     return (
       <View style={styles.container}>
         <ScrollView>
         {this.props.rides.map((ride, i) =>
           {
-          let component = <TouchableOpacity key = {i} style = {styles.event} onPress = {() => this.props.clickRide(ride.ride_id)} >
+          let component = <TouchableOpacity key = {i} style = {styles.event} onPress = {() => this.props.clickRide(this.props.keys[i])} >
                             <Ride
                               id = {ride.ride_id}
                               rideTitle = {Object(ride).ride_name}
@@ -30,8 +32,8 @@ export default class AcceptedRides extends React.Component {
                           </TouchableOpacity>
           if(ride.driver != 'N/A')
             return component
-        }
-        )}
+        }, this
+      )}
         </ScrollView>
       </View>
     );

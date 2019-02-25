@@ -152,7 +152,7 @@ export default class NewRide extends React.Component {
     else {
       console.log("Submitting Ride");
       firebase.database().ref('Rides/').push({
-        ride_id:"new_ride",
+        ride_id: this.state.rideName,
         ride_desc: this.state.description,
         ride_name:this.state.rideName,
         submitter_id:this.state.user,
@@ -162,7 +162,7 @@ export default class NewRide extends React.Component {
         // pickup_loc:this.state.pickupGeo,
         // dropoff_loc:this.state.dropoffGeo,
         pickup_time:this.state.selectedTime,
-        driver:"--",
+        driver:"ME",
         rating:"N/A"
       }).then((data) => {
         //success callback

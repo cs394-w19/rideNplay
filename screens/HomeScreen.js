@@ -45,7 +45,7 @@ export default class HomeScreen extends React.Component {
     index: 0,
     routes: [
       { key: 'myRides', title: 'Need a ride' },
-      { key: 'availableRides', title: 'I Can Help' },
+      { key: 'availableRides', title: 'I Can Help!' },
     ],
     search: '',
     }
@@ -91,8 +91,11 @@ export default class HomeScreen extends React.Component {
     return firebase.database().ref('Rides/').once('value').then(snapshot => {
       const rides = snapshot.val();
       newRides = Object.values(rides)
+      keys =  Object.keys(rides)
+      console.log(keys)
       this.setState({all_rides: newRides});
       this.setState({rideDictionary: rides})
+      this.setState({rideKeys: keys})
     })
   }
 
@@ -107,19 +110,23 @@ export default class HomeScreen extends React.Component {
     return firebase.database().ref('Rides/').once('value').then(snapshot => {
       const rides = snapshot.val();
       newRides = Object.values(rides)
+      keys =  Object.keys(rides)
       this.setState({all_rides: newRides});
       this.setState({rideDictionary: rides})
+      this.setState({rideKeys: keys})
+
     })
   }
 
 
-
   render() {
+      console.log(this.state.rideDictionary)
       const { search } = this.state;
 
       const firstRoute = () =>
         <View style = {styles.accepted}>
           <AcceptedRides rides = {this.state.all_rides}
+                        keys = {this.state.rideKeys}
                        clickRide = {this.clickRide}/>
         </View>
 
