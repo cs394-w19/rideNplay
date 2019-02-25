@@ -33,30 +33,41 @@ export default class NewRide extends React.Component {
   };
 
   state = {
-    user: "nickmiller5",
-    viewPickupModal: false,
-    viewDropoffModal: false,
-    pickupTitle: 'Pickup Location',
-    dropoffTitle: 'Dropoff Location',
-    region: {
+    user: "nickmiller5", // user name
+    viewPickupModal: false,  // obvious
+    viewDropoffModal: false, // obvious
+    detailsModal: false, // obvious
+
+    pickupTitle: 'Pickup Location', // Title for pickup button
+    dropoffTitle: 'Dropoff Location', // Title for dropoff button
+
+    region: { // Map button
       latitude: 42.045273,
       longitude: -87.686790,
       latitudeDelta: 0.0422,
       longitudeDelta: 0.0221,},
-    pickupGeo: {},
-    dropoffGeo: {},
+
+    pickupGeo: {}, // lat/long for pickup marker
+    dropoffGeo: {}, // lat/long for dropoff marker
+
     pickupMarker: null,
     dropoffMarker: null,
 
     pickupDetails: '',
     dropoffDetails: '',
+
     chosenDate: new Date(),
+
     rideName:"",
     childName:"",
+
     selectedDate: null,
     selectedTime: null,
-    detailsModal: false,
-    childPicker: false
+
+
+    childPicker: false,
+    description: "",
+    rideName: ""
 
   }
 
@@ -121,9 +132,8 @@ export default class NewRide extends React.Component {
     this.setState({viewDropoffModal: !this.state.viewDropoffModal, dropoffMarker: newMarker, dropoffTitle: loc,  dropoffGeo: geo})
   }
 
-  // submitRide(ride_name, ride_desc, submitter_id, child_user_id, pickup_loc, dropoff_loc, pickup_time,driver,rating) {
   submitRide() {
-    if (this.state.pickupDetails=="") {
+    if (this.state.description=="") {
       console.log("Ride incomplete; trigger alert");
       //   Alert.alert(
       //   'Invalid Ride Entry',
@@ -143,16 +153,15 @@ export default class NewRide extends React.Component {
       console.log("Submitting Ride");
       firebase.database().ref('Rides/').push({
         ride_id:"new_ride",
-        ride_desc: this.state.pickupDetails,
-        ride_name:"new_ride",
+        ride_desc: this.state.description,
+        ride_name:this.state.rideName,
         submitter_id:this.state.user,
         child_id:this.state.childName,
-        // pickup_loc:JSON.stringify(this.pickupGeo),
-        // dropoff_loc:JSON.stringify(this.dropoffGeo),
-        pickup_loc:'',
-        dropoff_loc:'',
-        // pickup_time:this.state.pickup_time,
-        pickup_time:'',
+        pickup_loc:JSON.stringify(this.state.pickupGeo),
+        dropoff_loc:JSON.stringify(this.state.dropoffGeo),
+        // pickup_loc:this.state.pickupGeo,
+        // dropoff_loc:this.state.dropoffGeo,
+        pickup_time:this.state.selectedTime,
         driver:"--",
         rating:"N/A"
       }).then((data) => {
@@ -288,11 +297,22 @@ export default class NewRide extends React.Component {
                       justifyContent: 'flex-start',}}>
             <View>
               <TextInput
+                style = {styles.rideName}
+                placeholder = "Enter Ride Name"
+                multiline = {false}
+                editable = {true}
+                onChangeText={(rideName) => this.setState({rideName})}
+                value={this.state.rideName}
+                maxLength = {30}
+              />
+              <TextInput
                 style = {styles.detailsModal}
                 placeholder = "Enter Ride Details"
                 multiline = {true}
-                numberOfLines = {4} // Inherit any props passed to it; e.g., multiline, numberOfLines below
+                numberOfLines = {4}
                 editable = {true}
+                onChangeText={(description) => this.setState({description})}
+                value={this.state.description}
                 maxLength = {200}
               />
               <TouchableOpacity
@@ -312,7 +332,7 @@ export default class NewRide extends React.Component {
         <PickupTimeButton name="Choose Time" setTime = {this.setSelectedTime}/>
 
 
-        <TouchableOpacity onPress={this.submitRide()} onPress={() => {}} style={styles.submitButton}>
+        <TouchableOpacity onPress={() => this.submitRide()} style={styles.submitButton}>
             <View style={styles.centerCol}>
                     <Text style = {{fontSize: 20}}>Submit Ride</Text>
             </View>
@@ -343,7 +363,16 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     fontSize: 20,
     width: WIDTH - 40,
-    height: 250},
+    height: 225},
+  rideName: {
+    borderBottomWidth: 1,
+    borderColor: 'lightgray',
+    marginVertical: 5,
+    marginHorizontal: 5,
+    borderRadius: 3,
+    fontSize: 20,
+    width: WIDTH - 40,
+    height: 50},
   submitButton:{
       flexDirection: 'row',
       marginHorizontal: 20,
