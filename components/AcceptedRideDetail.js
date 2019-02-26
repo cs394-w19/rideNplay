@@ -14,17 +14,22 @@ import { View,
 import Moment from 'moment';
 import { Header } from 'react-native-elements'
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
+import InfoText from '../components/InfoText';
+import { Marker } from 'react-native-maps';
+import MapView from 'react-native-maps';
+import { Avatar, ListItem } from 'react-native-elements';
+
+const WIDTH = Dimensions.get('window').width;
 
 class AcceptedRideDetail extends React.Component {
   state = {
-
-    index: 0,
-    routes: [
-      { key: 'one', title: 'Info' },
-      { key: 'two', title: 'See Route' },
-    ]
-
-  };
+    region: { // Map button
+      latitude: 42.045273,
+      longitude: -87.686790,
+      latitudeDelta: 0.0422,
+      longitudeDelta: 0.0221,},
+      inMap: false,
+  }
 
   componentWillMount(){
     console.log(this.props.ride) //the correct ride object is already passed in.
@@ -34,6 +39,69 @@ class AcceptedRideDetail extends React.Component {
   // springin = () => {
   //   LayoutAnimation.configureNext(LayoutAnimation.create(250, 'easeIn', 'scaleY'))
   // }
+  inMap = () => {
+    this.setState({inMap: !this.state.inMap})
+  }
+
+  renderMap = () => {
+    return (
+      <View>
+        <MapView
+          style={{height: 220, top: 0, marginHorizontal: 5}}
+          // initialRegion={this.state.region}
+         loadingEnabled = {true}
+         loadingIndicatorColor="#666666"
+         loadingBackgroundColor="#eeeeee"
+         moveOnMarkerPress = {false}
+         showsUserLocation={true}
+         showsCompass={true}
+         showsPointsOfInterest = {false}
+         region={this.state.region}
+         onRegionChange={() => this.onRegionChange()}>
+         {this.renderMarkers()}
+        </MapView>
+        </View>
+
+      );
+  }
+
+  renderMarkers(){
+    if(this.state.pickupMarker && this.state.dropoffMarker){
+      return <View><Marker
+        key={this.state.pickupMarker.key}
+        coordinate={this.state.pickupMarker.coordinate}
+        title={this.state.pickupMarker.title}
+        description={this.state.pickupMarker.description}
+      />
+      <Marker
+        key={this.state.dropoffMarker.key}
+        coordinate={this.state.dropoffMarker.coordinate}
+        title={this.state.dropoffMarker.title}
+        description={this.state.dropoffMarker.description}
+      /></View>
+    }
+    else if(this.state.pickupMarker) {
+      return <Marker
+        key={this.state.pickupMarker.key}
+        coordinate={this.state.pickupMarker.coordinate}
+        title={this.state.pickupMarker.title}
+        description={this.state.pickupMarker.description}
+      />
+    }
+    else if (this.state.dropoffMarker){
+      return <Marker
+        key={this.state.dropoffMarker.key}
+        coordinate={this.state.dropoffMarker.coordinate}
+        title={this.state.dropoffMarker.title}
+        description={this.state.dropoffMarker.description}
+      />
+    }
+    else return
+  }
+
+  onRegionChange(region) {
+    this.setState({ region });
+  }
 
   conditionaldriver(){
     if (this.props.ride.driver == "N/A"){
@@ -49,59 +117,149 @@ class AcceptedRideDetail extends React.Component {
 
 
   render(){
-    const firstRoute = () => (
-    <View>
-
-        <View style = {{flexDirection: 'row', marginHorizontal: 10}}>
-          <Text style = {{fontSize: 20}}>
-            <Text style = {{fontWeight: 'bold'}}>{this.props.ride.driver} </Text>
-            is picking up
-            <Text style = {{fontWeight: 'bold'}}> {this.props.ride.child_id} </Text>
-            <Text>at</Text>
-            <Text style = {{fontWeight: 'bold'}}> {this.props.ride.pickup_time} </Text>
-            <Text>from</Text>
-            <Text style = {{fontWeight: 'bold'}}> {this.props.ride.pickup_loc}</Text>.
-            <Text style = {{fontWeight: 'bold'}}> {this.props.ride.driver} </Text>
-            <Text>will bring</Text>
-            <Text style = {{fontWeight: 'bold'}}> {this.props.ride.child_id} </Text>
-            <Text>to</Text>
-            <Text style = {{fontWeight: 'bold'}}> {this.props.ride.dropoff_loc}</Text>.
-          </Text>
-        </View>
-      </View>
-    );
-
-  const secondRoute = () => (
-    <View>
-      <Image
-        style={{width: 450, height: 600}}
-        source={require('./map.png')}
-      />
-    </View>
-    );
-
+    if (this.state.inMap == false){
     return(
-      <TabView
-          navigationState={this.state}
-          renderScene={SceneMap({
-          one: firstRoute,
-          two: secondRoute,
-          })}
-          onIndexChange={index => this.setState({ index })}
-          initialLayout={{ width: Dimensions.get('window').width }}
-          >
-      </TabView>
-     // </View>
+      <View>
+      <InfoText text="Your Request:" />
+      <View style={styles.userRow}>
+      <View style={styles.userImage}>
+            <Avatar
+              rounded
+              size="large"
+              source={{
+                uri: "http://images5.fanpop.com/image/photos/30200000/Nick-3-nick-miller-30219108-300-300.jpg",
+              }}
+            />
+      </View>
+      <View>
+            <Text style={{ fontSize: 16 }}>{this.props.ride.submitter_id}</Text>
+            <Text
+              style={{
+                color: 'gray',
+                fontSize: 16,
+              }}
+            >
+              nickmiller@gmail.com
+            </Text>
+      </View>
+      </View>
+      <InfoText text="For:" />
+      <View style={styles.userRow}>
+      <View style={styles.userImage}>
+            <Avatar
+              rounded
+              size="large"
+              source={{
+                uri: "https://www.healthyfood.co.nz/wp-content/uploads/2017/01/Should-your-child-be-dairy-free-iStock_64414757.jpg",
+              }}
+            />
+      </View>
+      <View>
+            <Text style={{ fontSize: 16 }}>{this.props.ride.child_id}</Text>
+      </View>
+      </View>
+
+      <InfoText text="Ride Details:" />
+
+      
+        <View style={styles.userRow}>
+      <View style={styles.userImage}>
+            <Avatar
+              rounded
+              size="large"
+              source={{
+                uri: "https://www.electronicdesign.com/sites/electronicdesign.com/files/styles/article_featured_retina/public/PSMA_QA_promo.png",
+              }}
+            />
+      </View>
+      <View>
+          <Text style={{ fontSize: 16 }}> Needed: {this.props.ride.ride_name} </Text>
+          <Text style={{ fontSize: 16 }}> Pickup: {this.props.ride.pickup_loc} </Text>
+          <Text style={{ fontSize: 16 }}> Dropoff: {this.props.ride.dropoff_loc} </Text>
+          <Text style={{ fontSize: 16 }}> At: {this.props.ride.pickup_time} </Text>
+        </View>
+        </View>
+      <View style = {{flexDirection: 'row'}}>
+        <TouchableOpacity style = {styles.acceptButton} onPress = {this.inMap}> 
+          <Text> Tap to see route! </Text>
+        </TouchableOpacity>
+      </View>
+
+      </View>
 
     )
   }
+  else {
+    return(
+      <View>
+      <MapView
+          style={{height: 220, top: 0, marginHorizontal: 5}}
+          // initialRegion={this.state.region}
+         loadingEnabled = {true}
+         loadingIndicatorColor="#666666"
+         loadingBackgroundColor="#eeeeee"
+         moveOnMarkerPress = {false}
+         showsUserLocation={true}
+         showsCompass={true}
+         showsPointsOfInterest = {false}
+         region={this.state.region}
+         onRegionChange={() => this.onRegionChange()}>
+         {this.renderMarkers()}
+        </MapView>
+        <View style = {{flexDirection: 'row'}}>
+        <TouchableOpacity style = {styles.acceptButton} onPress = {this.inMap}> 
+          <Text> Tap to return! </Text>
+        </TouchableOpacity>
+      </View>
+      </View>
+    )
+  }
+}
 }
 
 const styles = StyleSheet.create({
   detailsView:{
     fontSize: 20,
     textAlign: 'left',
-  }
+  },
+  acceptButton: {
+    flex: 1,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#2F95DC',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: WIDTH/2 - 10,
+    height: 30,
+    marginHorizontal: 5,
+    marginVertical: 10,
+    backgroundColor: '#ffffff',
+    color: '#2F95DC',
+  },
+  delButton: {
+    flex: 1,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'red',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: WIDTH/2 - 10,
+    height: 30,
+    marginHorizontal: 5,
+    marginVertical: 10,
+    backgroundColor: '#ffffff'
+  },
+  userImage: {
+    marginRight: 12,
+  },
+  userRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingBottom: 8,
+    paddingLeft: 15,
+    paddingRight: 15,
+    paddingTop: 6,
+  },
 })
 
 
