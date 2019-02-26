@@ -164,9 +164,11 @@ class RequestedRideDetail extends React.Component {
 
   render(){
     if (this.state.inMap == false){
-    return(
+        // ToDo: Remove hardcoded email. and include more info about parent
+
+        return(
       <ScrollView>
-      <InfoText text="Requested By:" />
+      <InfoText text="Parent Info" />
       <View style={styles.userRow}>
       <View style={styles.userImage}>
             <Avatar
@@ -177,7 +179,7 @@ class RequestedRideDetail extends React.Component {
               }}
             />
       </View>
-      <View>
+        <View>
             <Text style={{ fontSize: 16 }}>{this.props.ride.submitter_id}</Text>
             <Text
               style={{
@@ -189,7 +191,7 @@ class RequestedRideDetail extends React.Component {
             </Text>
       </View>
       </View>
-      <InfoText text="For:" />
+      <InfoText text="Rider" />
       <View style={styles.userRow}>
       <View style={styles.userImage}>
             <Avatar
@@ -205,7 +207,7 @@ class RequestedRideDetail extends React.Component {
       </View>
       </View>
 
-      <InfoText text="Ride Details:" />
+      <InfoText text="Ride Details" />
 
 
         <View style={styles.userRow}>
@@ -219,10 +221,10 @@ class RequestedRideDetail extends React.Component {
             />
       </View>
       <View>
-          <Text style={{ fontSize: 16 }}> Needed: {this.props.ride.ride_name} </Text>
-          <Text style={{ fontSize: 16 }}> Pickup: {this.props.ride.pickup_loc} </Text>
-          <Text style={{ fontSize: 16 }}> Dropoff: {this.props.ride.dropoff_loc} </Text>
-          <Text style={{ fontSize: 16 }}> At: {this.props.ride.pickup_time} </Text>
+          <Text style={{ fontSize: 16 }}> Description: {this.props.ride.ride_name} </Text>
+          <Text style={{ fontSize: 16 }}> Pickup Location: {this.props.ride.pickup_loc} </Text>
+          <Text style={{ fontSize: 16 }}> Drop Off Location: {this.props.ride.dropoff_loc} </Text>
+          <Text style={{ fontSize: 16 }}> Time: {this.props.ride.pickup_time} </Text>
         </View>
         </View>
       <View style = {{flexDirection: 'row'}}>
@@ -231,7 +233,7 @@ class RequestedRideDetail extends React.Component {
         </TouchableOpacity>
       </View>
 
-        <InfoText text="Accept Ride2?" stle={{}} />
+        <InfoText text="Accept Ride?" stle={{}} />
 
 
         <View style = {{flex: 1, flexDirection: 'row'}}>

@@ -32,7 +32,7 @@ export const RideDetails = function(props) {
 
         <TouchableOpacity onPress={() => {}} style={styles.container}>
             <View style={styles.leftCol}>
-                <Text style={{fontSize:8}}>{'\u25A0'}</Text>
+                <Text style={{fontSize:8}}>{'\u25A0'}</Text>"Ri
             </View>
 
             <View style={styles.centerCol}>
