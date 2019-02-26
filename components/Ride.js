@@ -22,7 +22,7 @@ class Ride extends React.Component {
     componentWillMount(){
       console.log('\n\n\n' + moment(this.props.rideAge).diff(moment(),'days') + '\n\n\n')
       if(moment(this.props.rideAge).diff(moment(),'days') < 0){
-        this.setState({subtitle: 'THIS IS OLD', style: 'red'})
+        this.setState({subtitle: 'THIS RIDE HAS EXPIRED', style: 'red'})
       }
       else {
         this.setState({subtitle: this.props.rideDesc})
