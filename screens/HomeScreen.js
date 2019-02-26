@@ -44,8 +44,8 @@ export default class HomeScreen extends React.Component {
     tabStuff: {
     index: 0,
     routes: [
-      { key: 'myRides', title: 'Need a ride' },
-      { key: 'availableRides', title: 'I Can Help!' },
+      { key: 'myRides', title: 'My Requests' },
+      { key: 'availableRides', title: 'I\'m Driving' },
     ],
     search: '',
     }
@@ -58,7 +58,7 @@ export default class HomeScreen extends React.Component {
 
     static navigationOptions = ({ navigation }) => {
       const {params = {}} = navigation.state;
-      const title = navigation.getParam('rideName') + " details"
+      const title = navigation.getParam('rideName') + " details";
       if (navigation.getParam('rideID')){
       return {
         headerTitle: title,

@@ -231,9 +231,10 @@ class RequestedRideDetail extends React.Component {
         </TouchableOpacity>
       </View>
 
-      <InfoText text="Accept Ride?" />
+        <InfoText text="Accept Ride2?" stle={{}} />
 
-      <View style = {{flex: 1, flexDirection: 'row'}}>
+
+        <View style = {{flex: 1, flexDirection: 'row'}}>
         <TouchableOpacity style = {styles.acceptButton} onPress ={this.accept}>
         <View>
           <Text style = {{fontSize: 18, color: '#2F95DC'}}> Accept Ride </Text>
@@ -282,7 +283,12 @@ class RequestedRideDetail extends React.Component {
 const styles = StyleSheet.create({
   detailsView:{
     fontSize: 20,
-    textAlign: 'left',
+    textAlign: 'center',
+  },
+  centerAlignView:{
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   acceptButton: {
     flex: 1,
