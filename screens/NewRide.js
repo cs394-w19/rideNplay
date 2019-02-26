@@ -67,7 +67,10 @@ export default class NewRide extends React.Component {
 
     childPicker: false,
     description: "",
-    rideName: ""
+    rideName: "",
+
+    initialDateName: "Choose Date",
+    initialTimeName: "Choose Time"
 
   }
 
@@ -165,6 +168,56 @@ export default class NewRide extends React.Component {
         driver:"ME",
         rating:"N/A"
       }).then((data) => {
+          Alert.alert(
+          'Ride Submitted',
+          "Alert Message",
+          [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ],
+          {cancelable: false},
+        );
+
+        this.setState({
+          user: "nickmiller5", // user name
+          viewPickupModal: false,  // obvious
+          viewDropoffModal: false, // obvious
+          detailsModal: false, // obvious
+
+          pickupTitle: 'Pickup Location', // Title for pickup button
+          dropoffTitle: 'Dropoff Location', // Title for dropoff button
+
+          region: { // Map button
+            latitude: 42.045273,
+            longitude: -87.686790,
+            latitudeDelta: 0.0422,
+            longitudeDelta: 0.0221,},
+
+          pickupGeo: {}, // lat/long for pickup marker
+          dropoffGeo: {}, // lat/long for dropoff marker
+
+          pickupMarker: null,
+          dropoffMarker: null,
+
+          pickupDetails: '',
+          dropoffDetails: '',
+
+          chosenDate: new Date(),
+
+          rideName:"",
+          childName:"",
+
+          selectedDate: null,
+          selectedTime: null,
+
+          childPicker: false,
+          description: "",
+          rideName: "",
+
+          initialDateName: "Choose Date",
+          initialTimeName: "Choose Time"
+        })
+
+
         //success callback
           if (data) {
               console.log(data);
@@ -328,8 +381,8 @@ export default class NewRide extends React.Component {
         <RideDetails openDetails={this.showDetailsModal}/>
         <PickupButton title = {this.state.pickupTitle} viewModal = {this.viewPickupModal.bind(this)} save = {this.savePickupDetails}/>
         <DropoffButton title = {this.state.dropoffTitle} viewModal = {this.viewDropoffModal.bind(this)}  save = {this.saveDropoffDetails}/>
-        <PickupDateButton name="Choose Date" setDate = {this.setSelectedDate}/>
-        <PickupTimeButton name="Choose Time" setTime = {this.setSelectedTime}/>
+        <PickupDateButton name={this.state.initialDateName} setDate = {this.setSelectedDate}/>
+        <PickupTimeButton name={this.state.initialTimeName} setTime = {this.setSelectedTime}/>
 
 
         <TouchableOpacity onPress={() => this.submitRide()} style={styles.submitButton}>

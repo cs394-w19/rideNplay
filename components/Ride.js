@@ -11,28 +11,39 @@ import * as firebase from 'firebase'
 import { ListItem } from 'react-native-elements'
 
 this.width = Dimensions.get('window').width
-const Ride = (props) => {
-    return(
-        <ListItem style = {styles.info}
+class Ride extends React.Component {
+    state = {
+      background: '#edeeef'
+    }
+
+
+    componentWillMount(){
+      console.log('\n\n\n' + this.props.rideAge+ '\n\n\n')
+      if(this.props.rideAge){
+        return
+      }
+    }
+    render(){return(
+        <ListItem style = {{
+          backgroundColor: this.state.background,
+          borderColor: '#858687',
+          borderBottomWidth: 1,
+          width: '100%'
+        }}
         leftAvatar={{
           source: { uri: "http://images5.fanpop.com/image/photos/30200000/Nick-3-nick-miller-30219108-300-300.jpg" },
           showEditButton: true,
         }}
-        title = {props.rideTitle}
-        subtitle={props.rideDesc}
+        title = {this.props.rideTitle}
+        subtitle={this.props.rideDesc}
         chevron>
         </ListItem>
 
     )
+  }
 }
 
 const styles = StyleSheet.create({
-  info: {
-    backgroundColor: '#edeeef',
-    borderColor: '#858687',
-    borderBottomWidth: 1,
-    width: '100%'
-  },
   title: {
     fontSize: 16,
     fontWeight: 'bold',

@@ -25,6 +25,7 @@ export default class AcceptedRides extends React.Component {
           {
           let component = <TouchableOpacity key = {i} style = {styles.event} onPress = {() => this.props.clickRide(this.props.keys[i])} >
                             <Ride
+                              rideAge = {ride.pickup_time}
                               id = {ride.ride_id}
                               rideTitle = {Object(ride).ride_name}
                               rideDesc = {ride.ride_desc}
