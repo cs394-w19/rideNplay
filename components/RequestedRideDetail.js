@@ -165,7 +165,7 @@ class RequestedRideDetail extends React.Component {
   render(){
     if (this.state.inMap == false){
     return(
-      <View>
+      <ScrollView>
       <InfoText text="Requested By:" />
       <View style={styles.userRow}>
       <View style={styles.userImage}>
@@ -207,7 +207,7 @@ class RequestedRideDetail extends React.Component {
 
       <InfoText text="Ride Details:" />
 
-      
+
         <View style={styles.userRow}>
       <View style={styles.userImage}>
             <Avatar
@@ -226,7 +226,7 @@ class RequestedRideDetail extends React.Component {
         </View>
         </View>
       <View style = {{flexDirection: 'row'}}>
-        <TouchableOpacity style = {styles.acceptButton} onPress = {this.inMap}> 
+        <TouchableOpacity style = {styles.acceptButton} onPress = {this.inMap}>
           <Text> Tap to see route! </Text>
         </TouchableOpacity>
       </View>
@@ -248,7 +248,7 @@ class RequestedRideDetail extends React.Component {
         </TouchableOpacity>
       </View>
 
-      </View>
+      </ScrollView>
 
     )
   }
@@ -270,7 +270,7 @@ class RequestedRideDetail extends React.Component {
          {this.renderMarkers()}
         </MapView>
         <View style = {{flexDirection: 'row'}}>
-        <TouchableOpacity style = {styles.acceptButton} onPress = {this.inMap}> 
+        <TouchableOpacity style = {styles.acceptButton} onPress = {this.inMap}>
           <Text> Tap to return! </Text>
         </TouchableOpacity>
       </View>
