@@ -18,6 +18,7 @@ import InfoText from '../components/InfoText';
 import { Marker } from 'react-native-maps';
 import MapView from 'react-native-maps';
 import { Avatar, ListItem } from 'react-native-elements';
+import moment from 'moment'
 
 const WIDTH = Dimensions.get('window').width;
 
@@ -31,9 +32,6 @@ class AcceptedRideDetail extends React.Component {
       inMap: false,
   }
 
-  componentWillMount(){
-    console.log(this.props.ride) //the correct ride object is already passed in.
-  }
 
   // the ride object is passed in, just style it with components and such nicely
   // springin = () => {
@@ -161,7 +159,7 @@ class AcceptedRideDetail extends React.Component {
 
       <InfoText text="Ride Details:" />
 
-      
+
         <View style={styles.userRow}>
       <View style={styles.userImage}>
             <Avatar
@@ -177,10 +175,11 @@ class AcceptedRideDetail extends React.Component {
           <Text style={{ fontSize: 16 }}> Pickup: {this.props.ride.pickup_loc} </Text>
           <Text style={{ fontSize: 16 }}> Dropoff: {this.props.ride.dropoff_loc} </Text>
           <Text style={{ fontSize: 16 }}> At: {this.props.ride.pickup_time} </Text>
+          <Text style={{ fontSize: 16 }}> On: {this.props.ride.pickup_date} </Text>
         </View>
         </View>
       <View style = {{flexDirection: 'row'}}>
-        <TouchableOpacity style = {styles.acceptButton} onPress = {this.inMap}> 
+        <TouchableOpacity style = {styles.acceptButton} onPress = {this.inMap}>
           <Text> Tap to see route! </Text>
         </TouchableOpacity>
       </View>
@@ -207,7 +206,7 @@ class AcceptedRideDetail extends React.Component {
          {this.renderMarkers()}
         </MapView>
         <View style = {{flexDirection: 'row'}}>
-        <TouchableOpacity style = {styles.acceptButton} onPress = {this.inMap}> 
+        <TouchableOpacity style = {styles.acceptButton} onPress = {this.inMap}>
           <Text> Tap to return! </Text>
         </TouchableOpacity>
       </View>

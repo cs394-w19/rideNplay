@@ -25,7 +25,7 @@ export default class AcceptedRides extends React.Component {
           {
           let component = <TouchableOpacity key = {i} style = {styles.event} onPress = {() => this.props.clickRide(this.props.keys[i])} >
                             <Ride
-                              rideAge = {ride.pickup_time}
+                              rideAge = {ride.pickup_date}
                               id = {ride.ride_id}
                               rideTitle = {Object(ride).ride_name}
                               rideDesc = {ride.ride_desc}
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   event: {
     marginTop: 6,
     flex: 1,
-    width: '100%'
+    width: '100%',
   },
   container: {
     flex: 1,

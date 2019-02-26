@@ -21,6 +21,7 @@ import { Marker } from 'react-native-maps';
 import MapView from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import GooglePlacesInput from '../components/GooglePlacesInput';
+import moment from 'moment'
 
 let firebase = require("firebase");
 
@@ -162,9 +163,8 @@ export default class NewRide extends React.Component {
         child_id:this.state.childName,
         pickup_loc:JSON.stringify(this.state.pickupGeo),
         dropoff_loc:JSON.stringify(this.state.dropoffGeo),
-        // pickup_loc:this.state.pickupGeo,
-        // dropoff_loc:this.state.dropoffGeo,
-        pickup_time:this.state.selectedTime,
+        pickup_date: moment(this.state.selectedDate).format('MM/DD/YYYY'),
+        pickup_time: moment(this.state.selectedTime).format('hh:mm A'),
         driver:"ME",
         rating:"N/A"
       }).then((data) => {

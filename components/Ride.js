@@ -9,23 +9,27 @@ import { Text,
        } from 'react-native'
 import * as firebase from 'firebase'
 import { ListItem } from 'react-native-elements'
+import moment from 'moment'
 
 this.width = Dimensions.get('window').width
 class Ride extends React.Component {
     state = {
-      background: '#edeeef'
+      subtitle: this.props.rideDesc,
+      style: 'black'
     }
 
 
     componentWillMount(){
-      console.log('\n\n\n' + this.props.rideAge+ '\n\n\n')
-      if(this.props.rideAge){
-        return
+      console.log('\n\n\n' + moment(this.props.rideAge).diff(moment(),'days') + '\n\n\n')
+      if(moment(this.props.rideAge).diff(moment(),'days') < 0){
+        this.setState({subtitle: 'THIS IS OLD', style: 'red'})
       }
+      else {
+        this.setState({subtitle: this.props.rideDesc})
+      } //the correct ride object is already passed in.
     }
     render(){return(
         <ListItem style = {{
-          backgroundColor: this.state.background,
           borderColor: '#858687',
           borderBottomWidth: 1,
           width: '100%'
@@ -35,7 +39,8 @@ class Ride extends React.Component {
           showEditButton: true,
         }}
         title = {this.props.rideTitle}
-        subtitle={this.props.rideDesc}
+        subtitle={this.state.subtitle}
+        subtitleStyle={{color: this.state.style}}
         chevron>
         </ListItem>
 
