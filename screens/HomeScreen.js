@@ -44,8 +44,8 @@ export default class HomeScreen extends React.Component {
     tabStuff: {
     index: 0,
     routes: [
-      { key: 'myRides', title: 'My Requests' },
-      { key: 'availableRides', title: 'I\'m Driving' },
+      { key: 'myRides', title: 'My Rides' },
+      { key: 'availableRides', title: 'Available Rides' },
     ],
     search: '',
     }
