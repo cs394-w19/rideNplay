@@ -137,21 +137,28 @@ export default class NewRide extends React.Component {
   }
 
   submitRide() {
-    if (this.state.description=="") {
-      console.log("Ride incomplete; trigger alert");
-      //   Alert.alert(
-      //   'Invalid Ride Entry',
-      //   'Please submit all fields',
-      //   [
-      //     {
-      //       text: 'Cancel',
-      //       onPress: () => console.log('Cancel Pressed'),
-      //       style: 'cancel',
-      //     },
-      //     {text: 'OK', onPress: () => console.log('OK Pressed')},
-      //   ],
-      //   {cancelable: false},
-      // );
+    if (!this.state.rideName ||
+        !this.state.description ||
+        !this.state.rideName ||
+        !this.state.user ||
+        !this.state.childName ||
+        !this.state.pickupGeo ||
+        !this.state.dropoffGeo ||
+        !this.state.selectedDate ||
+        !this.state.selectedTime) {
+        Alert.alert(
+        'Invalid Ride Entry',
+        'Please submit all fields',
+        [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        {cancelable: false},
+      );
     }
     else {
       console.log("Submitting Ride");
