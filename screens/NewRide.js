@@ -150,11 +150,6 @@ export default class NewRide extends React.Component {
         'Invalid Ride Entry',
         'Please submit all fields',
         [
-          {
-            text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
-            style: 'cancel',
-          },
           {text: 'OK', onPress: () => console.log('OK Pressed')},
         ],
         {cancelable: false},
