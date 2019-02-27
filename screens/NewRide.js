@@ -346,12 +346,13 @@ export default class NewRide extends React.Component {
           onRequestClose={() => {
             Alert.alert('Modal has been closed.');
           }}>
+
           <View style={{
                       backgroundColor: 'white',
                       borderRadius: 10,
-                      marginTop: HEIGHT/2 - 35,
-                      width: WIDTH,
-                      height: HEIGHT/2 + 50, // This is the important style you need to set
+                      height: '100%',
+                      marginTop: 30,
+                      width: WIDTH, // This is the important style you need to set
                       alignItems: 'center',
                       justifyContent: 'flex-start',}}>
             <View>
@@ -376,7 +377,7 @@ export default class NewRide extends React.Component {
                 maxLength = {200}
               />
               <TouchableOpacity
-                style = {{alignItems: 'center'}}
+                style = {{alignItems: 'center', flex: 1, justifyContent: 'flex-end', marginBottom: 60}}
                 onPress={() => this.showDetailsModal()}>
                 <Text style = {{fontSize: 20}}>Confirm</Text>
               </TouchableOpacity>
