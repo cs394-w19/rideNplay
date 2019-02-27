@@ -31,6 +31,18 @@ class Ride extends React.Component {
         } //the correct ride object is already passed in.
     }
 
+    checkDriver(ride){
+        let expired = moment(ride.rideAge).diff(moment(), 'days') < 0;
+        // returns a bool whether a ride has a driver or not and is not expired.
+        if (typeof ride.driver !== 'undefined' && !expired) {
+            return `Driver: ${ride.driver}`;
+        } else if (typeof ride.driver === 'undefined' && expired) {
+            return 'No driver found.'
+        } else {
+            return 'Searching for driver.'
+        }
+    }
+
     render() {
         return (
             <ListItem style={styles.info}
@@ -39,6 +51,8 @@ class Ride extends React.Component {
                           showEditButton: true,
                       }}
                       title={this.props.rideTitle}
+                      rightTitle={this.checkDriver(this.props)}
+                      rightTitleStyle={styles.driverInfo}
                       subtitle={this.state.subtitle}
                       subtitleStyle={{color: this.state.style}}
                       // long conditional to check for expired ride, if it's not expired, it checks if it's pending or accepted
@@ -59,6 +73,11 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         marginBottom: 5
+    },
+    driverInfo:{
+        fontSize: 13,
+        fontWeight: 'bold'
+
     },
     acceptedRide: {
         backgroundColor: '#BFEECF',
