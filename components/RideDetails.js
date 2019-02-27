@@ -32,11 +32,11 @@ export const RideDetails = function(props) {
 
         <TouchableOpacity onPress={() => {}} style={styles.container}>
             <View style={styles.leftCol}>
-                <Text style={{fontSize:8}}>{'\u25A0'}</Text>"Ri
+                <Text style={{fontSize:8}}>{'\u25A0'}</Text>
             </View>
 
             <View style={styles.centerCol}>
-                    <Text style = {{fontSize: 20}}>Who Needs a Ride?</Text>
+              <Text style = {{fontSize: 20}}>Who Needs a Ride?</Text>
             </View>
             <View style={styles.rightCol}>
                 <FontAwesome name="child" color="#000000" size={25} style={{alignSelf: "center"}}/>
