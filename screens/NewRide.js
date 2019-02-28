@@ -106,6 +106,7 @@ export default class NewRide extends React.Component {
   }
 
   confirmPickupLocation(loc, geo) {
+    if(geo){
     lat = geo["lat"];
     long = geo["lng"];
     newMarker = {
@@ -115,6 +116,17 @@ export default class NewRide extends React.Component {
       description: loc,
     };
     this.setState({viewPickupModal: !this.state.viewPickupModal, pickupTitle: loc, pickupMarker: newMarker ,pickupGeo: geo})
+  }
+  else {
+    Alert.alert(
+    'Alert',
+    "Please select a pickup location",
+    [
+      {text: 'OK', onPress: () => console.log('OK Pressed')},
+    ],
+    {cancelable: false},
+  );
+  }
   }
 
   viewDropoffModal() {
@@ -320,10 +332,17 @@ export default class NewRide extends React.Component {
            <View style={{marginTop: 22}}>
              <View>
                <GooglePlacesInput locationSet = {this.confirmPickupLocation.bind(this)}/>
-               <View style = {{alignItems: 'center',  marginTop: '160%'}}>
-                <TouchableOpacity onPress = {() => this.confirmPickupLocation()} style = {{position: 'absolute'}}>
+
+               <View style = {{alignItems: 'center'}}>
+                <TouchableOpacity onPress = {() => this.confirmPickupLocation()} style = {{position: 'absolute', top: HEIGHT - 130}}>
                 <Text style = {{fontSize: 20, color: 'blue'}}>
                   Confirm
+                </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress = {() => this.setState({viewPickupModal: !this.state.viewPickupModal})} style = {{position: 'absolute', top: HEIGHT - 70}}>
+                <Text style = {{fontSize: 20, color: 'red'}}>
+                  Cancel
                 </Text>
                 </TouchableOpacity>
                 </View>
@@ -338,10 +357,16 @@ export default class NewRide extends React.Component {
             <View style={{marginTop: 22}}>
               <View>
                 <GooglePlacesInput locationSet = {this.confirmDropoffLocation.bind(this)}/>
-                <View style = {{alignItems: 'center',  marginTop: '160%'}}>
-                 <TouchableOpacity onPress = {() => this.confirmDropoffLocation()} style = {{position: 'absolute'}}>
+                <View style = {{alignItems: 'center'}}>
+                 <TouchableOpacity onPress = {() => this.confirmDropoffLocation()} style = {{position: 'absolute', top: HEIGHT - 130}}>
                  <Text style = {{fontSize: 20, color: 'blue'}}>
                    Confirm
+                 </Text>
+                 </TouchableOpacity>
+
+                 <TouchableOpacity onPress = {() => this.setState({viewDropoffModal: !this.state.viewDropoffModal})} style = {{position: 'absolute', top: HEIGHT - 70}}>
+                 <Text style = {{fontSize: 20, color: 'red'}}>
+                   Cancel
                  </Text>
                  </TouchableOpacity>
                  </View>
