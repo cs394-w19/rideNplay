@@ -277,7 +277,7 @@ export default class NewRide extends React.Component {
     return (
       <View>
         <MapView
-          style={{height: 220, top: 0, marginHorizontal: 5}}
+          style={{height: (HEIGHT / 3), top: 0, marginHorizontal: 5, marginBottom: "5%"}}
           // initialRegion={this.state.region}
          loadingEnabled = {true}
          loadingIndicatorColor="#666666"
@@ -410,11 +410,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: '#fff',
-    shadowColor: "#000000",
-    elevation: 7,
-    shadowRadius: 5,
-    shadowOpacity: 1.0
   },
   detailsModal: {
     borderBottomWidth: 1,
