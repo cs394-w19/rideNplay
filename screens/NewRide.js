@@ -10,6 +10,8 @@ import { ScrollView,
          TouchableHighlight,
          Dimensions,
          Alert,
+         TouchableWithoutFeedback,
+         Keyboard,
          DatePickerIOS } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import {PickupButton} from "../components/pickup_button";
@@ -136,21 +138,24 @@ export default class NewRide extends React.Component {
   }
 
   submitRide() {
-    if (this.state.description === "") {
-      console.log("Ride incomplete; trigger alert");
-      //   Alert.alert(
-      //   'Invalid Ride Entry',
-      //   'Please submit all fields',
-      //   [
-      //     {
-      //       text: 'Cancel',
-      //       onPress: () => console.log('Cancel Pressed'),
-      //       style: 'cancel',
-      //     },
-      //     {text: 'OK', onPress: () => console.log('OK Pressed')},
-      //   ],
-      //   {cancelable: false},
-      // );
+
+    if (!this.state.rideName ||
+        !this.state.description ||
+        !this.state.rideName ||
+        !this.state.user ||
+        !this.state.childName ||
+        !this.state.pickupGeo ||
+        !this.state.dropoffGeo ||
+        !this.state.selectedDate ||
+        !this.state.selectedTime) {
+        Alert.alert(
+        'Invalid Ride Entry',
+        'Please submit all fields',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        {cancelable: false},
+      );
     }
     else {
       console.log("Submitting Ride");
@@ -285,7 +290,8 @@ export default class NewRide extends React.Component {
          onRegionChange={() => this.onRegionChange()}>
          {this.renderMarkers()}
         </MapView>
-        </View>
+      </View>
+
 
       );
   }
@@ -293,6 +299,7 @@ export default class NewRide extends React.Component {
 
   render() {
     return (
+      <ScrollView keyboardShouldPersistTaps='handled'>
       <View style={styles.container}>
         <Modal
            animationType="slide"
@@ -337,12 +344,13 @@ export default class NewRide extends React.Component {
           onRequestClose={() => {
             Alert.alert('Modal has been closed.');
           }}>
+
           <View style={{
                       backgroundColor: 'white',
                       borderRadius: 10,
-                      marginTop: HEIGHT/2 - 35,
-                      width: WIDTH,
-                      height: HEIGHT/2 + 50, // This is the important style you need to set
+                      height: '100%',
+                      marginTop: 30,
+                      width: WIDTH, // This is the important style you need to set
                       alignItems: 'center',
                       justifyContent: 'flex-start',}}>
             <View>
@@ -361,12 +369,13 @@ export default class NewRide extends React.Component {
                 multiline = {true}
                 numberOfLines = {4}
                 editable = {true}
+                blurOnSubmit = {true}
                 onChangeText={(description) => this.setState({description})}
                 value={this.state.description}
                 maxLength = {200}
               />
               <TouchableOpacity
-                style = {{alignItems: 'center'}}
+                style = {{alignItems: 'center', flex: 1, justifyContent: 'flex-end', marginBottom: 60}}
                 onPress={() => this.showDetailsModal()}>
                 <Text style = {{fontSize: 20}}>Confirm</Text>
               </TouchableOpacity>
@@ -374,7 +383,9 @@ export default class NewRide extends React.Component {
           </View>
         </Modal>
 
-        {this.renderMap()}
+          {this.renderMap()}
+
+
         <RideDetails openDetails={this.showDetailsModal}/>
         <PickupButton title = {this.state.pickupTitle} viewModal = {this.viewPickupModal.bind(this)} save = {this.savePickupDetails}/>
         <DropoffButton title = {this.state.dropoffTitle} viewModal = {this.viewDropoffModal.bind(this)}  save = {this.saveDropoffDetails}/>
@@ -390,7 +401,7 @@ export default class NewRide extends React.Component {
 
 
       </View>
-
+      </ScrollView>
     );
   }
 }
