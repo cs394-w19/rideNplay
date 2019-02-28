@@ -411,11 +411,20 @@ export default class NewRide extends React.Component {
                 value={this.state.description}
                 maxLength = {200}
               />
+
+              <View style ={{left: WIDTH/2-10, position: 'absolute', alignItems: 'center'}}>
               <TouchableOpacity
-                style = {{alignItems: 'center', flex: 1, justifyContent: 'flex-end', marginBottom: 60}}
+                style = {{position: 'absolute', top: HEIGHT - 130}}
                 onPress={() => this.showDetailsModal()}>
                 <Text style = {{fontSize: 20}}>Confirm</Text>
               </TouchableOpacity>
+
+              <TouchableOpacity onPress = {() => this.setState({detailsModal: !this.state.detailsModal})} style = {{position: 'absolute', top: HEIGHT - 70}}>
+              <Text style = {{fontSize: 20, color: 'red'}}>
+                Cancel
+              </Text>
+              </TouchableOpacity>
+              </View>
             </View>
           </View>
         </Modal>
@@ -451,7 +460,6 @@ const styles = StyleSheet.create({
   detailsModal: {
     borderBottomWidth: 1,
     borderColor: 'lightgray',
-    marginVertical: 20,
     marginHorizontal: 5,
     borderRadius: 3,
     fontSize: 20,
