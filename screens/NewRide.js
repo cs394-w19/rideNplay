@@ -277,7 +277,7 @@ export default class NewRide extends React.Component {
     return (
       <View>
         <MapView
-          style={{height: (HEIGHT / 3), top: 0, marginHorizontal: 5, marginBottom: "5%"}}
+          style={{height: (HEIGHT / 3), top: 0, marginHorizontal: 5}}
           // initialRegion={this.state.region}
          loadingEnabled = {true}
          loadingIndicatorColor="#666666"
