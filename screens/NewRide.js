@@ -165,9 +165,6 @@ export default class NewRide extends React.Component {
 
     if (!this.state.rideName ||
         !this.state.description ||
-        !this.state.rideName ||
-        !this.state.user ||
-        !this.state.childName ||
         !this.state.pickupGeo ||
         !this.state.dropoffGeo ||
         !this.state.selectedDate ||
@@ -329,7 +326,7 @@ export default class NewRide extends React.Component {
            animationType="slide"
            transparent={false}
            visible={this.state.viewPickupModal}>
-           <View style={{marginTop: 22}}>
+           <View style={{marginTop: 40}}>
              <View>
                <GooglePlacesInput locationSet = {this.confirmPickupLocation.bind(this)}/>
 
@@ -354,7 +351,7 @@ export default class NewRide extends React.Component {
             animationType="slide"
             transparent={false}
             visible={this.state.viewDropoffModal}>
-            <View style={{marginTop: 22}}>
+            <View style={{marginTop: 40}}>
               <View>
                 <GooglePlacesInput locationSet = {this.confirmDropoffLocation.bind(this)}/>
                 <View style = {{alignItems: 'center'}}>
@@ -419,7 +416,8 @@ export default class NewRide extends React.Component {
                 <Text style = {{fontSize: 20}}>Confirm</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity onPress = {() => this.setState({detailsModal: !this.state.detailsModal})} style = {{position: 'absolute', top: HEIGHT - 70}}>
+              <TouchableOpacity onPress = {() => this.setState({detailsModal: !this.state.detailsModal})}
+                                style = {{position: 'absolute', top: HEIGHT - 70}}>
               <Text style = {{fontSize: 20, color: 'red'}}>
                 Cancel
               </Text>

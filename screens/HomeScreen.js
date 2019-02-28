@@ -21,6 +21,7 @@ import { SearchBar } from 'react-native-elements'
 import AcceptedRideDetail from '../components/AcceptedRideDetail'
 import RequestedRideDetail from '../components/RequestedRideDetail'
 import Colors from "../constants/Colors";
+import { NavigationEvents } from  'react-navigation'
 
 
 
@@ -120,7 +121,7 @@ export default class HomeScreen extends React.Component {
 
 
   render() {
-      console.log(this.state.rideDictionary)
+
       const { search } = this.state;
 
       const firstRoute = () =>
@@ -143,6 +144,9 @@ export default class HomeScreen extends React.Component {
       if(this.state.currentRideID === ''){
 
         return <View style={styles.container}>
+        <NavigationEvents
+          onWillFocus={() => this.componentWillMount()}
+        />
         <SearchBar
             placeholder="Enter Drop Off Location"
             onChangeText={this.updateSearch}
@@ -162,10 +166,20 @@ export default class HomeScreen extends React.Component {
         </View>
       }
       else if(this.state.rideDictionary[this.state.currentRideID].driver != 'N/A'){
-        return <AcceptedRideDetail ride = {this.state.rideDictionary[this.state.currentRideID]}/>
+        return <View>
+        <AcceptedRideDetail ride = {this.state.rideDictionary[this.state.currentRideID]}/>
+        <NavigationEvents
+          onWillFocus={() => this.componentWillMount()}
+        />
+        </View>
       }
       else {
-        return <RequestedRideDetail goBack = {this.clearID} ride = {this.state.rideDictionary[this.state.currentRideID]}/>
+        return <View>
+        <RequestedRideDetail goBack = {this.clearID} ride = {this.state.rideDictionary[this.state.currentRideID]}/>
+        <NavigationEvents
+          onWillFocus={() => this.componentWillMount()}
+        />
+        </View>
       }
   }
 }
