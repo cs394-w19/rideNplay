@@ -59,7 +59,6 @@ export default class NewRide extends React.Component {
 
     chosenDate: new Date(),
 
-    rideName:"",
     childName:"",
 
     selectedDate: null,
@@ -73,17 +72,17 @@ export default class NewRide extends React.Component {
     initialDateName: "Choose Date",
     initialTimeName: "Choose Time"
 
-  }
+  };
 
   setSelectedTime = (time) => {
-    this.setState({selectedTime: time})
+    this.setState({selectedTime: time});
     console.log(time)
-  }
+  };
 
   setSelectedDate = (date) => {
     this.setState({selectedDate: date})
     console.log(date)
-  }
+  };
 
 
   savePickupDetails(det) {
@@ -93,7 +92,7 @@ export default class NewRide extends React.Component {
 
   saveDropoffDetails = (det) => {
     this.setState({dropoffDetails: det})
-  }
+  };
 
 
   onRegionChange(region) {
@@ -105,14 +104,14 @@ export default class NewRide extends React.Component {
   }
 
   confirmPickupLocation(loc, geo) {
-    lat = geo["lat"]
-    long = geo["lng"]
+    lat = geo["lat"];
+    long = geo["lng"];
     newMarker = {
       key: '1',
       coordinate: {latitude: lat, longitude: long},
       title: "Pickup Location",
       description: loc,
-    }
+    };
     this.setState({viewPickupModal: !this.state.viewPickupModal, pickupTitle: loc, pickupMarker: newMarker ,pickupGeo: geo})
   }
 
@@ -125,8 +124,8 @@ export default class NewRide extends React.Component {
   }
 
   confirmDropoffLocation(loc, geo) {
-    lat = geo["lat"]
-    long = geo["lng"]
+    lat = geo["lat"];
+    long = geo["lng"];
     newMarker = {
       key: '2',
       coordinate: {latitude: lat, longitude: long},
@@ -137,7 +136,7 @@ export default class NewRide extends React.Component {
   }
 
   submitRide() {
-    if (this.state.description=="") {
+    if (this.state.description === "") {
       console.log("Ride incomplete; trigger alert");
       //   Alert.alert(
       //   'Invalid Ride Entry',
@@ -203,7 +202,6 @@ export default class NewRide extends React.Component {
 
           chosenDate: new Date(),
 
-          rideName:"",
           childName:"",
 
           selectedDate: null,
@@ -215,7 +213,7 @@ export default class NewRide extends React.Component {
 
           initialDateName: "Choose Date",
           initialTimeName: "Choose Time"
-        })
+        });
 
 
         //success callback
@@ -260,16 +258,15 @@ export default class NewRide extends React.Component {
         description={this.state.dropoffMarker.description}
       />
     }
-    else return
   }
 
   showDetailsModal = () => {
     this.setState({detailsModal: !this.state.detailsModal})
-  }
+  };
 
   showChildPicker = () => {
     this.setState({childPicker: !this.state.childPicker})
-  }
+  };
 
   renderMap() {
     return (
@@ -305,7 +302,7 @@ export default class NewRide extends React.Component {
              <View>
                <GooglePlacesInput locationSet = {this.confirmPickupLocation.bind(this)}/>
                <View style = {{alignItems: 'center',  marginTop: '160%'}}>
-                <TouchableOpacity onPress = {() => this.confirmPickupLocation()}style = {{position: 'absolute'}}>
+                <TouchableOpacity onPress = {() => this.confirmPickupLocation()} style = {{position: 'absolute'}}>
                 <Text style = {{fontSize: 20, color: 'blue'}}>
                   Confirm
                 </Text>
@@ -323,7 +320,7 @@ export default class NewRide extends React.Component {
               <View>
                 <GooglePlacesInput locationSet = {this.confirmDropoffLocation.bind(this)}/>
                 <View style = {{alignItems: 'center',  marginTop: '160%'}}>
-                 <TouchableOpacity onPress = {() => this.confirmDropoffLocation()}style = {{position: 'absolute'}}>
+                 <TouchableOpacity onPress = {() => this.confirmDropoffLocation()} style = {{position: 'absolute'}}>
                  <Text style = {{fontSize: 20, color: 'blue'}}>
                    Confirm
                  </Text>
