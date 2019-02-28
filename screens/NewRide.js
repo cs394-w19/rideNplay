@@ -126,15 +126,27 @@ export default class NewRide extends React.Component {
   }
 
   confirmDropoffLocation(loc, geo) {
-    lat = geo["lat"];
-    long = geo["lng"];
-    newMarker = {
-      key: '2',
-      coordinate: {latitude: lat, longitude: long},
-      title: "Dropoff Location",
-      description: loc,
-    },
-    this.setState({viewDropoffModal: !this.state.viewDropoffModal, dropoffMarker: newMarker, dropoffTitle: loc,  dropoffGeo: geo})
+    if (geo){
+      lat = geo["lat"];
+      long = geo["lng"];
+      newMarker = {
+        key: '2',
+        coordinate: {latitude: lat, longitude: long},
+        title: "Dropoff Location",
+        description: loc,
+      },
+      this.setState({viewDropoffModal: !this.state.viewDropoffModal, dropoffMarker: newMarker, dropoffTitle: loc,  dropoffGeo: geo})
+    }
+    else {
+      Alert.alert(
+      'Alert',
+      "Please select a dropoff location",
+      [
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ],
+      {cancelable: false},
+    );
+    }
   }
 
   submitRide() {
