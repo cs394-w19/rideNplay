@@ -13,6 +13,8 @@ let config = {
   };
   firebase.initializeApp(config);
 
+console.disableYellowBox = true;
+
 export default class App extends React.Component {
 
   constructor(props) {
@@ -130,6 +132,7 @@ createNewUser(id,user_email,user_name,user_picture) {
   deleteRide(id) {
     firebase.database().ref('Rides/' + id).remove();
   }
+
 
 
 // Create new message on Firebase with ride_id, with all fields completed

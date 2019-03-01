@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: (WIDTH-40),
         height: 35,
-        borderRadius: 2,
+        borderRadius: 10,
         backgroundColor: 'white',
         alignItems: 'center',
         shadowColor: "#000000",
