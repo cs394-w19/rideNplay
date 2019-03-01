@@ -1,6 +1,18 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
+import { setCustomText } from 'react-native-global-props';
+import { material } from 'react-native-typography'
+
+
+const customTextProps = {
+    style: {
+        fontFamily: material.display1
+    }
+};
+
+// setCustomText(customTextProps);
+
 import AppNavigator from './navigation/AppNavigator';
 let firebase = require("firebase");
 let config = {
