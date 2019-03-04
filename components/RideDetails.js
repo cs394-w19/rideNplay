@@ -30,7 +30,7 @@ export const RideDetails = function(props) {
             </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => {}} style={styles.container}>
+        <TouchableOpacity onPress={() => props.chooseChild()} style={styles.container}>
             <View style={styles.leftCol}>
                 <Text style={{fontSize:8}}>{'\u25A0'}</Text>
             </View>
@@ -42,6 +42,7 @@ export const RideDetails = function(props) {
                 <FontAwesome name="child" color="#000000" size={25} style={{alignSelf: "center"}}/>
             </View>
         </TouchableOpacity>
+
         </View>
 
     )

@@ -24,6 +24,7 @@ import MapView from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import GooglePlacesInput from '../components/GooglePlacesInput';
 import moment from 'moment'
+import { Avatar, ListItem } from 'react-native-elements';
 
 let firebase = require("firebase");
 
@@ -40,6 +41,7 @@ export default class NewRide extends React.Component {
     viewPickupModal: false,  // obvious
     viewDropoffModal: false, // obvious
     detailsModal: false, // obvious
+    chooseChild: false,
 
     pickupTitle: 'Pickup Location', // Title for pickup button
     dropoffTitle: 'Dropoff Location', // Title for dropoff button
@@ -103,6 +105,10 @@ export default class NewRide extends React.Component {
 
   viewPickupModal() {
     this.setState({viewPickupModal: !this.state.viewPickupModal})
+  }
+
+  showChooseChild() {
+    this.setState({chooseChild: !this.state.chooseChild})
   }
 
   confirmPickupLocation(loc, geo) {
@@ -207,6 +213,7 @@ export default class NewRide extends React.Component {
           viewPickupModal: false,  // obvious
           viewDropoffModal: false, // obvious
           detailsModal: false, // obvious
+          chooseChild: false,
 
           pickupTitle: 'Pickup Location', // Title for pickup button
           dropoffTitle: 'Dropoff Location', // Title for dropoff button
@@ -427,10 +434,71 @@ export default class NewRide extends React.Component {
           </View>
         </Modal>
 
+
+          <Modal
+            transparent={true}
+            animationType="slide"
+            visible={this.state.chooseChild}
+            onRequestClose={() => {
+              Alert.alert('Modal has been closed.');
+            }}>
+            <View style={{
+                        backgroundColor: 'white',
+                        borderRadius: 10,
+                        height: '100%',
+                        marginTop: 2 * HEIGHT/3,
+                        width: WIDTH, // This is the important style you need to set
+                        alignItems: 'center',
+                        justifyContent: 'flex-start',}}>
+                <View style = {{marginTop: 20, flexDirection: 'row'}}>
+                  <View style = {{margin: 20, alignItems: 'center'}}>
+                    <TouchableOpacity onPress = {() => this.setState({childName: "Emma", chooseChild: !this.state.chooseChild})}>
+                    <Avatar
+                      rounded
+                      size="large"
+                      source={{
+                        uri: "https://image.shutterstock.com/image-photo/young-african-black-child-making-260nw-505302700.jpg",
+                      }}
+                    />
+                    </TouchableOpacity>
+                    <Text> Emma </Text>
+                  </View>
+
+                  <View style = {{margin: 20, alignItems: 'center'}}>
+                    <TouchableOpacity onPress = {() => this.setState({childName: "Clayton", chooseChild: !this.state.chooseChild})}>
+                    <Avatar
+                      rounded
+                      size="large"
+                      source={{
+                        uri: "https://image.shutterstock.com/image-photo/portrait-real-happy-mixed-race-260nw-509909461.jpg",
+                      }}
+                    />
+                    </TouchableOpacity>
+                    <Text> Clayton </Text>
+                  </View>
+                </View>
+
+                <View style ={{left: WIDTH/2-10, position: 'absolute', alignItems: 'center'}}>
+                  <TouchableOpacity
+                    style = {{position: 'absolute', top: HEIGHT - 130}}
+                    onPress={() => this.showChooseChild()}>
+                    <Text style = {{fontSize: 20}}>Confirm</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity onPress = {() => this.setState({chooseChild: !this.state.chooseChild})}
+                                    style = {{position: 'absolute', top: HEIGHT - 70}}>
+                  <Text style = {{fontSize: 20, color: 'red'}}>
+                    Cancel
+                  </Text>
+                  </TouchableOpacity>
+                </View>
+          </View>
+        </Modal>
+
           {this.renderMap()}
 
 
-        <RideDetails openDetails={this.showDetailsModal}/>
+        <RideDetails openDetails={this.showDetailsModal} chooseChild = {this.showChooseChild.bind(this)}/>
         <PickupButton title = {this.state.pickupTitle} viewModal = {this.viewPickupModal.bind(this)} save = {this.savePickupDetails}/>
         <DropoffButton title = {this.state.dropoffTitle} viewModal = {this.viewDropoffModal.bind(this)}  save = {this.saveDropoffDetails}/>
         <PickupDateButton name={this.state.initialDateName} setDate = {this.setSelectedDate}/>
