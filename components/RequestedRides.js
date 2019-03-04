@@ -19,7 +19,7 @@ export default class RequestedRides extends React.Component {
 
           {
           if(ride.driver === "N/A")
-          return <TouchableOpacity key = {i} style = {styles.event} onPress = {() => this.props.clickRide(ride.ride_id)}>
+          return <TouchableOpacity key = {i} style = {styles.event} onPress = {() => this.props.clickRide(ride.ride_id,ride.ride_name)}>
           <RequestedRide
             pickupLoc = {ride.pickupLoc}
             dropoffLoc = {ride.dropoffLoc}

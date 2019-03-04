@@ -41,6 +41,7 @@ export default class HomeScreen extends React.Component {
     Arides: [{id: "1", title: 'test'}, {id: "2", title: 'test2'}],
     Rrides: [{id: "3", title: 'test'}, {id: "4", title: 'test2'}],
     currentRideID: '',
+    currentRideName: '',
     all_rides: [{}],
     tabStuff: {
     index: 0,
@@ -100,9 +101,9 @@ export default class HomeScreen extends React.Component {
     })
   }
 
-  clickRide = (id) => {
+  clickRide = (id, name) => {
     this.setState({currentRideID: id})
-    this.props.navigation.setParams({ rideID: true, rideName: id, handle: this.clearID });
+    this.props.navigation.setParams({ rideID: true, rideName: name, handle: this.clearID });
   }
 
   clearID = () => {
