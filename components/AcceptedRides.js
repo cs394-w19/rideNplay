@@ -23,12 +23,13 @@ export default class AcceptedRides extends React.Component {
         <ScrollView>
         {this.props.rides.map((ride, i) =>
           {
-          let component = <TouchableOpacity key = {i} style = {styles.event} onPress = {() => this.props.clickRide(this.props.keys[i])} >
+          let component = <TouchableOpacity key = {i} style = {styles.event} onPress = {() => this.props.clickRide(this.props.keys[i],Object(ride).ride_name)} >
                             <Ride
                               rideAge = {ride.pickup_date}
                               id = {ride.ride_id}
                               rideTitle = {Object(ride).ride_name}
                               rideDesc = {ride.ride_desc}
+
                             />
                           </TouchableOpacity>
           if(ride.driver != 'N/A')
