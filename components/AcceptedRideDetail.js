@@ -128,7 +128,7 @@ class AcceptedRideDetail extends React.Component {
               optimizeWaypoints={true}
               onReady={result => {
                   console.log(result.duration/20);
-                  this.setState({'rideDuration': result.duration/20})
+                  this.setState({'rideDuration': Math.ceil(result.duration)})
                   this.mapView.fitToCoordinates(result.coordinates, {});
               }}
           />
@@ -140,6 +140,7 @@ class AcceptedRideDetail extends React.Component {
   };
 
   onRegionChange(region) {
+      console.log(region);
     this.setState({ region });
   }
 
@@ -246,7 +247,7 @@ class AcceptedRideDetail extends React.Component {
          showsCompass={true}
          showsPointsOfInterest = {false}
          region={this.state.region}
-         onRegionChange={() => this.onRegionChange()}
+         // onRegionChange={() => this.onRegionChange()}
           ref={c => this.mapView = c}
           initialRegion={this.convertLatLong(this.props.ride.pickup_loc)}>
 
@@ -254,7 +255,7 @@ class AcceptedRideDetail extends React.Component {
           {this.renderMapRoute()}
         </MapView>
           <View style = {{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingTop: 15}}>
-          <Text style={{fontWeight: 'bold'}}> Estimated Ride Duration: {Math.floor(this.state.rideDuration)} Minutes</Text>
+          <Text style={{fontWeight: 'bold'}}> Estimated Ride Duration: {this.state.rideDuration} Minutes</Text>
            </View>
           <View style = {{flexDirection: 'row'}}>
 
