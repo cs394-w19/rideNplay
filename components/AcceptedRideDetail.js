@@ -24,6 +24,9 @@ import moment from 'moment'
 const WIDTH = Dimensions.get('window').width;
 
 class AcceptedRideDetail extends React.Component {
+
+  mapView = null;
+
   state = {
     region: { // Map button
       latitude: 42.045273,
@@ -126,6 +129,7 @@ class AcceptedRideDetail extends React.Component {
               onReady={result => {
                   console.log(result.duration/20);
                   this.setState({'rideDuration': result.duration/20})
+                  this.mapView.fitToCoordinates(result.coordinates, {});
               }}
           />
 
@@ -243,6 +247,7 @@ class AcceptedRideDetail extends React.Component {
          showsPointsOfInterest = {false}
          region={this.state.region}
          onRegionChange={() => this.onRegionChange()}
+          ref={c => this.mapView = c}
           initialRegion={this.convertLatLong(this.props.ride.pickup_loc)}>
 
          {this.renderMarkers()}
