@@ -10,7 +10,7 @@ import { Text,
 import * as firebase from 'firebase'
 import { Avatar, ListItem } from 'react-native-elements';
 
-this.width = Dimensions.get('window').width
+this.width = Dimensions.get('window').width;
 export default class RequestedRides extends React.Component {
     state = {
       picture: 'test'
@@ -20,7 +20,6 @@ export default class RequestedRides extends React.Component {
       console.log(this.props.parent);
       firebase.database().ref('Users/'+ this.props.parent +'/user_picture').once('value').then(snapshot => {
         const pic = snapshot.val();
-        console.log(pic);
         this.setState({picture: pic});
       });
       console.log(this.state.picture)

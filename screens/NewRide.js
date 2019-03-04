@@ -82,7 +82,7 @@ export default class NewRide extends React.Component {
   };
 
   setSelectedDate = (date) => {
-    this.setState({selectedDate: date})
+    this.setState({selectedDate: date});
     console.log(date)
   };
 

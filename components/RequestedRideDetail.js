@@ -13,6 +13,8 @@ import { View,
        } from 'react-native'
 import { Avatar, ListItem } from 'react-native-elements';
 import Moment from 'moment';
+import MapViewDirections from 'react-native-maps-directions';
+
 let firebase = require("firebase");
 import InfoText from '../components/InfoText';
 import { Marker } from 'react-native-maps';
@@ -28,7 +30,7 @@ class RequestedRideDetail extends React.Component {
       latitudeDelta: 0.0422,
       longitudeDelta: 0.0221,},
       inMap: false,
-  }
+  };
 
   componentWillMount(){
     console.log(this.props.ride) //the correct ride object is already passed in.
@@ -59,7 +61,7 @@ class RequestedRideDetail extends React.Component {
 
   inMap = () => {
     this.setState({inMap: !this.state.inMap})
-  }
+  };
 
   renderMap = () => {
     return (
@@ -143,7 +145,7 @@ class RequestedRideDetail extends React.Component {
       ],
       { cancelable: false }
     )
-  }
+  };
 
   delete(){
      firebase.database().ref('Rides/'+this.props.ride.ride_id).remove()
@@ -160,10 +162,14 @@ class RequestedRideDetail extends React.Component {
       { cancelable: false }
     )
 
+  };
+
+  convertLatLong(coordinates) {
+    return {"latitude":coordinates['lat'], "longitude":coordinates['lng']}
   }
 
   render(){
-    if (this.state.inMap == false){
+    if (this.state.inMap === false){
         // ToDo: Remove hardcoded email. and include more info about parent
 
         return(
@@ -268,9 +274,19 @@ class RequestedRideDetail extends React.Component {
          showsCompass={true}
          showsPointsOfInterest = {false}
          region={this.state.region}
-         onRegionChange={() => this.onRegionChange()}>
-         {this.renderMarkers()}
-        </MapView>
+         onRegionChange={() => this.onRegionChange()}
+
+      >
+          <MapViewDirections
+              origin={this.convertLatLong(this.props.ride.pickup_loc)}
+              destination={this.convertLatLong(this.props.ride.dropoff_loc)}
+              apikey={'AIzaSyDH304hN4miatGEDoExStAAbCAJZDsyz8g'}
+              strokeWidth={3}
+              strokeColor="rgb(0,139,241)"
+          />
+          {/*{this.renderMarkers()}*/}
+
+      </MapView>
         <View style = {{flexDirection: 'row'}}>
         <TouchableOpacity style = {styles.acceptButton} onPress = {this.inMap}>
           <Text> Tap to return! </Text>

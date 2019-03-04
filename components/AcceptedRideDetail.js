@@ -14,6 +14,7 @@ import { View,
 import Moment from 'moment';
 import { Header } from 'react-native-elements'
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
+import MapViewDirections from 'react-native-maps-directions';
 import InfoText from '../components/InfoText';
 import { Marker } from 'react-native-maps';
 import MapView from 'react-native-maps';
@@ -30,7 +31,11 @@ class AcceptedRideDetail extends React.Component {
       latitudeDelta: 0.0422,
       longitudeDelta: 0.0221,},
       inMap: false,
-  }
+      tempOrig: {},
+      tempDest: {},
+      routeRendered: false,
+      rideDuration: 0
+  };
 
 
   // the ride object is passed in, just style it with components and such nicely
@@ -39,7 +44,7 @@ class AcceptedRideDetail extends React.Component {
   // }
   inMap = () => {
     this.setState({inMap: !this.state.inMap})
-  }
+  };
 
   renderMap = () => {
     return (
@@ -61,7 +66,16 @@ class AcceptedRideDetail extends React.Component {
         </View>
 
       );
-  }
+  };
+
+  convertLatLong = (coordinates) => {
+      console.log('entered con');
+        // parse string to json
+        const oldCoords = JSON.parse(coordinates);
+        // this.setState({'tempCoords': coordinates});
+        // console.log({"latitude":oldCoords['lat'], "longitude":oldCoords['lng']});
+        return {"latitude":oldCoords['lat'], "longitude":oldCoords['lng']}
+  };
 
   renderMarkers(){
     if(this.state.pickupMarker && this.state.dropoffMarker){
@@ -97,6 +111,30 @@ class AcceptedRideDetail extends React.Component {
     else return
   }
 
+  renderMapRoute = () => {
+      if (this.state.inMap === true) {
+            // this.setState({routeRendered: true});
+      console.log('entered render map')
+          return <MapViewDirections
+              origin={this.convertLatLong(this.props.ride.pickup_loc)}
+              destination={this.convertLatLong(this.props.ride.dropoff_loc)}
+              apikey={'AIzaSyB9B01b8XaDo3LQ205C3MgYg7WpR0iatGE'}
+              strokeWidth={3}
+              strokeColor="#2F95DC"
+              mode={"driving"}
+              optimizeWaypoints={true}
+              onReady={result => {
+                  console.log(result.duration/20);
+                  this.setState({'rideDuration': result.duration/20})
+              }}
+          />
+
+       } else {
+          return;
+      }
+
+  };
+
   onRegionChange(region) {
     this.setState({ region });
   }
@@ -116,7 +154,9 @@ class AcceptedRideDetail extends React.Component {
 
   render(){
     if (this.state.inMap == false){
-    return(
+        // this.setState({routeRendered: false});
+
+        return(
       <View>
       <InfoText text="Your Request:" />
       <View style={styles.userRow}>
@@ -192,7 +232,7 @@ class AcceptedRideDetail extends React.Component {
     return(
       <View>
       <MapView
-          style={{height: 220, top: 0, marginHorizontal: 5}}
+          style={{height: 320, top: 0, marginHorizontal: 5}}
           // initialRegion={this.state.region}
          loadingEnabled = {true}
          loadingIndicatorColor="#666666"
@@ -202,11 +242,18 @@ class AcceptedRideDetail extends React.Component {
          showsCompass={true}
          showsPointsOfInterest = {false}
          region={this.state.region}
-         onRegionChange={() => this.onRegionChange()}>
+         onRegionChange={() => this.onRegionChange()}
+          initialRegion={this.convertLatLong(this.props.ride.pickup_loc)}>
+
          {this.renderMarkers()}
+          {this.renderMapRoute()}
         </MapView>
-        <View style = {{flexDirection: 'row'}}>
-        <TouchableOpacity style = {styles.acceptButton} onPress = {this.inMap}>
+          <View style = {{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingTop: 15}}>
+          <Text style={{fontWeight: 'bold'}}> Estimated Ride Duration: {Math.floor(this.state.rideDuration)} Minutes</Text>
+           </View>
+          <View style = {{flexDirection: 'row'}}>
+
+            <TouchableOpacity style = {styles.acceptButton} onPress = {this.inMap}>
           <Text> Tap to return! </Text>
         </TouchableOpacity>
       </View>

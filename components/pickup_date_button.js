@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import DateTimePickerTester from "../components/DateTimePickerTester"
+import { material } from 'react-native-typography'
+
 
 const WIDTH = Dimensions.get('window').width;
 
@@ -27,7 +29,7 @@ export const PickupDateButton = function(props) {
         </TouchableOpacity>
 
     )
-}
+};
 
 const styles = StyleSheet.create({
     container:{
