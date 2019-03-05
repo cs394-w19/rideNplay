@@ -9,6 +9,6 @@ const Chevron = () => (
     color={Colors.lightGray2}
     containerStyle={{ marginLeft: -15, width: 20 }}
   />
-)
+);
 
 export default Chevron

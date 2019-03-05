@@ -82,7 +82,7 @@ export default class HomeScreen extends React.Component {
     };
 
   componentWillMount() {
-    if(this.state.currentRideID != ''){
+    if(this.state.currentRideID !== ''){
       this.props.navigation.setParams({ rideID: true, rideName: this.state.currentRideID, handle: this.clearID});
     }
     else {
@@ -104,7 +104,7 @@ export default class HomeScreen extends React.Component {
   clickRide = (id, name) => {
     this.setState({currentRideID: id})
     this.props.navigation.setParams({ rideID: true, rideName: name, handle: this.clearID });
-  }
+  };
 
   clearID = () => {
     this.setState({currentRideID: ''})
@@ -130,14 +130,14 @@ export default class HomeScreen extends React.Component {
           <AcceptedRides rides = {this.state.all_rides}
                         keys = {this.state.rideKeys}
                        clickRide = {this.clickRide}/>
-        </View>
+        </View>;
 
 
       const secondRoute = () =>
         <View style = {styles.accepted}>
-          <RequestedRides rides = {this.state.all_rides}
+          <RequestedRides rides = {this.state.all_rides} keys = {this.state.rideKeys}
                           clickRide = {this.clickRide}/>
-        </View>
+        </View>;
 
 
       const routes = this.state.tabStuff.routes;
@@ -166,7 +166,7 @@ export default class HomeScreen extends React.Component {
           />
         </View>
       }
-      else if(this.state.rideDictionary[this.state.currentRideID].driver != 'N/A'){
+      else if(this.state.rideDictionary[this.state.currentRideID].driver !== 'N/A'){
         return <View>
         <AcceptedRideDetail ride = {this.state.rideDictionary[this.state.currentRideID]}/>
         <NavigationEvents
