@@ -18,7 +18,7 @@ import MapViewDirections from 'react-native-maps-directions';
 import InfoText from '../components/InfoText';
 import { Marker } from 'react-native-maps';
 import MapView from 'react-native-maps';
-import { Avatar, ListItem } from 'react-native-elements';
+import { Avatar, ListItem, Icon } from 'react-native-elements';
 import moment from 'moment'
 import Communications from 'react-native-communications';
 import { Ionicons } from '@expo/vector-icons';
@@ -217,10 +217,12 @@ class AcceptedRideDetail extends React.Component {
               }}
             />
       </View>
-      <View>
+      <View style = {{width: WIDTH}}>
           <Text style={{ fontSize: 16 }}> Needed: {this.props.ride.ride_name} </Text>
-          <Text style={{ fontSize: 16 }}> Pickup: {this.props.ride.pickup_title} </Text>
-          <Text style={{ fontSize: 16 }}> Dropoff: {this.props.ride.dropoff_title} </Text>
+          <Text style={{ fontSize: 16 }}> Pickup: </Text>
+          <Text style={{ fontSize: 16, marginHorizontal: 10}}>{this.props.ride.pickup_title} </Text>
+          <Text style={{ fontSize: 16 }}> Dropoff: </Text>
+          <Text>{this.props.ride.dropoff_title} </Text>
           <Text style={{ fontSize: 16 }}> At: {this.props.ride.pickup_time} </Text>
           <Text style={{ fontSize: 16 }}> On: {this.props.ride.pickup_date} </Text>
         </View>
@@ -231,15 +233,15 @@ class AcceptedRideDetail extends React.Component {
         </TouchableOpacity>
       </View>
 
-      <View style = {{flexDirection: 'row'}}>
-        <TouchableOpacity style={{backgroundColor:"#228B22",width:"25%",border:"3px",borderColor:"#000000"}} onPress={() => Communications.phonecall('3018019811', true)}>
-            <View>
-              <Ionicons name="md-call" color="#ffffff" size={50} style={{alignSelf: "center"}}/>
+      <View style = {{flexDirection: 'row', justifyContent: 'center', marginTop: 20}}>
+        <TouchableOpacity style={{marginHorizontal: 30}} onPress={() => Communications.phonecall('3018019811', true)}>
+            <View style = {{backgroundColor: 'green', borderWidth: 1, padding: 20,  borderColor: 'green', borderRadius: 50}}>
+              <Icon name='phone' size='50' color = 'white' />
             </View>
         </TouchableOpacity>
-        <TouchableOpacity style={{backgroundColor:"#228B22",width:"25%",border:"3px",borderColor:"#000000",marginTop:"2%"}} onPress={() => Communications.text('3018019811')}>
-            <View>
-              <Ionicons name="md-chatboxes" color="#ffffff" size={50} style={{alignSelf: "center"}}/>
+        <TouchableOpacity style={{marginHorizontal: 30}} onPress={() => Communications.text('3018019811')}>
+            <View style = {{backgroundColor: 'blue', borderWidth: 1, padding: 20, borderColor: 'blue', borderRadius: 50}}>
+              <Icon name='message' size='50' color = 'white' />
             </View>
         </TouchableOpacity>
       </View>
