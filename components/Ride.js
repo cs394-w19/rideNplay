@@ -22,7 +22,6 @@ class Ride extends React.Component {
 
 
     componentWillMount() {
-        console.log('\n\n\n' + moment(this.props.rideAge).diff(moment(), 'days') + '\n\n\n');
         if (moment(this.props.rideAge).diff(moment(), 'days') < 0) {
             this.setState({subtitle: `Ride expired ${moment().diff(moment(this.props.rideAge), 'days')} days ago.`, expiredRide: true})
         }

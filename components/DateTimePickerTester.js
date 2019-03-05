@@ -24,13 +24,11 @@ export default class DateTimePickerTester extends Component {
 
     if(this.props.mode == "date"){
     this.setState({title: moment(picked).format('MM/DD/YYYY').toString()})
-    console.log('A date has been picked: ', picked);
     this._hideDateTimePicker();
     this.props.set(picked)
     }
     else if(this.props.mode == "time"){
     this.setState({title: moment(picked).format("h:mm A").toString()})
-    console.log('A time has been picked: ', picked);
     this._hideDateTimePicker();
     this.props.set(picked)
     }

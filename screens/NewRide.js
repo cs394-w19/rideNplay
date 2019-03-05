@@ -80,18 +80,15 @@ export default class NewRide extends React.Component {
 
   setSelectedTime = (time) => {
     this.setState({selectedTime: time});
-    console.log(time)
   };
 
   setSelectedDate = (date) => {
     this.setState({selectedDate: date});
-    console.log(date)
   };
 
 
   savePickupDetails(det) {
     // this.setState({pickupDetails: det})
-    console.log(det)
   }
 
   saveDropoffDetails = (det) => {
@@ -128,7 +125,7 @@ export default class NewRide extends React.Component {
     'Alert',
     "Please select a pickup location",
     [
-      {text: 'OK', onPress: () => console.log('OK Pressed')},
+      {text: 'OK', onPress: () => {return}},
     ],
     {cancelable: false},
   );
@@ -160,7 +157,7 @@ export default class NewRide extends React.Component {
       'Alert',
       "Please select a dropoff location",
       [
-        {text: 'OK', onPress: () => console.log('OK Pressed')},
+        {text: 'OK', onPress: () => {return}},
       ],
       {cancelable: false},
     );
@@ -179,13 +176,12 @@ export default class NewRide extends React.Component {
         'Invalid Ride Entry',
         'Please submit all fields',
         [
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
+          {text: 'OK', onPress: () => {return}},
         ],
         {cancelable: false},
       );
     }
     else {
-      console.log("Submitting Ride");
       firebase.database().ref('Rides/').push({
         ride_id: this.state.rideName,
         ride_desc: this.state.description,
@@ -203,7 +199,7 @@ export default class NewRide extends React.Component {
           'Ride Submitted',
           "Alert Message",
           [
-            {text: 'OK', onPress: () => console.log('OK Pressed')},
+            {text: 'OK', onPress: () => {return}},
           ],
           {cancelable: false},
         );
@@ -247,12 +243,9 @@ export default class NewRide extends React.Component {
           initialDateName: "Choose Date",
           initialTimeName: "Choose Time"
         });
-
-
-        //success callback
-          if (data) {
-              console.log(data);
-          }
+          // if (data) {
+          //     console.log(data);
+          // }
       }).catch((error) => {
         //error callback
         console.log('error ', error);
@@ -470,7 +463,7 @@ export default class NewRide extends React.Component {
                       rounded
                       size="large"
                       source={{
-                        uri: "https://image.shutterstock.com/image-photo/portrait-real-happy-mixed-race-260nw-509909461.jpg",
+                        uri: "https://www.healthyfood.co.nz/wp-content/uploads/2017/01/Should-your-child-be-dairy-free-iStock_64414757.jpg",
                       }}
                     />
                     </TouchableOpacity>

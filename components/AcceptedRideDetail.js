@@ -30,7 +30,6 @@ var information;
 fetch('https://maps.googleapis.com/maps/api/geocode/json?address=42.045273,-87.686790&key=AIzaSyB9B01b8XaDo3LQ205C3MgYg7WpR0iatGE')
         .then(res => res.json())
         .then(data => information = data)
-        .then(() => console.log(information))
 
 class AcceptedRideDetail extends React.Component {
 
@@ -102,7 +101,6 @@ class AcceptedRideDetail extends React.Component {
   };
 
   convertLatLong = (coordinates) => {
-      console.log('entered con');
         // parse string to json
         const oldCoords = JSON.parse(coordinates);
         // this.setState({'tempCoords': coordinates});
@@ -147,7 +145,6 @@ class AcceptedRideDetail extends React.Component {
   renderMapRoute = () => {
       if (this.state.inMap === true) {
             // this.setState({routeRendered: true});
-      console.log('entered render map')
           return <MapViewDirections
               origin={this.convertLatLong(this.props.ride.pickup_loc)}
               destination={this.convertLatLong(this.props.ride.dropoff_loc)}
@@ -157,7 +154,6 @@ class AcceptedRideDetail extends React.Component {
               mode={"driving"}
               optimizeWaypoints={true}
               onReady={result => {
-                  console.log(result.duration/20);
                   this.setState({'rideDuration': Math.ceil(result.duration)})
                   this.mapView.fitToCoordinates(result.coordinates, {});
               }}
@@ -170,7 +166,6 @@ class AcceptedRideDetail extends React.Component {
   };
 
   onRegionChange(region) {
-      console.log(region);
     this.setState({ region });
   }
 
@@ -260,7 +255,7 @@ class AcceptedRideDetail extends React.Component {
       </View>
       <View>
           <Text style={{ fontSize: 16 }}> Needed: {this.props.ride.ride_name} </Text>
-          
+
           <Text style={{ fontSize: 16 }}> At: {this.props.ride.pickup_time} </Text>
           <Text style={{ fontSize: 16 }}> On: {this.props.ride.pickup_date} </Text>
         </View>
