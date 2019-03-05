@@ -21,6 +21,8 @@ import MapView from 'react-native-maps';
 import { Avatar, ListItem } from 'react-native-elements';
 import moment from 'moment';
 import { Location } from 'expo';
+import Communications from 'react-native-communications';
+import { Ionicons } from '@expo/vector-icons';
 
 const WIDTH = Dimensions.get('window').width;
 
@@ -270,6 +272,19 @@ class AcceptedRideDetail extends React.Component {
         </TouchableOpacity>
       </View>
 
+      <View style={{display:"block"}}>
+      <TouchableOpacity style={{backgroundColor:"#228B22",width:"25%",border:"3px",borderColor:"#000000"}} onPress={() => Communications.phonecall('3018019811', true)}>
+          <View>
+            <Ionicons name="md-call" color="#ffffff" size={50} style={{alignSelf: "center"}}/>
+          </View>
+        </TouchableOpacity>
+
+      <TouchableOpacity style={{backgroundColor:"#228B22",width:"25%",border:"3px",borderColor:"#000000",marginTop:"2%"}} onPress={() => Communications.text('3018019811')}>
+          <View>
+            <Ionicons name="md-chatboxes" color="#ffffff" size={50} style={{alignSelf: "center"}}/>
+          </View>
+        </TouchableOpacity>
+        </View>
       </View>
 
     )
