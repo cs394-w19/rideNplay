@@ -19,9 +19,18 @@ import InfoText from '../components/InfoText';
 import { Marker } from 'react-native-maps';
 import MapView from 'react-native-maps';
 import { Avatar, ListItem } from 'react-native-elements';
-import moment from 'moment'
+import moment from 'moment';
+import { Location } from 'expo';
 
 const WIDTH = Dimensions.get('window').width;
+
+
+var information;
+
+fetch('https://maps.googleapis.com/maps/api/geocode/json?address=42.045273,-87.686790&key=AIzaSyB9B01b8XaDo3LQ205C3MgYg7WpR0iatGE')
+        .then(res => res.json())
+        .then(data => information = data)
+        .then(() => console.log(information))
 
 class AcceptedRideDetail extends React.Component {
 
@@ -37,9 +46,30 @@ class AcceptedRideDetail extends React.Component {
       tempOrig: {},
       tempDest: {},
       routeRendered: false,
-      rideDuration: 0
+      rideDuration: 0,
+      fromLocation: '',
+      toLocation:'',
   };
 
+  pickupLocation = () => {
+    var str = this.props.ride.pickup_loc
+    var latitude = str.split('{"lat":').pop().split(',"lng":').shift();
+    var longitude = str.split(',"lng":').pop().split('}').shift();
+    var requeststring = 'https://maps.googleapis.com/maps/api/geocode/json?address='+latitude+','+longitude+'&key=AIzaSyB9B01b8XaDo3LQ205C3MgYg7WpR0iatGE'
+    fetch(requeststring)
+        .then(res => res.json())
+        .then(data => this.setState({fromLocation: data}))
+  }
+
+  dropLocation = () => {
+    var str = this.props.ride.dropoff_loc
+    var latitude = str.split('{"lat":').pop().split(',"lng":').shift();
+    var longitude = str.split(',"lng":').pop().split('}').shift();
+    var requeststring = 'https://maps.googleapis.com/maps/api/geocode/json?address='+latitude+','+longitude+'&key=AIzaSyB9B01b8XaDo3LQ205C3MgYg7WpR0iatGE'
+    fetch(requeststring)
+        .then(res => res.json())
+        .then(data => this.setState({toLocation: data}))
+  }
 
   // the ride object is passed in, just style it with components and such nicely
   // springin = () => {
@@ -158,9 +188,22 @@ class AcceptedRideDetail extends React.Component {
 
 
   render(){
+
+    {this.pickupLocation()}
+    {this.dropLocation()}
+
+    pickupstring = '';
+    if(this.state.fromLocation != ''){
+        pickupstring = this.state.fromLocation.results[0].formatted_address
+    }
+
+    dropoffstring = '';
+    if(this.state.toLocation != ''){
+        dropoffstring = this.state.toLocation.results[0].formatted_address
+    }
+
     if (this.state.inMap == false){
         // this.setState({routeRendered: false});
-
         return(
       <View>
       <InfoText text="Your Request:" />
@@ -217,12 +260,15 @@ class AcceptedRideDetail extends React.Component {
       </View>
       <View>
           <Text style={{ fontSize: 16 }}> Needed: {this.props.ride.ride_name} </Text>
-          <Text style={{ fontSize: 16 }}> Pickup: {this.props.ride.pickup_loc} </Text>
-          <Text style={{ fontSize: 16 }}> Dropoff: {this.props.ride.dropoff_loc} </Text>
+          
           <Text style={{ fontSize: 16 }}> At: {this.props.ride.pickup_time} </Text>
           <Text style={{ fontSize: 16 }}> On: {this.props.ride.pickup_date} </Text>
         </View>
         </View>
+        <View>
+        <Text style={{ fontSize: 16 }}> Pickup: {pickupstring}</Text>
+          <Text style={{ fontSize: 16 }}> Dropoff: {dropoffstring} </Text>
+          </View>
       <View style = {{flexDirection: 'row'}}>
         <TouchableOpacity style = {styles.acceptButton} onPress = {this.inMap}>
           <Text> Tap to see route! </Text>
