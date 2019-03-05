@@ -19,9 +19,19 @@ import InfoText from '../components/InfoText';
 import { Marker } from 'react-native-maps';
 import MapView from 'react-native-maps';
 import { Avatar, ListItem } from 'react-native-elements';
-import moment from 'moment'
+import moment from 'moment';
+import { Location } from 'expo';
+import Communications from 'react-native-communications';
+import { Ionicons } from '@expo/vector-icons';
 
 const WIDTH = Dimensions.get('window').width;
+
+
+var information;
+
+fetch('https://maps.googleapis.com/maps/api/geocode/json?address=42.045273,-87.686790&key=AIzaSyB9B01b8XaDo3LQ205C3MgYg7WpR0iatGE')
+        .then(res => res.json())
+        .then(data => information = data)
 
 class AcceptedRideDetail extends React.Component {
 
@@ -37,9 +47,30 @@ class AcceptedRideDetail extends React.Component {
       tempOrig: {},
       tempDest: {},
       routeRendered: false,
-      rideDuration: 0
+      rideDuration: 0,
+      fromLocation: '',
+      toLocation:'',
   };
 
+  pickupLocation = () => {
+    var str = this.props.ride.pickup_loc
+    var latitude = str.split('{"lat":').pop().split(',"lng":').shift();
+    var longitude = str.split(',"lng":').pop().split('}').shift();
+    var requeststring = 'https://maps.googleapis.com/maps/api/geocode/json?address='+latitude+','+longitude+'&key=AIzaSyB9B01b8XaDo3LQ205C3MgYg7WpR0iatGE'
+    fetch(requeststring)
+        .then(res => res.json())
+        .then(data => this.setState({fromLocation: data}))
+  }
+
+  dropLocation = () => {
+    var str = this.props.ride.dropoff_loc
+    var latitude = str.split('{"lat":').pop().split(',"lng":').shift();
+    var longitude = str.split(',"lng":').pop().split('}').shift();
+    var requeststring = 'https://maps.googleapis.com/maps/api/geocode/json?address='+latitude+','+longitude+'&key=AIzaSyB9B01b8XaDo3LQ205C3MgYg7WpR0iatGE'
+    fetch(requeststring)
+        .then(res => res.json())
+        .then(data => this.setState({toLocation: data}))
+  }
 
   // the ride object is passed in, just style it with components and such nicely
   // springin = () => {
@@ -72,7 +103,6 @@ class AcceptedRideDetail extends React.Component {
   };
 
   convertLatLong = (coordinates) => {
-      console.log('entered con');
         // parse string to json
         const oldCoords = JSON.parse(coordinates);
         // this.setState({'tempCoords': coordinates});
@@ -117,7 +147,6 @@ class AcceptedRideDetail extends React.Component {
   renderMapRoute = () => {
       if (this.state.inMap === true) {
             // this.setState({routeRendered: true});
-      console.log('entered render map')
           return <MapViewDirections
               origin={this.convertLatLong(this.props.ride.pickup_loc)}
               destination={this.convertLatLong(this.props.ride.dropoff_loc)}
@@ -127,7 +156,6 @@ class AcceptedRideDetail extends React.Component {
               mode={"driving"}
               optimizeWaypoints={true}
               onReady={result => {
-                  console.log(result.duration/20);
                   this.setState({'rideDuration': Math.ceil(result.duration)})
                   this.mapView.fitToCoordinates(result.coordinates, {});
               }}
@@ -140,7 +168,6 @@ class AcceptedRideDetail extends React.Component {
   };
 
   onRegionChange(region) {
-      console.log(region);
     this.setState({ region });
   }
 
@@ -158,9 +185,22 @@ class AcceptedRideDetail extends React.Component {
 
 
   render(){
+
+    {this.pickupLocation()}
+    {this.dropLocation()}
+
+    pickupstring = '';
+    if(this.state.fromLocation != ''){
+        pickupstring = this.state.fromLocation.results[0].formatted_address
+    }
+
+    dropoffstring = '';
+    if(this.state.toLocation != ''){
+        dropoffstring = this.state.toLocation.results[0].formatted_address
+    }
+
     if (this.state.inMap == false){
         // this.setState({routeRendered: false});
-
         return(
       <View>
       <InfoText text="Your Request:" />
@@ -217,18 +257,34 @@ class AcceptedRideDetail extends React.Component {
       </View>
       <View>
           <Text style={{ fontSize: 16 }}> Needed: {this.props.ride.ride_name} </Text>
-          <Text style={{ fontSize: 16 }}> Pickup: {this.props.ride.pickup_loc} </Text>
-          <Text style={{ fontSize: 16 }}> Dropoff: {this.props.ride.dropoff_loc} </Text>
+
           <Text style={{ fontSize: 16 }}> At: {this.props.ride.pickup_time} </Text>
           <Text style={{ fontSize: 16 }}> On: {this.props.ride.pickup_date} </Text>
         </View>
         </View>
+        <View>
+        <Text style={{ fontSize: 16 }}> Pickup: {pickupstring}</Text>
+          <Text style={{ fontSize: 16 }}> Dropoff: {dropoffstring} </Text>
+          </View>
       <View style = {{flexDirection: 'row'}}>
         <TouchableOpacity style = {styles.acceptButton} onPress = {this.inMap}>
           <Text> Tap to see route! </Text>
         </TouchableOpacity>
       </View>
 
+      <View style={{display:"block"}}>
+      <TouchableOpacity style={{backgroundColor:"#228B22",width:"25%",border:"3px",borderColor:"#000000"}} onPress={() => Communications.phonecall('3018019811', true)}>
+          <View>
+            <Ionicons name="md-call" color="#ffffff" size={50} style={{alignSelf: "center"}}/>
+          </View>
+        </TouchableOpacity>
+
+      <TouchableOpacity style={{backgroundColor:"#228B22",width:"25%",border:"3px",borderColor:"#000000",marginTop:"2%"}} onPress={() => Communications.text('3018019811')}>
+          <View>
+            <Ionicons name="md-chatboxes" color="#ffffff" size={50} style={{alignSelf: "center"}}/>
+          </View>
+        </TouchableOpacity>
+        </View>
       </View>
 
     )

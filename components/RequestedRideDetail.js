@@ -32,10 +32,6 @@ class RequestedRideDetail extends React.Component {
       inMap: false,
   };
 
-  componentWillMount(){
-    console.log(this.props.ride) //the correct ride object is already passed in.
-  }
-
   createNewRide(id, ride_desc, ride_name, submitter_id, child_user_id, pickup_loc, dropoff_loc, pickup_time,driver,rating) {
     firebase.database().ref('Rides/'+id).set({
       ride_id:id,
@@ -48,14 +44,6 @@ class RequestedRideDetail extends React.Component {
       pickup_time:pickup_time,
       driver:driver,
       rating:rating
-    }).then((data) => {
-      //success callback
-        if (data) {
-            console.log(data);
-        }
-    }).catch((error) => {
-      //error callback
-      console.log('error ', error);
     })
   }
 

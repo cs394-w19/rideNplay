@@ -11,11 +11,6 @@ const HEIGHT = Dimensions.get('window').height;
 
 export class GooglePlacesInput extends React.Component {
 
-  componentWillMount(){
-    console.log(this.props)
-    console.log(this.props.sendDetails)
-  }
-
   render(){
     return (
     <GooglePlacesAutocomplete

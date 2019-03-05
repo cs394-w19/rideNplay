@@ -142,16 +142,8 @@ class Profile extends React.Component {
     name: this.props.name
   }
 
-  onPressPlace = () => {
-    console.log('place')
-  }
-
   onPressTel = number => {
     Linking.openURL(`tel://${number}`).catch(err => console.log('Error:', err))
-  }
-
-  onPressSms = () => {
-    console.log('sms')
   }
 
   onPressEmail = email => {
