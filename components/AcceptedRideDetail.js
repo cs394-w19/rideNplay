@@ -266,7 +266,8 @@ class AcceptedRideDetail extends React.Component {
          region={this.state.region}
          // onRegionChange={() => this.onRegionChange()}
           ref={c => this.mapView = c}
-          initialRegion={this.convertLatLong(this.props.ride.pickup_loc)}>
+          // initialRegion={this.convertLatLong(this.props.ride.pickup_loc)}
+          >
 
          {this.renderMarkers()}
           {this.renderMapRoute()}
