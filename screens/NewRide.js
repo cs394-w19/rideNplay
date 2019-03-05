@@ -190,6 +190,8 @@ export default class NewRide extends React.Component {
         child_id:this.state.childName,
         pickup_loc:JSON.stringify(this.state.pickupGeo),
         dropoff_loc:JSON.stringify(this.state.dropoffGeo),
+        pickup_title: this.state.pickupTitle,
+        dropoff_title: this.state.dropoffTitle,
         pickup_date: moment(this.state.selectedDate).format('MM/DD/YYYY'),
         pickup_time: moment(this.state.selectedTime).format('hh:mm A'),
         driver:"ME",
