@@ -158,6 +158,34 @@ class AcceptedRideDetail extends React.Component {
     }
   };
 
+  renderAvatar(){
+    if(this.props.ride.child_id == "Clayton") {
+    return <Avatar
+      rounded
+      size="large"
+      source={{
+        uri: "https://www.healthyfood.co.nz/wp-content/uploads/2017/01/Should-your-child-be-dairy-free-iStock_64414757.jpg",
+      }}
+    />
+  } else if(this.props.ride.child_id == "Emma") {
+    return  <Avatar
+      rounded
+      size="large"
+      source={{
+        uri: "https://image.shutterstock.com/image-photo/young-african-black-child-making-260nw-505302700.jpg",
+      }}
+    />
+    }
+    else{
+      return <Avatar
+        rounded
+        size="large"
+        source={{
+          uri: "https://maxcdn.icons8.com/Share/icon/Users//user_male_circle_filled1600.png",
+        }}
+      />
+    }
+  }
 
   render(){
     if (this.state.inMap == false){
@@ -191,13 +219,7 @@ class AcceptedRideDetail extends React.Component {
       <InfoText text="For:" />
       <View style={styles.userRow}>
       <View style={styles.userImage}>
-            <Avatar
-              rounded
-              size="large"
-              source={{
-                uri: "https://www.healthyfood.co.nz/wp-content/uploads/2017/01/Should-your-child-be-dairy-free-iStock_64414757.jpg",
-              }}
-            />
+        {this.renderAvatar()}
       </View>
       <View>
             <Text style={{ fontSize: 16 }}>{this.props.ride.child_id}</Text>
