@@ -131,6 +131,9 @@ export default class HomeScreen extends React.Component {
           <AcceptedRides rides = {this.state.all_rides}
                         keys = {this.state.rideKeys}
                        clickRide = {this.clickRide}/>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('NewRide')}>
+          <Image source={require('../constants/request.png')} style={{marginLeft:"10%",marginBottom:"40%"}}/>
+          </TouchableOpacity>
         </View>;
 
 
@@ -164,7 +167,7 @@ export default class HomeScreen extends React.Component {
           onIndexChange={index => this.setState({ tabStuff: {index, routes} })}
           initialLayout={{ width: Dimensions.get('window').width }}
           />
-          <Image source={require('../constants/request.png')} style={{marginLeft:"10%",marginBottom:"40%"}}/>
+
         </View>
       }
       else if(this.state.rideDictionary[this.state.currentRideID].driver !== 'N/A'){
@@ -193,7 +196,7 @@ const styles = StyleSheet.create({
   },
   accepted: {
     flex: 1,
-    backgroundColor:"#00BFD8",
+    // backgroundColor:"#00BFD8",
   },
   topNavBarContainer: {
     backgroundColor:"#00BFD8",
