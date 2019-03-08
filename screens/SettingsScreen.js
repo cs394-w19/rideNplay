@@ -113,6 +113,29 @@ export default class SettingsScreen extends React.Component {
 
       <View>
           <ListItem
+              hideChevron
+              title="Driver Mode"
+              containerStyle={styles.listItemContainer}
+              rightElement={
+                  <Switch
+                      onValueChange={this.onChangePushNotifications}
+                      value={this.state.pushNotifications}
+                  />
+              }
+              leftIcon={
+                  <BaseIcon
+                      containerStyle={{
+                          backgroundColor: '#FFADF2',
+                      }}
+                      icon={{
+                          type: 'material',
+                          name: 'notifications',
+                      }}
+                  />
+              }
+          />
+
+          <ListItem
             hideChevron
             title="Push Notifications"
             containerStyle={styles.listItemContainer}
