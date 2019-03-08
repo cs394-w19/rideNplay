@@ -22,6 +22,7 @@ import AcceptedRideDetail from '../components/AcceptedRideDetail'
 import RequestedRideDetail from '../components/RequestedRideDetail'
 import Colors from "../constants/Colors";
 import { NavigationEvents } from  'react-navigation'
+// import RequestRidePic  from '../constants/request.png';
 
 
 
@@ -141,7 +142,6 @@ export default class HomeScreen extends React.Component {
 
 
       const routes = this.state.tabStuff.routes;
-
       if(this.state.currentRideID === ''){
 
         return <View style={styles.container}>
@@ -164,6 +164,7 @@ export default class HomeScreen extends React.Component {
           onIndexChange={index => this.setState({ tabStuff: {index, routes} })}
           initialLayout={{ width: Dimensions.get('window').width }}
           />
+          <Image source={require('../constants/request.png')} style={{marginLeft:"10%",marginBottom:"40%"}}/>
         </View>
       }
       else if(this.state.rideDictionary[this.state.currentRideID].driver !== 'N/A'){
