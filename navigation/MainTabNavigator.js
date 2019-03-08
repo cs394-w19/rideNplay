@@ -16,6 +16,7 @@ HomeStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
+      style={{backgroundColor:"#00BFD8"}}
       name={
         Platform.OS === 'ios'
           ? `ios-car`
@@ -33,6 +34,7 @@ LinksStack.navigationOptions = {
   tabBarLabel: 'New Ride',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
+     style={{backgroundColor:"#00BFD8"}}
       focused={focused}
       name={Platform.OS === 'ios' ? 'md-create' : 'md-link'}
     />

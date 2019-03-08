@@ -42,7 +42,7 @@ export default class App extends React.Component {
       //Example code for how to use Firebase functions
     this.createNewRide("Ride1", "Winetka School of Music", "Ride to Orchestra Rehearsal","jessday2","child1","WSM","Home","3:45pm", "02/26/2018","N/A","-");
     this.createNewRide("Ride2","Evanston U12 Team Practice","Ride to Soccer Practice","ceceparekh4","child2","Long Field","Home","5:30pm","02/26/2018","N/A","-");
-    this.createNewRide("Ride3","Wilmette School of Dance","Ride to Ballet","nickmiller5","child3","School","WSD","3:45pm","02/26/2018","Mark","-");
+    this.createNewRide("Ride3","Wilmette School of Dance","Ride to Ballet","schmidty5","child3","School","WSD","3:45pm","02/26/2018","Mark","-");
     this.createNewRide("Ride4","Evanston U16 Team","Ride from Soccer Practice","schmidty5","child4","School","Long Field","6:30pm","02/26/2018","N/A","-");
     this.createNewRide("Ride5","ETHS Debate Team","Ride to Debate Meet","jessday2","child4","School","Home","7:30pm","02/26/2018","N/A","-");
     this.createNewRide("Ride6","ETHS MT Team","Ride to Mock Trial Tournament","ceceparekh4","child4","School","Home","4:30pm","02/26/2018","N/A","-");

@@ -192,9 +192,10 @@ const styles = StyleSheet.create({
   },
   accepted: {
     flex: 1,
+    backgroundColor:"#00BFD8",
   },
   topNavBarContainer: {
-    backgroundColor: '#2F95DC',
+    backgroundColor:"#00BFD8",
     borderWidth: 0,
     shadowColor: 'white',
     borderBottomColor: 'transparent',
