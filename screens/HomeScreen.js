@@ -121,19 +121,27 @@ export default class HomeScreen extends React.Component {
     })
   }
 
+  renderNewRideButton(){
+    if(this.state.all_rides != [{}]){
+      return <TouchableOpacity onPress={() => this.props.navigation.navigate('NewRide')}>
+      <Image source={require('../constants/request.png')} style={{marginLeft:"10%",marginBottom:"40%"}}/>
+      </TouchableOpacity>}
+      else{return null}
+  }
+
 
   render() {
 
       const { search } = this.state;
+
+
 
       const firstRoute = () =>
         <View style = {styles.accepted}>
           <AcceptedRides rides = {this.state.all_rides}
                         keys = {this.state.rideKeys}
                        clickRide = {this.clickRide}/>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('NewRide')}>
-          <Image source={require('../constants/request.png')} style={{marginLeft:"10%",marginBottom:"40%"}}/>
-          </TouchableOpacity>
+          {this.renderNewRideButton()}
         </View>;
 
 
