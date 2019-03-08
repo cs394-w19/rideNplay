@@ -1,8 +1,9 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { View, Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator, Navigation } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
+import CenterIcon from '../components/CenterIcon';
 import HomeScreen from '../screens/HomeScreen';
 import NewRide from '../screens/NewRide';
 import SettingsScreen from '../screens/SettingsScreen';
@@ -31,13 +32,22 @@ const LinksStack = createStackNavigator({
 });
 
 LinksStack.navigationOptions = {
-  tabBarLabel: 'New Ride',
+  tabBarLabel: '+',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-     style={{backgroundColor:"#00BFD8"}}
+    <View style={{
+          alignItems: 'center',
+          height: 80,
+          width: 80,
+          borderRadius: 100,
+          backgroundColor: 'blue',
+          paddingTop: 15}}>
+    <CenterIcon
+      size={50}
+     style={{backgroundColor:"#00BFD8", size: '80px'}}
       focused={focused}
-      name={Platform.OS === 'ios' ? 'md-create' : 'md-link'}
+      name={Platform.OS === 'ios' ? 'ios-add' : 'md-link'}
     />
+    </View>
   ),
 };
 
