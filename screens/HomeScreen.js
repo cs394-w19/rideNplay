@@ -22,7 +22,7 @@ import AcceptedRideDetail from '../components/AcceptedRideDetail'
 import RequestedRideDetail from '../components/RequestedRideDetail'
 import Colors from "../constants/Colors";
 import { NavigationEvents } from  'react-navigation'
-// import RequestRidePic  from '../constants/request.png';
+import RequestRidePic  from '../constants/request.png';
 
 
 
@@ -124,7 +124,7 @@ export default class HomeScreen extends React.Component {
   renderNewRideButton(){
     if(this.state.all_rides != [{}]){
       return <TouchableOpacity onPress={() => this.props.navigation.navigate('NewRide')}>
-      <Image source={require('../constants/request.png')} style={{marginLeft:"10%",marginBottom:"40%"}}/>
+      <Image source={RequestRidePic} style={{marginLeft:"10%",marginBottom:"40%"}}/>
       </TouchableOpacity>}
       else{return null}
   }
