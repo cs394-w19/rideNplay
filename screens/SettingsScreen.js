@@ -55,17 +55,17 @@ export default class SettingsScreen extends React.Component {
   state = {
     pushNotifications: true,
     inProfile: false,
-  }
+  };
 
   onPressOptions = () => {
     this.props.navigation.navigate('options')
-  }
+  };
 
   onChangePushNotifications = () => {
     this.setState(state => ({
       pushNotifications: !state.pushNotifications,
     }))
-  }
+  };
 
   toggleIn = () => {
     this.setState(state => ({
@@ -129,7 +129,7 @@ export default class SettingsScreen extends React.Component {
                       }}
                       icon={{
                           type: 'material',
-                          name: 'notifications',
+                          name: 'ios-car',
                       }}
                   />
               }
