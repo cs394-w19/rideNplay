@@ -12,12 +12,10 @@ import {
   YellowBox
 } from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
-import { WebBrowser } from 'expo';
 import AcceptedRides from '../components/AcceptedRides'
 import RequestedRides from '../components/RequestedRides'
 import { MonoText } from '../components/StyledText';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
-import { SearchBar } from 'react-native-elements'
 import AcceptedRideDetail from '../components/AcceptedRideDetail'
 import RequestedRideDetail from '../components/RequestedRideDetail'
 import Colors from "../constants/Colors";
@@ -134,10 +132,6 @@ export default class HomeScreen extends React.Component {
 
   render() {
 
-      const { search } = this.state;
-
-
-
       const firstRoute = () =>
         <View style = {styles.accepted}>
           <AcceptedRides rides = {this.state.all_rides}
@@ -161,13 +155,7 @@ export default class HomeScreen extends React.Component {
         <NavigationEvents
           onWillFocus={() => this.componentWillMount()}
         />
-        {/*<SearchBar*/}
-            {/*placeholder="Enter Drop Off Location"*/}
-            {/*onChangeText={this.updateSearch}*/}
-            {/*value={search}*/}
-            {/*containerStyle={styles.topNavBarContainer}*/}
-            {/*inputContainerStyle={styles.searchInput}*/}
-        {/*/>*/}
+
         <TabView
           navigationState={this.state.tabStuff}
           renderScene={SceneMap({
@@ -206,9 +194,7 @@ const styles = StyleSheet.create({
   },
   accepted: {
     flex: 1,
-      // TODO: fix padding for rides
      paddingBottom: '20%'
-    // backgroundColor:"#00BFD8",
   },
   topNavBarContainer: {
     backgroundColor:"#00BFD8",
