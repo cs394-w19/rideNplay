@@ -93,29 +93,29 @@ export default class HomeScreen extends React.Component {
     // get rides from Firebase, load to STATE
     return firebase.database().ref('Rides/').once('value').then(snapshot => {
       const rides = snapshot.val();
-      newRides = Object.values(rides)
-      keys =  Object.keys(rides)
-      console.log(keys)
+      newRides = Object.values(rides);
+      keys =  Object.keys(rides);
+      console.log(keys);
       this.setState({all_rides: newRides});
-      this.setState({rideDictionary: rides})
-      this.setState({rideKeys: keys})
+      this.setState({rideDictionary: rides});
+      this.setState({rideKeys: keys});
     })
   }
 
   clickRide = (id, name) => {
-    this.setState({currentRideID: id})
+    this.setState({currentRideID: id});
     this.props.navigation.setParams({ rideID: true, rideName: name, handle: this.clearID });
   };
 
   clearID = () => {
-    this.setState({currentRideID: ''})
+    this.setState({currentRideID: ''});
     this.props.navigation.setParams({ rideID: false, });
     return firebase.database().ref('Rides/').once('value').then(snapshot => {
       const rides = snapshot.val();
-      newRides = Object.values(rides)
-      keys =  Object.keys(rides)
+      newRides = Object.values(rides);
+      keys =  Object.keys(rides);
       this.setState({all_rides: newRides});
-      this.setState({rideDictionary: rides})
+      this.setState({rideDictionary: rides});
       this.setState({rideKeys: keys})
 
     })
@@ -123,8 +123,9 @@ export default class HomeScreen extends React.Component {
 
   renderNewRideButton(){
     if(this.state.all_rides != [{}]){
-      return <TouchableOpacity onPress={() => this.props.navigation.navigate('NewRide')}>
-      <Image source={RequestRidePic} style={{marginLeft:"10%",marginBottom:"40%"}}/>
+      return <TouchableOpacity onPress={() => this.props.navigation.navigate('NewRide')} style={{    justifyContent: 'center',
+          alignItems: 'center'}}>
+      <Image source={RequestRidePic} style={{marginBottom:"40%"}}/>
       </TouchableOpacity>}
       else{return null}
   }
@@ -204,6 +205,8 @@ const styles = StyleSheet.create({
   },
   accepted: {
     flex: 1,
+      // TODO: fix padding for rides
+     // paddingBottom: '20%'
     // backgroundColor:"#00BFD8",
   },
   topNavBarContainer: {
