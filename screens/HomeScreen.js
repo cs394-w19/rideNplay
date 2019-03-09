@@ -122,7 +122,8 @@ export default class HomeScreen extends React.Component {
   }
 
   renderNewRideButton(){
-    if(this.state.all_rides != [{}]){
+    if(Array.isArray(this.state.all_rides) && this.state.all_rides[0] === {}){
+      console.log(this.state.all_rides);
       return <TouchableOpacity onPress={() => this.props.navigation.navigate('NewRide')} style={{    justifyContent: 'center',
           alignItems: 'center'}}>
       <Image source={RequestRidePic} style={{marginBottom:"40%"}}/>
