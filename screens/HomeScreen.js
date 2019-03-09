@@ -161,13 +161,13 @@ export default class HomeScreen extends React.Component {
         <NavigationEvents
           onWillFocus={() => this.componentWillMount()}
         />
-        <SearchBar
-            placeholder="Enter Drop Off Location"
-            onChangeText={this.updateSearch}
-            value={search}
-            containerStyle={styles.topNavBarContainer}
-            inputContainerStyle={styles.searchInput}
-        />
+        {/*<SearchBar*/}
+            {/*placeholder="Enter Drop Off Location"*/}
+            {/*onChangeText={this.updateSearch}*/}
+            {/*value={search}*/}
+            {/*containerStyle={styles.topNavBarContainer}*/}
+            {/*inputContainerStyle={styles.searchInput}*/}
+        {/*/>*/}
         <TabView
           navigationState={this.state.tabStuff}
           renderScene={SceneMap({
@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
   accepted: {
     flex: 1,
       // TODO: fix padding for rides
-     // paddingBottom: '20%'
+     paddingBottom: '20%'
     // backgroundColor:"#00BFD8",
   },
   topNavBarContainer: {
