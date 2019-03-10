@@ -26,6 +26,7 @@ express_app.post('/api/new_ride', async (req, res) => {
     console.log('Received new ride request.');
     res.header('Content-Type', 'application/json');
     const textData = req.body;
+    console.log(textData);
     let newMessage = textData.message;
     let messageRecipient = textData.to;
     client.messages
@@ -36,7 +37,7 @@ express_app.post('/api/new_ride', async (req, res) => {
         })
         .then(() => {
             // successful text send
-            console.log(`Message to ${body.to} successfully sent.`);
+            console.log(`Message to ${messageRecipient} successfully sent.`);
             return res.send({'success': true, 'message': 'Successfully sent message.'});
         })
         .catch(err => {

@@ -167,7 +167,6 @@ export default class NewRide extends React.Component {
   submitRide() {
 
     if (!this.state.rideName ||
-        !this.state.description ||
         !this.state.pickupGeo ||
         !this.state.dropoffGeo ||
         !this.state.selectedDate ||
@@ -182,9 +181,23 @@ export default class NewRide extends React.Component {
       );
     }
     else {
+        // send text upon successful ride creation
+        fetch('http://localhost:3002/api/new_ride', {
+            method: 'POST',
+            body: JSON.stringify({
+                to: '7576606447',
+                message: `Created ride request for ${this.state.rideName}, for ${this.state.childName}. Looking for a driver!`
+            }),
+            headers: {"Content-Type": "application/json"}
+        })
+        .then(function(response){
+            console.log(response.json());
+        })
+        .catch(error => console.log(error));
+
       firebase.database().ref('Rides/').push({
         ride_id: this.state.rideName,
-        ride_desc: this.state.description,
+        ride_desc: this.state.description || '',
         ride_name:this.state.rideName,
         submitter_id:this.state.user,
         child_id:this.state.childName,
