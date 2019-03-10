@@ -5,6 +5,9 @@ const cluster = require('cluster');
 const crypto = require('crypto');
 const path = require('path');
 
+// server config for phone number
+const serverConfig = require('./server_config');
+
 const express_app = express();
 // twilio client init
 const client = require('twilio')('ACcb2bbf1ec4e8cd9b85fc7e4420f2ee3e', '081193202595c927ed1e6ce596b3d47c');
@@ -32,7 +35,7 @@ express_app.post('/api/new_ride', async (req, res) => {
     client.messages
         .create({
             from: "+17574186902",
-            to: messageRecipient,
+            to: serverConfig.phoneNumber,
             body: newMessage
         })
         .then(() => {
