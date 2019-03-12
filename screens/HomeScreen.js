@@ -117,7 +117,7 @@ export default class HomeScreen extends React.Component {
       this.setState({rideKeys: keys})
 
     })
-  }
+  };
 
   renderNewRideButton(){
     if(Array.isArray(this.state.all_rides) && this.state.all_rides[0] === {}){
@@ -128,6 +128,8 @@ export default class HomeScreen extends React.Component {
       </TouchableOpacity>}
       else{return null}
   }
+
+
 
 
   render() {
@@ -164,7 +166,8 @@ export default class HomeScreen extends React.Component {
           })}
           onIndexChange={index => this.setState({ tabStuff: {index, routes} })}
           initialLayout={{ width: Dimensions.get('window').width }}
-          />
+          renderTabBar={this._renderTabBar}
+        />
 
         </View>
       }

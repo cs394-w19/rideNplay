@@ -112,13 +112,13 @@ class RequestedRideDetail extends React.Component {
   }
 
   acceptRide() {
-    const ride = this.props.ride
+    const ride = this.props.ride;
 
-    firebase.database().ref('Rides/'+ride.ride_id).remove()
+    firebase.database().ref('Rides/'+ride.ride_id).remove();
 
     this.createNewRide(ride.ride_id, ride.ride_desc,
       ride.ride_name, ride.submitter_id,
-      ride.child_id, ride.pickup_loc, ride.dropoff_loc, ride.pickup_time, "Me!", 10)
+      ride.child_id, ride.pickup_loc, ride.dropoff_loc, ride.pickup_time, "Me!", 10);
 
     this.props.goBack()
   }
@@ -136,7 +136,7 @@ class RequestedRideDetail extends React.Component {
   };
 
   delete(){
-     firebase.database().ref('Rides/'+this.props.ride.ride_id).remove()
+     firebase.database().ref('Rides/'+this.props.ride.ride_id).remove();
      this.props.goBack()
   }
   deleteRide = () => {

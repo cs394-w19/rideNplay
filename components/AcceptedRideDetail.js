@@ -51,6 +51,43 @@ class AcceptedRideDetail extends React.Component {
     this.setState({inMap: !this.state.inMap})
   };
 
+  sendText = (type) => {
+      let message;
+      if (type === 'end') {
+          message = `Ended ride for ${this.props.ride.ride_name}, for ${this.props.ride.child_id}.`;
+
+          // send text upon successful ride creation
+          fetch('http://localhost:3002/api/end_ride', {
+              method: 'POST',
+              body: JSON.stringify({
+                  to: '7576606447',
+                  message: message,
+              }),
+              headers: {"Content-Type": "application/json"}
+          })
+              .then(function (response) {
+                  console.log(response.json());
+              })
+              .catch(error => console.log(error));
+      } else {
+          message = `Picked up  for ${this.props.ride.child_id}, for ${this.props.ride.ride_name}.`;
+
+          // send text upon successful ride creation
+          fetch('http://localhost:3002/api/picked_up_child', {
+              method: 'POST',
+              body: JSON.stringify({
+                  to: '7576606447',
+                  message: message,
+              }),
+              headers: {"Content-Type": "application/json"}
+          })
+              .then(function (response) {
+                  console.log(response.json());
+              })
+              .catch(error => console.log(error));
+      }
+  };
+
   renderMap = () => {
     return (
       <View>
@@ -119,7 +156,7 @@ class AcceptedRideDetail extends React.Component {
   renderMapRoute = () => {
       if (this.state.inMap === true) {
             // this.setState({routeRendered: true});
-      console.log('entered render map')
+      console.log('entered render map');
           return <MapViewDirections
               origin={this.convertLatLong(this.props.ride.pickup_loc)}
               destination={this.convertLatLong(this.props.ride.dropoff_loc)}
@@ -195,7 +232,7 @@ class AcceptedRideDetail extends React.Component {
       <ScrollView>
       <InfoText text="Your Request:" />
       <View style={styles.userRow}>
-        <TouchableOpacity style={{marginHorizontal: 30}}>
+        <TouchableOpacity style={{marginHorizontal: 30}} onPress={this.sendText('pickup')}>
             <View style = {{backgroundColor: '#00bfd8', padding: 10, borderRadius:5}}>
               <Ionicons name='ios-arrow-dropright' size='20' color = 'white' />
               <Text>Notify Parent of Pickup</Text>
@@ -203,7 +240,7 @@ class AcceptedRideDetail extends React.Component {
         </TouchableOpacity>
 
         <TouchableOpacity style={{marginHorizontal: 30}}>
-            <View style = {{backgroundColor: '#00bfd8', padding: 10,borderRadius:5}}>
+            <View style = {{backgroundColor: '#00bfd8', padding: 10,borderRadius:5}} onPress={this.sendText('end')}>
               <Ionicons name='ios-checkmark-circle-outline' size='20' color = 'white' />
               <Text>End Ride</Text>
             </View>

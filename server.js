@@ -52,6 +52,62 @@ express_app.post('/api/new_ride', async (req, res) => {
 
 });
 
+express_app.post('/api/end_ride', async (req, res) => {
+    // api to send texts after new ride creation.
+    console.log('Received end ride request.');
+    res.header('Content-Type', 'application/json');
+    const textData = req.body;
+    console.log(textData);
+    let newMessage = textData.message;
+    let messageRecipient = textData.to;
+    client.messages
+        .create({
+            from: "+17574186902",
+            to: serverConfig.phoneNumber,
+            body: newMessage
+        })
+        .then(() => {
+            // successful text send
+            console.log(`Message to ${messageRecipient} successfully sent.`);
+            return res.send({'success': true, 'message': 'Successfully sent message.'});
+        })
+        .catch(err => {
+            // error sending text
+            console.log('hit error');
+            console.log(err);
+            return res.send({'success': false, 'message': err});
+        });
+
+});
+
+express_app.post('/api/picked_up_child', async (req, res) => {
+    // api to send texts after new ride creation.
+    console.log('Received new child pickup request request.');
+    res.header('Content-Type', 'application/json');
+    const textData = req.body;
+    console.log(textData);
+    let newMessage = textData.message;
+    let messageRecipient = textData.to;
+    client.messages
+        .create({
+            from: "+17574186902",
+            to: serverConfig.phoneNumber,
+            body: newMessage
+        })
+        .then(() => {
+            // successful text send
+            console.log(`Message to ${messageRecipient} successfully sent.`);
+            return res.send({'success': true, 'message': 'Successfully sent message.'});
+        })
+        .catch(err => {
+            // error sending text
+            console.log('hit error');
+            console.log(err);
+            return res.send({'success': false, 'message': err});
+        });
+
+});
+
 // sever port is 3002
 express_app.portNumber = 3002;
 
