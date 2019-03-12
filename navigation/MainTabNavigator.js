@@ -39,7 +39,7 @@ LinksStack.navigationOptions = {
           height: 80,
           width: 80,
           borderRadius: 100,
-          backgroundColor: 'blue',
+          backgroundColor: '#1162c4',
           paddingTop: 15}}>
     <CenterIcon
       size={50}

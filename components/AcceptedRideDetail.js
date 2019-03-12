@@ -232,21 +232,27 @@ class AcceptedRideDetail extends React.Component {
         return(
       <ScrollView>
       <InfoText text="Your Request:" />
-      <View style={styles.userRow}>
-        <TouchableOpacity style={{marginHorizontal: 30}} onPress={() => {this.sendText('pickup')}}>
-            <View style = {{backgroundColor: '#00bfd8', padding: 10, borderRadius:5}}>
-              <Ionicons name='ios-arrow-dropright' size='20' color = 'white' />
-              <Text>Notify Parent of Pickup</Text>
-            </View>
-        </TouchableOpacity>
 
-        <TouchableOpacity style={{marginHorizontal: 30}} onPress={() => {this.sendText('end')}}>
-            <View style = {{backgroundColor: '#00bfd8', padding: 10,borderRadius:5}}>
-              <Ionicons name='ios-checkmark-circle-outline' size='20' color = 'white' />
-              <Text>End Ride</Text>
+      <View style={styles.textButtonRow}>
+        <View style = {{borderWidth: 1, borderRadius: 5, marginRight: 15}}>
+        <TouchableOpacity onPress={() => {this.sendText('pickup')}}>
+            <View style = {{flexDirection: 'row', backgroundColor: '#3ec300', padding: 10, borderRadius:5}}>
+              <Ionicons name='ios-arrow-dropright' size='20' color = 'white' />
+              <Text style={{fontWeight: 'bold', color: 'white'}}>   Notify Parent of Pickup</Text>
             </View>
         </TouchableOpacity>
+        </View>
+
+        <View style = {{borderWidth: 1, borderRadius: 5, marginLeft: 15}}>
+        <TouchableOpacity onPress={() => {this.sendText('end')}}>
+            <View style = {{flexDirection: 'row', backgroundColor: '#c32f27', padding: 10,borderRadius:5}}>
+              <Ionicons name='ios-checkmark-circle-outline' size='20' color = 'white' />
+              <Text style={{fontWeight: 'bold', color: 'white'}}>   End Ride</Text>
+            </View>
+        </TouchableOpacity>
+        </View>
       </View>
+
       <InfoText text="For:" />
       <View style={styles.userRow}>
       <View style={styles.userImage}>
@@ -254,6 +260,18 @@ class AcceptedRideDetail extends React.Component {
       </View>
       <View>
             <Text style={{ fontSize: 16 }}>{this.props.ride.child_id}</Text>
+      </View>
+      <View style = {{flexDirection: 'row', justifyContent: 'flex-end'}}>
+        <TouchableOpacity style={{marginLeft: 80, marginRight: 10}} onPress={() => Communications.phonecall('3018019811', true)}>
+            <View style = {{backgroundColor: '#3ec300', borderWidth: 1, padding: 20,  borderColor: '#3ec300', borderRadius: 50}}>
+              <Icon name='phone' size='20' color = 'white' />
+            </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={{marginRight: 5}} onPress={() => Communications.text('3018019811')}>
+            <View style = {{backgroundColor: '#1162c4', borderWidth: 1, padding: 20, borderColor: 'blue', borderRadius: 50}}>
+              <Icon name='message' size='20' color = 'white' />
+            </View>
+        </TouchableOpacity>
       </View>
       </View>
 
@@ -286,18 +304,7 @@ class AcceptedRideDetail extends React.Component {
         </TouchableOpacity>
       </View>
 
-      <View style = {{flexDirection: 'row', justifyContent: 'center', marginTop: 20}}>
-        <TouchableOpacity style={{marginHorizontal: 30}} onPress={() => Communications.phonecall('3018019811', true)}>
-            <View style = {{backgroundColor: 'green', borderWidth: 1, padding: 20,  borderColor: 'green', borderRadius: 50}}>
-              <Icon name='phone' size='50' color = 'white' />
-            </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={{marginHorizontal: 30}} onPress={() => Communications.text('3018019811')}>
-            <View style = {{backgroundColor: 'blue', borderWidth: 1, padding: 20, borderColor: 'blue', borderRadius: 50}}>
-              <Icon name='message' size='50' color = 'white' />
-            </View>
-        </TouchableOpacity>
-      </View>
+
 
       </ScrollView>
 
@@ -334,18 +341,20 @@ class AcceptedRideDetail extends React.Component {
           <Text> Tap to return! </Text>
         </TouchableOpacity>
       </View>
+
       <View style = {{flexDirection: 'row', justifyContent: 'center', marginTop: 20}}>
         <TouchableOpacity style={{marginHorizontal: 30}} onPress={() => Communications.phonecall('3018019811', true)}>
-            <View style = {{backgroundColor: 'green', borderWidth: 1, padding: 20,  borderColor: 'green', borderRadius: 50}}>
-              <Icon name='phone' size='50' color = 'white' />
+            <View style = {{backgroundColor: '#3ec300', borderWidth: 1, padding: 20,  borderColor: '#3ec300', borderRadius: 50}}>
+              <Icon name='phone' size='30' color = 'white' />
             </View>
         </TouchableOpacity>
         <TouchableOpacity style={{marginHorizontal: 30}} onPress={() => Communications.text('3018019811')}>
-            <View style = {{backgroundColor: 'blue', borderWidth: 1, padding: 20, borderColor: 'blue', borderRadius: 50}}>
-              <Icon name='message' size='50' color = 'white' />
+            <View style = {{backgroundColor: '#1162c4', borderWidth: 1, padding: 20, borderColor: '#337ca0', borderRadius: 50}}>
+              <Icon name='message' size='30' color = 'white' />
             </View>
         </TouchableOpacity>
       </View>
+
       </View>
     )
   }
@@ -393,6 +402,13 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
     paddingLeft: 15,
     paddingRight: 15,
+    paddingTop: 6,
+  },
+  textButtonRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingBottom: 8,
     paddingTop: 6,
   },
 })
