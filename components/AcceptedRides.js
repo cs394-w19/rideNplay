@@ -29,7 +29,7 @@ export default class AcceptedRides extends React.Component {
                               id = {ride.ride_id}
                               rideTitle = {Object(ride).ride_name}
                               rideDesc = {ride.ride_desc}
-
+                              driver = {ride.driver}
                             />
                           </TouchableOpacity>
           if(ride.driver != 'N/A')
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     backgroundColor: 'white',
+    height: "100%"
   },
   textView: {
     backgroundColor: 'white',

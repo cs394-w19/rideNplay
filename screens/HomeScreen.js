@@ -136,7 +136,8 @@ export default class HomeScreen extends React.Component {
 
       const firstRoute = () =>
         <View style = {styles.accepted}>
-          <AcceptedRides rides = {this.state.all_rides}
+          <AcceptedRides
+                        rides = {this.state.all_rides}
                         keys = {this.state.rideKeys}
                        clickRide = {this.clickRide}/>
           {this.renderNewRideButton()}
@@ -197,7 +198,6 @@ const styles = StyleSheet.create({
   },
   accepted: {
     flex: 1,
-     paddingBottom: '20%'
   },
   topNavBarContainer: {
     backgroundColor:"#00BFD8",

@@ -207,7 +207,7 @@ export default class NewRide extends React.Component {
         dropoff_title: this.state.dropoffTitle,
         pickup_date: moment(this.state.selectedDate).format('MM/DD/YYYY'),
         pickup_time: moment(this.state.selectedTime).format('hh:mm A'),
-        driver:"ME",
+        driver: '',
         rating:"N/A"
       }).then((data) => {
           Alert.alert(
