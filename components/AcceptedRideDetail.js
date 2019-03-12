@@ -53,7 +53,8 @@ class AcceptedRideDetail extends React.Component {
 
   sendText = (type) => {
       let message;
-      if (type === 'end') {
+      console.log(type);
+      if (type == 'end') {
           message = `Ended ride for ${this.props.ride.ride_name}, for ${this.props.ride.child_id}.`;
 
           // send text upon successful ride creation
@@ -232,15 +233,15 @@ class AcceptedRideDetail extends React.Component {
       <ScrollView>
       <InfoText text="Your Request:" />
       <View style={styles.userRow}>
-        <TouchableOpacity style={{marginHorizontal: 30}} onPress={this.sendText('pickup')}>
+        <TouchableOpacity style={{marginHorizontal: 30}} onPress={() => {this.sendText('pickup')}}>
             <View style = {{backgroundColor: '#00bfd8', padding: 10, borderRadius:5}}>
               <Ionicons name='ios-arrow-dropright' size='20' color = 'white' />
               <Text>Notify Parent of Pickup</Text>
             </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{marginHorizontal: 30}}>
-            <View style = {{backgroundColor: '#00bfd8', padding: 10,borderRadius:5}} onPress={this.sendText('end')}>
+        <TouchableOpacity style={{marginHorizontal: 30}} onPress={() => {this.sendText('end')}}>
+            <View style = {{backgroundColor: '#00bfd8', padding: 10,borderRadius:5}}>
               <Ionicons name='ios-checkmark-circle-outline' size='20' color = 'white' />
               <Text>End Ride</Text>
             </View>
