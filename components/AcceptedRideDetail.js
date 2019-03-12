@@ -334,6 +334,18 @@ class AcceptedRideDetail extends React.Component {
           <Text> Tap to return! </Text>
         </TouchableOpacity>
       </View>
+      <View style = {{flexDirection: 'row', justifyContent: 'center', marginTop: 20}}>
+        <TouchableOpacity style={{marginHorizontal: 30}} onPress={() => Communications.phonecall('3018019811', true)}>
+            <View style = {{backgroundColor: 'green', borderWidth: 1, padding: 20,  borderColor: 'green', borderRadius: 50}}>
+              <Icon name='phone' size='50' color = 'white' />
+            </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={{marginHorizontal: 30}} onPress={() => Communications.text('3018019811')}>
+            <View style = {{backgroundColor: 'blue', borderWidth: 1, padding: 20, borderColor: 'blue', borderRadius: 50}}>
+              <Icon name='message' size='50' color = 'white' />
+            </View>
+        </TouchableOpacity>
+      </View>
       </View>
     )
   }
