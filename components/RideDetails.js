@@ -23,7 +23,7 @@ export const RideDetails = function(props) {
             </View>
 
             <View style={styles.centerCol}>
-                    <Text style = {{fontSize: 20}}>Ride Description</Text>
+                    <Text style = {{fontSize: 20}}>{props.title}</Text>
             </View>
             <View style={styles.rightCol}>
                 <Ionicons name="ios-car" color="#000000" size={25} style={{alignSelf: "center"}}/>
@@ -36,7 +36,7 @@ export const RideDetails = function(props) {
             </View>
 
             <View style={styles.centerCol}>
-              <Text style = {{fontSize: 20}}>Who Needs a Ride?</Text>
+              <Text style = {{fontSize: 20}}>{props.child}</Text>
             </View>
             <View style={styles.rightCol}>
                 <FontAwesome name="child" color="#000000" size={25} style={{alignSelf: "center"}}/>

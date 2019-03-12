@@ -63,7 +63,7 @@ export default class NewRide extends React.Component {
 
     chosenDate: new Date(),
 
-    childName:"",
+    childName:"Who Needs a Ride?",
 
     selectedDate: null,
     selectedTime: null,
@@ -71,7 +71,7 @@ export default class NewRide extends React.Component {
 
     childPicker: false,
     description: "",
-    rideName: "",
+    rideName: "Ride Description",
 
     initialDateName: "Choose Date",
     initialTimeName: "Choose Time"
@@ -506,7 +506,7 @@ export default class NewRide extends React.Component {
           {this.renderMap()}
 
 
-        <RideDetails openDetails={this.showDetailsModal} chooseChild = {this.showChooseChild.bind(this)}/>
+        <RideDetails child={this.state.childName} title={this.state.rideName} openDetails={this.showDetailsModal} chooseChild = {this.showChooseChild.bind(this)}/>
         <PickupButton title = {this.state.pickupTitle} viewModal = {this.viewPickupModal.bind(this)} save = {this.savePickupDetails}/>
         <DropoffButton title = {this.state.dropoffTitle} viewModal = {this.viewDropoffModal.bind(this)}  save = {this.saveDropoffDetails}/>
         <PickupDateButton name={this.state.initialDateName} setDate = {this.setSelectedDate}/>
