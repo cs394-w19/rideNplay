@@ -195,26 +195,19 @@ class AcceptedRideDetail extends React.Component {
       <ScrollView>
       <InfoText text="Your Request:" />
       <View style={styles.userRow}>
-      <View style={styles.userImage}>
-            <Avatar
-              rounded
-              size="large"
-              source={{
-                uri: "http://images5.fanpop.com/image/photos/30200000/Nick-3-nick-miller-30219108-300-300.jpg",
-              }}
-            />
-      </View>
-      <View>
-            <Text style={{ fontSize: 16 }}>{this.props.ride.submitter_id}</Text>
-            <Text
-              style={{
-                color: 'gray',
-                fontSize: 16,
-              }}
-            >
-              nickmiller@gmail.com
-            </Text>
-      </View>
+        <TouchableOpacity style={{marginHorizontal: 30}}>
+            <View style = {{backgroundColor: '#00bfd8', padding: 10, borderRadius:5}}>
+              <Ionicons name='ios-arrow-dropright' size='20' color = 'white' />
+              <Text>Notify Parent of Pickup</Text>
+            </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{marginHorizontal: 30}}>
+            <View style = {{backgroundColor: '#00bfd8', padding: 10,borderRadius:5}}>
+              <Ionicons name='ios-checkmark-circle-outline' size='20' color = 'white' />
+              <Text>End Ride</Text>
+            </View>
+        </TouchableOpacity>
       </View>
       <InfoText text="For:" />
       <View style={styles.userRow}>
