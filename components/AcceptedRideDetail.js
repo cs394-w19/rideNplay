@@ -244,7 +244,7 @@ class AcceptedRideDetail extends React.Component {
       <TouchableOpacity onPress={() => {this.sendText('end')}}>
           <View style = {{flexDirection: 'row', backgroundColor: '#c32f27', padding: 10,borderRadius:5}}>
             <Ionicons name='ios-checkmark-circle-outline' size='20' color = 'white' />
-            <Text style={{fontWeight: 'bold', color: 'white'}}>   End Ride</Text>
+            <Text style={{fontWeight: 'bold', color: 'white'}}>   Complete Ride</Text>
           </View>
       </TouchableOpacity>
       </View>
