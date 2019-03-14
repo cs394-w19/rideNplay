@@ -46,7 +46,7 @@ export default class HomeScreen extends React.Component {
     index: 0,
     routes: [
       { key: 'myRides', title: 'My Rides' },
-      { key: 'availableRides', title: 'Available Rides' },
+      { key: 'availableRides', title: 'Rides Needed' },
     ],
     search: '',
     }

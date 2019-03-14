@@ -247,14 +247,14 @@ export default class NewRide extends React.Component {
 
           chosenDate: new Date(),
 
-          childName:"",
+          childName:"Who needs a ride?",
 
           selectedDate: null,
           selectedTime: null,
 
           childPicker: false,
           description: "",
-          rideName: "",
+          rideName: "Ride Description",
 
           initialDateName: "Choose Date",
           initialTimeName: "Choose Time"
@@ -474,16 +474,16 @@ export default class NewRide extends React.Component {
                   </View>
 
                   <View style = {{margin: 20, alignItems: 'center'}}>
-                    <TouchableOpacity onPress = {() => this.setState({childName: "Clayton", chooseChild: !this.state.chooseChild})}>
+                    <TouchableOpacity onPress = {() => this.setState({childName: "Guneet", chooseChild: !this.state.chooseChild})}>
                     <Avatar
                       rounded
                       size="large"
                       source={{
-                        uri: "https://www.healthyfood.co.nz/wp-content/uploads/2017/01/Should-your-child-be-dairy-free-iStock_64414757.jpg",
+                        uri: "https://media.licdn.com/dms/image/C5603AQHwmCadcgL5TA/profile-displayphoto-shrink_800_800/0?e=1557964800&v=beta&t=CN0W9lB6z_ce1e1GmzX1NOxHScX-oXLThwYZaKbghdo",
                       }}
                     />
                     </TouchableOpacity>
-                    <Text> Clayton </Text>
+                    <Text> Guneet </Text>
                   </View>
                 </View>
 
