@@ -55,7 +55,7 @@ class Ride extends React.Component {
                       subtitle={this.state.subtitle}
                       subtitleStyle={{color: this.state.style}}
                       // long conditional to check for expired ride, if it's not expired, it checks if it's pending or accepted
-                      containerStyle={[(this.state.expiredRide === true) ? styles.expiredRide : ((typeof this.props.driver !== 'undefined') ? styles.acceptedRide : styles.pendingRide)]}
+                      containerStyle={[(this.state.expiredRide === true) ? styles.expiredRide : (( this.props.driver !== '') ? styles.acceptedRide : styles.pendingRide)]}
                       chevron>
             </ListItem>
 
