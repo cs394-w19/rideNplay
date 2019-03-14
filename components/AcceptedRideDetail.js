@@ -252,22 +252,6 @@ class AcceptedRideDetail extends React.Component {
     }
   }
 
-  renderButtonsTwo(){
-    if(this.props.ride.driver!= ""){
-    return <View style = {{flexDirection: 'row', justifyContent: 'flex-end'}}>
-      <TouchableOpacity style={{marginLeft: 80, marginRight: 10}} onPress={() => Communications.phonecall('3018019811', true)}>
-          <View style = {{backgroundColor: '#3ec300', borderWidth: 1, padding: 20,  borderColor: '#3ec300', borderRadius: 50}}>
-            <Icon name='phone' size='20' color = 'white' />
-          </View>
-      </TouchableOpacity>
-      <TouchableOpacity style={{marginRight: 5}} onPress={() => Communications.text('3018019811')}>
-          <View style = {{backgroundColor: '#1162c4', borderWidth: 1, padding: 20, borderColor: 'blue', borderRadius: 50}}>
-            <Icon name='message' size='20' color = 'white' />
-          </View>
-      </TouchableOpacity>
-    </View>}
-  }
-
   render(){
     if (this.state.inMap == false){
         // this.setState({routeRendered: false});
@@ -287,7 +271,18 @@ class AcceptedRideDetail extends React.Component {
       <View>
             <Text style={{ fontSize: 16 }}>{this.props.ride.child_id}</Text>
       </View>
-        {this.renderButtonsTwo()}
+      <View style = {{flexDirection: 'row', justifyContent: 'flex-end'}}>
+        <TouchableOpacity style={{marginLeft: 80, marginRight: 10}} onPress={() => Communications.phonecall('3018019811', true)}>
+            <View style = {{backgroundColor: '#3ec300', borderWidth: 1, padding: 20,  borderColor: '#3ec300', borderRadius: 50}}>
+              <Icon name='phone' size='20' color = 'white' />
+            </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={{marginRight: 5}} onPress={() => Communications.text('3018019811')}>
+            <View style = {{backgroundColor: '#1162c4', borderWidth: 1, padding: 20, borderColor: 'blue', borderRadius: 50}}>
+              <Icon name='message' size='20' color = 'white' />
+            </View>
+        </TouchableOpacity>
+      </View>
       </View>
 
       <InfoText text="Ride Details:" />
