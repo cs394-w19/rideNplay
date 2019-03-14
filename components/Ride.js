@@ -32,7 +32,6 @@ class Ride extends React.Component {
 
     checkDriver(ride){
         let expired = moment(ride.rideAge).diff(moment(), 'days') < 0;
-        console.log(ride)
         // returns a bool whether a ride has a driver or not and is not expired.
         if (typeof ride.driver !== 'undefined' && !expired) {
             return `Driver: ${ride.driver}`;

@@ -219,6 +219,7 @@ export default class NewRide extends React.Component {
         //   {cancelable: false},
         // );
 
+
         this.setState({
           user: "nickmiller5", // user name
           viewPickupModal: false,  // obvious
@@ -346,13 +347,13 @@ export default class NewRide extends React.Component {
                <GooglePlacesInput locationSet = {this.confirmPickupLocation.bind(this)}/>
 
                <View style = {{alignItems: 'center'}}>
-                <TouchableOpacity onPress = {() => this.confirmPickupLocation()} style = {{position: 'absolute', top: HEIGHT - 170}}>
+                <TouchableOpacity onPress = {() => this.confirmPickupLocation()} style = {{position: 'absolute', top: HEIGHT - 220}}>
                 <Text style = {{fontSize: 20, color: 'blue'}}>
                   Confirm
                 </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress = {() => this.setState({viewPickupModal: !this.state.viewPickupModal})} style = {{position: 'absolute', top: HEIGHT - 110}}>
+                <TouchableOpacity onPress = {() => this.setState({viewPickupModal: !this.state.viewPickupModal})} style = {{position: 'absolute', top: HEIGHT - 160}}>
                 <Text style = {{fontSize: 20, color: 'red'}}>
                   Cancel
                 </Text>
@@ -370,13 +371,13 @@ export default class NewRide extends React.Component {
               <View>
                 <GooglePlacesInput locationSet = {this.confirmDropoffLocation.bind(this)}/>
                 <View style = {{alignItems: 'center'}}>
-                 <TouchableOpacity onPress = {() => this.confirmDropoffLocation()} style = {{position: 'absolute', top: HEIGHT - 170}}>
+                 <TouchableOpacity onPress = {() => this.confirmDropoffLocation()} style = {{position: 'absolute', top: HEIGHT - 220}}>
                  <Text style = {{fontSize: 20, color: 'blue'}}>
                    Confirm
                  </Text>
                  </TouchableOpacity>
 
-                 <TouchableOpacity onPress = {() => this.setState({viewDropoffModal: !this.state.viewDropoffModal})} style = {{position: 'absolute', top: HEIGHT - 110}}>
+                 <TouchableOpacity onPress = {() => this.setState({viewDropoffModal: !this.state.viewDropoffModal})} style = {{position: 'absolute', top: HEIGHT - 160}}>
                  <Text style = {{fontSize: 20, color: 'red'}}>
                    Cancel
                  </Text>
@@ -426,13 +427,13 @@ export default class NewRide extends React.Component {
 
               <View style ={{left: WIDTH/2-10, position: 'absolute', alignItems: 'center'}}>
               <TouchableOpacity
-                style = {{position: 'absolute', top: HEIGHT - 170}}
+                style = {{position: 'absolute', top: HEIGHT - 220}}
                 onPress={() => this.showDetailsModal()}>
                 <Text style = {{fontSize: 20}}>Confirm</Text>
               </TouchableOpacity>
 
               <TouchableOpacity onPress = {() => this.setState({detailsModal: !this.state.detailsModal})}
-                                style = {{position: 'absolute', top: HEIGHT - 110}}>
+                                style = {{position: 'absolute', top: HEIGHT - 160}}>
               <Text style = {{fontSize: 20, color: 'red'}}>
                 Cancel
               </Text>
