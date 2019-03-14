@@ -40,7 +40,7 @@ express_app.post('/api/new_ride', async (req, res) => {
         })
         .then(() => {
             // successful text send
-            console.log(`Message to ${messageRecipient} successfully sent.`);
+            console.log(`Message to ${serverConfig.phoneNumber} successfully sent.`);
             return res.send({'success': true, 'message': 'Successfully sent message.'});
         })
         .catch(err => {
@@ -68,7 +68,7 @@ express_app.post('/api/end_ride', async (req, res) => {
         })
         .then(() => {
             // successful text send
-            console.log(`Message to ${messageRecipient} successfully sent.`);
+            console.log(`Message to ${serverConfig.phoneNumber} successfully sent.`);
             return res.send({'success': true, 'message': 'Successfully sent message.'});
         })
         .catch(err => {
@@ -96,7 +96,7 @@ express_app.post('/api/picked_up_child', async (req, res) => {
         })
         .then(() => {
             // successful text send
-            console.log(`Message to ${messageRecipient} successfully sent.`);
+            console.log(`Message to ${serverConfig.phoneNumber} successfully sent.`);
             return res.send({'success': true, 'message': 'Successfully sent message.'});
         })
         .catch(err => {
