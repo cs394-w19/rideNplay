@@ -210,14 +210,15 @@ export default class NewRide extends React.Component {
         driver: '',
         rating:"N/A"
       }).then((data) => {
-          Alert.alert(
-          'Ride Submitted',
-          "Your Request was Successfully Posted!",
-          [
-            {text: 'OK', onPress: () => {return}},
-          ],
-          {cancelable: false},
-        );
+        //   Alert.alert(
+        //   'Ride Submitted',
+        //   "Alert Message",
+        //   [
+        //     {text: 'OK', onPress: () => {return}},
+        //   ],
+        //   {cancelable: false},
+        // );
+
 
         this.setState({
           user: "nickmiller5", // user name
