@@ -61,7 +61,8 @@ class AcceptedRideDetail extends React.Component {
           fetch('http://localhost:3002/api/end_ride', {
               method: 'POST',
               body: JSON.stringify({
-                  to: '7576606447',
+                  to: '9178287902',
+                  //7576606447
                   message: message,
               }),
               headers: {"Content-Type": "application/json"}
@@ -77,7 +78,7 @@ class AcceptedRideDetail extends React.Component {
           fetch('http://localhost:3002/api/picked_up_child', {
               method: 'POST',
               body: JSON.stringify({
-                  to: '7576606447',
+                  to: '9178287902',
                   message: message,
               }),
               headers: {"Content-Type": "application/json"}
@@ -87,6 +88,8 @@ class AcceptedRideDetail extends React.Component {
               })
               .catch(error => console.log(error));
       }
+      Alert.alert('The parent has been notified')
+
   };
 
   renderMap = () => {
@@ -225,6 +228,46 @@ class AcceptedRideDetail extends React.Component {
     }
   }
 
+  renderButtons(){
+      if(this.props.ride.driver != ""){
+      return <View style={styles.textButtonRow}>
+      <View style = {{borderWidth: 1, borderRadius: 5, marginRight: 15}}>
+      <TouchableOpacity onPress={() => {this.sendText('pickup')}}>
+          <View style = {{flexDirection: 'row', backgroundColor: '#3ec300', padding: 10, borderRadius:5}}>
+            <Ionicons name='ios-arrow-dropright' size='20' color = 'white' />
+            <Text style={{fontWeight: 'bold', color: 'white'}}>   Notify Parent of Pickup</Text>
+          </View>
+      </TouchableOpacity>
+      </View>
+
+      <View style = {{borderWidth: 1, borderRadius: 5, marginLeft: 15}}>
+      <TouchableOpacity onPress={() => {this.sendText('end')}}>
+          <View style = {{flexDirection: 'row', backgroundColor: '#c32f27', padding: 10,borderRadius:5}}>
+            <Ionicons name='ios-checkmark-circle-outline' size='20' color = 'white' />
+            <Text style={{fontWeight: 'bold', color: 'white'}}>   End Ride</Text>
+          </View>
+      </TouchableOpacity>
+      </View>
+    </View>
+    }
+  }
+
+  renderButtonsTwo(){
+    if(this.props.ride.driver!= ""){
+    return <View style = {{flexDirection: 'row', justifyContent: 'flex-end'}}>
+      <TouchableOpacity style={{marginLeft: 80, marginRight: 10}} onPress={() => Communications.phonecall('3018019811', true)}>
+          <View style = {{backgroundColor: '#3ec300', borderWidth: 1, padding: 20,  borderColor: '#3ec300', borderRadius: 50}}>
+            <Icon name='phone' size='20' color = 'white' />
+          </View>
+      </TouchableOpacity>
+      <TouchableOpacity style={{marginRight: 5}} onPress={() => Communications.text('3018019811')}>
+          <View style = {{backgroundColor: '#1162c4', borderWidth: 1, padding: 20, borderColor: 'blue', borderRadius: 50}}>
+            <Icon name='message' size='20' color = 'white' />
+          </View>
+      </TouchableOpacity>
+    </View>}
+  }
+
   render(){
     if (this.state.inMap == false){
         // this.setState({routeRendered: false});
@@ -233,25 +276,8 @@ class AcceptedRideDetail extends React.Component {
       <ScrollView>
       <InfoText text="Your Request:" />
 
-      <View style={styles.textButtonRow}>
-        <View style = {{borderWidth: 1, borderRadius: 5, marginRight: 15}}>
-        <TouchableOpacity onPress={() => {this.sendText('pickup')}}>
-            <View style = {{flexDirection: 'row', backgroundColor: '#3ec300', padding: 10, borderRadius:5}}>
-              <Ionicons name='ios-arrow-dropright' size='20' color = 'white' />
-              <Text style={{fontWeight: 'bold', color: 'white'}}>   Notify Parent of Pickup</Text>
-            </View>
-        </TouchableOpacity>
-        </View>
 
-        <View style = {{borderWidth: 1, borderRadius: 5, marginLeft: 15}}>
-        <TouchableOpacity onPress={() => {this.sendText('end')}}>
-            <View style = {{flexDirection: 'row', backgroundColor: '#c32f27', padding: 10,borderRadius:5}}>
-              <Ionicons name='ios-checkmark-circle-outline' size='20' color = 'white' />
-              <Text style={{fontWeight: 'bold', color: 'white'}}>   End Ride</Text>
-            </View>
-        </TouchableOpacity>
-        </View>
-      </View>
+        {this.renderButtons()}
 
       <InfoText text="For:" />
       <View style={styles.userRow}>
@@ -261,18 +287,7 @@ class AcceptedRideDetail extends React.Component {
       <View>
             <Text style={{ fontSize: 16 }}>{this.props.ride.child_id}</Text>
       </View>
-      <View style = {{flexDirection: 'row', justifyContent: 'flex-end'}}>
-        <TouchableOpacity style={{marginLeft: 80, marginRight: 10}} onPress={() => Communications.phonecall('3018019811', true)}>
-            <View style = {{backgroundColor: '#3ec300', borderWidth: 1, padding: 20,  borderColor: '#3ec300', borderRadius: 50}}>
-              <Icon name='phone' size='20' color = 'white' />
-            </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={{marginRight: 5}} onPress={() => Communications.text('3018019811')}>
-            <View style = {{backgroundColor: '#1162c4', borderWidth: 1, padding: 20, borderColor: 'blue', borderRadius: 50}}>
-              <Icon name='message' size='20' color = 'white' />
-            </View>
-        </TouchableOpacity>
-      </View>
+        {this.renderButtonsTwo()}
       </View>
 
       <InfoText text="Ride Details:" />

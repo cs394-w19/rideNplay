@@ -212,7 +212,7 @@ export default class NewRide extends React.Component {
       }).then((data) => {
           Alert.alert(
           'Ride Submitted',
-          "Alert Message",
+          "Your Request was Successfully Posted!",
           [
             {text: 'OK', onPress: () => {return}},
           ],
