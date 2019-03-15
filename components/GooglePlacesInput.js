@@ -29,7 +29,7 @@ export class GooglePlacesInput extends React.Component {
 
       query={{
         // available options: https://developers.google.com/places/web-service/autocomplete
-        key: 'AIzaSyB9B01b8XaDo3LQ205C3MgYg7WpR0iatGE',
+        key: 'key',
         language: 'en', // language of the results
         types: 'geocode' // default: 'geocode'
       }}
