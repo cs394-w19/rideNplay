@@ -16,12 +16,11 @@ const customTextProps = {
 import AppNavigator from './navigation/AppNavigator';
 let firebase = require("firebase");
 let config = {
-    apiKey: "AIzaSyDpsRarS_gg94oXh6QnracvPytegM5FV7Y",
-    authDomain: "ridenplay-50868.firebaseapp.com",
-    databaseURL: "https://ridenplay-50868.firebaseio.com",
-    projectId: "ridenplay-50868",
-    storageBucket: "",
-    messagingSenderId: "851433543145"
+    apiKey: "apiKey",
+    authDomain: "authDomain",
+    databaseURL: "databaseURL",
+    projectId: "projectId",
+    storageBucket: "storageBucket",
   };
   firebase.initializeApp(config);
 
