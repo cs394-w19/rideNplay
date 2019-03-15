@@ -200,12 +200,12 @@ class AcceptedRideDetail extends React.Component {
   };
 
   renderAvatar(){
-    if(this.props.ride.child_id == "Clayton") {
+    if(this.props.ride.child_id == "Guneet") {
     return <Avatar
       rounded
       size="large"
       source={{
-        uri: "https://www.healthyfood.co.nz/wp-content/uploads/2017/01/Should-your-child-be-dairy-free-iStock_64414757.jpg",
+        uri: "https://media.licdn.com/dms/image/C5603AQHwmCadcgL5TA/profile-displayphoto-shrink_800_800/0?e=1557964800&v=beta&t=CN0W9lB6z_ce1e1GmzX1NOxHScX-oXLThwYZaKbghdo",
       }}
     />
   } else if(this.props.ride.child_id == "Emma") {
@@ -258,7 +258,7 @@ class AcceptedRideDetail extends React.Component {
 
         return(
       <ScrollView>
-      <InfoText text="Your Request:" />
+      <InfoText text="Your Request" />
 
 
         {this.renderButtons()}

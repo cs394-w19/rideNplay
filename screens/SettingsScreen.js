@@ -92,19 +92,19 @@ export default class SettingsScreen extends React.Component {
               rounded
               size="large"
               source={{
-                uri: "http://images5.fanpop.com/image/photos/30200000/Nick-3-nick-miller-30219108-300-300.jpg",
+                uri: "https://media.licdn.com/dms/image/C4E03AQFX7svploE2hA/profile-displayphoto-shrink_800_800/0?e=1557964800&v=beta&t=o-EihqNTmsbF4jYCrxg2RhEm3u-f7KAbIUnMQXCDq_g",
               }}
             />
           </View>
           <View>
-            <Text style={{ fontSize: 16 }}>Nick Miller</Text>
+            <Text style={{ fontSize: 16 }}>David Kim</Text>
             <Text
               style={{
                 color: 'gray',
                 fontSize: 16,
               }}
             >
-              nickmiller@gmail.com
+              Davidkim@gmail.com
             </Text>
           </View>
       </TouchableOpacity>

@@ -46,7 +46,7 @@ class Ride extends React.Component {
         return (
             <ListItem style={styles.info}
                       leftAvatar={{
-                          source: {uri: "http://images5.fanpop.com/image/photos/30200000/Nick-3-nick-miller-30219108-300-300.jpg"},
+                          source: {uri: "https://media.licdn.com/dms/image/C4E03AQFX7svploE2hA/profile-displayphoto-shrink_800_800/0?e=1557964800&v=beta&t=o-EihqNTmsbF4jYCrxg2RhEm3u-f7KAbIUnMQXCDq_g"},
                           showEditButton: true,
                       }}
                       title={this.props.rideTitle}
