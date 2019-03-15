@@ -1,4 +1,5 @@
-Team Red Client Project: RideNPlay
+### Overview: rideNplay
+Team Red Client Project: rideNplay
 	-This app allows parents to find rides for their children's events through other parents.
 
 ### Deploying
